@@ -1,22 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
-import { useState, useEffect } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Header from "./Header";
+import Login from "./Login";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
+  const title = <h1>Sigma Shipyards</h1>;
 
   return (
     <div className="App">
-      <h1>Page Count: {count}</h1>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Login />} />
+      </Routes>
     </div>
   );
 }
 
 export default App;
+
