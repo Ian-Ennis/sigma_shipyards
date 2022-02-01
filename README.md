@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Sigma Shipyards
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project concept: It's the year 2089, and things really aren't looking good. Scientists have discovered the sun is readying to release an insurvivable solar flare! Humanity's last hope to continue onwards is by reaching other star systems with habitable planets. Private companies are creating their own orbital shipyards left and right, and one in particular has asked me to lead construction of their fleet. They have three star systems selected already. All I have to do is build a suitable ship and try to reach one of the systems. 
 
-## Available Scripts
 
-In the project directory, you can run:
+# User Stories
 
-### `npm start`
+Minimum viable product: As a user, I can login to the site, and create an account if I haven't done so yet. Once logged in, I can opt to create a new ship using credits in my account to purchase parts based on their cost and attributes, have them added to my ship frame. Doing so will alter my ship statistics and lower my available balance. The ship will be visible with the clicked parts being rendered/attached. If I've already created a ship, I can either modify or delete it, or create a new ship entirely and add it to my collection. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Stretch goal: I have been tasked with piloting the ship to the other star systems. As a user, I can select one of three star systems to fly to, based on distance and inherent dangers along the flight path. Once I click "embark", I can navigate my ship up or down the screen as interstellar dangers head my way. It's my job to surive the journey with the ship I have made. Collisions with objects will lower my shields, and my fuel reserves are limited. I will either live or die.. These results can be viewed on the mission accomplishments and failures page. Can I survive the journey?.. Will I be the one to save humanity?..
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+# Entity-Relationship Diagram
+![ERD](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/ERD%20-%20The%20Shipyard.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+# Mock-up
+![Login](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/Shipyard_Login.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Main Menu](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/Shipyard_Menu.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Shipyard](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/Shipyard%20.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Interstellar_Voyage](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/Interstellar_Voyage.png)
 
-### `npm run eject`
+![User_Outcomes](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/User_Outcomes.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Developer notes (for later)...
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Things you may want to cover:
 
-## Learn More
+* Ruby version
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* System dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Configuration
 
-### Code Splitting
+* Database creation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Database initialization
 
-### Analyzing the Bundle Size
+* How to run the test suite
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* Services (job queues, cache servers, search engines, etc.)
 
-### Making a Progressive Web App
+* Deployment instructions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* ...
