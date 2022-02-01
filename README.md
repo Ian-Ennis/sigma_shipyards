@@ -15,15 +15,15 @@ Stretch goal: I have been tasked with piloting the ship to the other star system
 
 
 # Mock-up
-![Login](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/Shipyard_Login.png)
+![Login](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/login.png)
 
-![Main Menu](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/Shipyard_Menu.png)
+![Main Menu](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/main_menu.png)
 
-![Shipyard](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/Shipyard%20.png)
+![Shipyard](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/shipyard.png)
 
-![Interstellar_Voyage](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/Interstellar_Voyage.png)
+![Interstellar_Voyage](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/voyage.png)
 
-![User_Outcomes](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/User_Outcomes.png)
+![User_Outcomes](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/score.png)
 
 
 # Developer notes (for later)...
