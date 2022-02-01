@@ -3,7 +3,7 @@ import React from "react";
 function Header() {
 
     return (
-        <div>
+        <div className="title">
             <h1>ᔆᴵᴳᴹᴬ ᔆᴴᴵᴾʸᴬᴿᴰᔆ</h1>
         </div>
     )
