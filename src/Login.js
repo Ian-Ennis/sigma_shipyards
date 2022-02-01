@@ -1,19 +1,18 @@
 import React from "react";
 import { useState } from "react";
 
-function Login({ logUserIn }) {
+function Login() {
   const [accountExists, setAccountExists] = useState(true);
+    
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const [loginUsername, setLoginUsername] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  const [loggedInUsername, setLoggedInUsername] = useState('')
-
   function logUserIn(e) {
     e.preventDefault();
-    console.log("login fetch goes here");
+    console.log("inside login fetch");
+
     const loginData = {
         user: {username: loginUsername, password: loginPassword}
     }
@@ -32,8 +31,6 @@ function Login({ logUserIn }) {
     setLoginPassword('');
     }
 
-
-
   function hideLogin(e) {
     e.preventDefault();
     setAccountExists(false);
@@ -41,6 +38,7 @@ function Login({ logUserIn }) {
 
   function createProfile(e) {
     e.preventDefault();
+    console.log('inside createProfile')
 
     fetch(`http://localhost:3000/api/v1/users`, {
       method: "POST",
@@ -51,28 +49,29 @@ function Login({ logUserIn }) {
       body: JSON.stringify({ user: { username, password } }),
     })
       .then((res) => res.json())
-      .then((json) => console.log("backend connection", json));
+      .then((json) => console.log("here's the json:", json));
       setUsername('')
       setPassword('')
   }
+
 
   return (
     <div>
       {accountExists ? (
         <div>
           <form className="login" onSubmit={logUserIn}>
-            Username:{" "}
+            Username:{' '}
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={loginUsername}
+              onChange={(e) => setLoginUsername(e.target.value)}
               placeholder="Username"
             />
-            Password:{" "}
+            Password:{' '}
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={loginPassword}
+              onChange={(e) => setLoginPassword(e.target.value)}
               placeholder="Password"
             />
             <button type="submit">Login</button>
@@ -81,14 +80,18 @@ function Login({ logUserIn }) {
         </div>
       ) : (
         <form className="create_profile" onSubmit={createProfile}>
+          Username:{' '}
           <input
             type="text"
-            name="create_username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             placeholder="Create Username"
           />
+          Password:{' '}
           <input
-            type="text"
-            name="create_password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Create Password"
           />
           <button type="submit">Create Profile</button>
