@@ -1,35 +1,44 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [accountExists, setAccountExists] = useState(true);
-    
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginUsername, setLoginUsername] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const navigate = useNavigate();
+
 
   function logUserIn(e) {
     e.preventDefault();
-    console.log("inside login fetch");
+
+    function jwtReceived() {
+        navigate("/main_menu");
+    }
 
     const loginData = {
-        user: {username: loginUsername, password: loginPassword}
-    }
+      user: { username: loginUsername, password: loginPassword },
+    };
 
     fetch(`http://localhost:3000/api/v1/login`, {
-        method: 'POST', 
-        headers: {
-            accepts: 'application/json',
-            'Content-type':'application/json',
-        },
-        body: JSON.stringify(loginData),
+      method: "POST",
+      headers: {
+        accepts: "application/json",
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(loginData),
     })
-    .then((res) => res.json())
-    .then((json) => localStorage.setItem('jwt', json.jwt));
-    setLoginUsername('');
-    setLoginPassword('');
-    }
+      .then((res) => res.json())
+      .then((json) => localStorage.setItem("jwt", json.jwt))
+      .then(jwtReceived());
+
+    setLoginUsername("");
+    setLoginPassword("");
+
+    // {localStorage.getItem("jwt") ? console.log('token exists') : console.log('token not found')}
+  }
 
   function hideLogin(e) {
     e.preventDefault();
@@ -38,7 +47,11 @@ function Login() {
 
   function createProfile(e) {
     e.preventDefault();
-    console.log('inside createProfile')
+    console.log("inside createProfile");
+
+    function jwtReceived() {
+        navigate("/main_menu");
+    }
 
     fetch(`http://localhost:3000/api/v1/users`, {
       method: "POST",
@@ -49,25 +62,26 @@ function Login() {
       body: JSON.stringify({ user: { username, password } }),
     })
       .then((res) => res.json())
-      .then((json) => console.log("here's the json:", json));
-      setUsername('')
-      setPassword('')
-  }
+      .then((json) => console.log("here's the json:", json))
+      .then(jwtReceived());
 
+    setUsername("");
+    setPassword("");
+  }
 
   return (
     <div>
       {accountExists ? (
         <div>
           <form className="login" onSubmit={logUserIn}>
-            Username:{' '}
+            Username:{" "}
             <input
               type="text"
               value={loginUsername}
               onChange={(e) => setLoginUsername(e.target.value)}
               placeholder="Username"
             />
-            Password:{' '}
+            Password:{" "}
             <input
               type="password"
               value={loginPassword}
@@ -80,14 +94,14 @@ function Login() {
         </div>
       ) : (
         <form className="create_profile" onSubmit={createProfile}>
-          Username:{' '}
+          Username:{" "}
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Create Username"
           />
-          Password:{' '}
+          Password:{" "}
           <input
             type="password"
             value={password}
