@@ -12,11 +12,47 @@
 }
 
 .statistics {
+  margin: 25px;
   width: 16%;
 }
 
 .parts {
+  margin: 25px;
   width: 16%;
+}
+
+.engine_parts {
+  display: flex;
+  flex-direction: row;
+}
+
+#epart1 {
+  margin: 6px;
+}
+
+#epart2 {
+  margin: 6px;
+}
+
+#epart3 {
+  margin: 6px;
+}
+
+.hull_parts {
+  display: flex;
+  flex-direction: row;
+}
+
+#hpart1 {
+  margin: 6px;
+}
+
+#hpart2 {
+  margin: 6px;
+}
+
+#hpart3 {
+  margin: 6px;
 }
 
 /* 

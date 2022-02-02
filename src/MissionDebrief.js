@@ -20,7 +20,6 @@ function MissionDebrief({setSelectedSystem}) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data[0]);
         setTriSystems(data);
         setIsDebriefed(true);
       });
