@@ -68,8 +68,6 @@ function Login({ setTriSystems }) {
       .then(jwtReceived());
   }
 
-  console.log(username, password);
-
   return (
     <div>
       {accountExists ? (
