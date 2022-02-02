@@ -2,11 +2,15 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 function MainMenu() {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
 
-    function shuttleToShipyard() {
-        navigate("/Sigma_Shipyard");
-    }
+  function shuttleToShipyard() {
+    navigate("/Sigma_Shipyard");
+  }
+
+  function navigateToLogin() {
+    navigate("/");
+  }
 
   return (
     <div>
@@ -24,7 +28,7 @@ function MainMenu() {
       <button onClick={shuttleToShipyard}>
         Attempt to Save Humanity (board suborbital shuttle to shipyard)
       </button>
-      <button>Decline... (Logout)</button>
+      <button onClick={navigateToLogin}>Decline... (Logout)</button>
     </div>
   );
 }

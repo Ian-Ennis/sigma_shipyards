@@ -2,20 +2,20 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Login({ setTriSystems }) {
   const [accountExists, setAccountExists] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
 
   function logUserIn(e) {
     e.preventDefault();
 
     function jwtReceived() {
-        navigate("/main_menu");
+      navigate("/main_menu");
     }
 
     const loginData = {
@@ -36,8 +36,6 @@ function Login() {
 
     setLoginUsername("");
     setLoginPassword("");
-
-    // {localStorage.getItem("jwt") ? console.log('token exists') : console.log('token not found')}
   }
 
   function hideLogin(e) {
@@ -45,12 +43,16 @@ function Login() {
     setAccountExists(false);
   }
 
+  function showLogin(e) {
+    e.preventDefault();
+    setAccountExists(true);
+  }
+
   function createProfile(e) {
     e.preventDefault();
-    console.log("inside createProfile");
 
     function jwtReceived() {
-        navigate("/main_menu");
+      navigate("/main_menu");
     }
 
     fetch(`http://localhost:3000/api/v1/users`, {
@@ -64,10 +66,9 @@ function Login() {
       .then((res) => res.json())
       .then((json) => console.log("here's the json:", json))
       .then(jwtReceived());
-
-    setUsername("");
-    setPassword("");
   }
+
+  console.log(username, password);
 
   return (
     <div>
@@ -93,23 +94,26 @@ function Login() {
           <button onClick={hideLogin}>Need an account?</button>
         </div>
       ) : (
-        <form className="create_profile" onSubmit={createProfile}>
-          Username:{" "}
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Create Username"
-          />
-          Password:{" "}
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Create Password"
-          />
-          <button type="submit">Create Profile</button>
-        </form>
+        <div>
+          <form className="create_profile" onSubmit={createProfile}>
+            Username:{" "}
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Create Username"
+            />
+            Password:{" "}
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Create Password"
+            />
+            <button type="submit">Create Profile</button>
+          </form>
+          <button onClick={showLogin}>Have an account?</button>
+        </div>
       )}
     </div>
   );
