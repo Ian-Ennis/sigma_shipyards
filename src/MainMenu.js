@@ -8,10 +8,6 @@ function MainMenu() {
     navigate("/MissionDebrief");
   }
 
-  function navigateToLogin() {
-    navigate("/");
-  }
-
   return (
     <div>
       <p>
@@ -28,7 +24,16 @@ function MainMenu() {
       <button onClick={shuttleToShipyard}>
         Attempt to Save Humanity (board suborbital shuttle to shipyard)
       </button>
-      <button onClick={navigateToLogin}>Decline... (Logout)</button>
+
+      <button
+        id="decline_logout"
+        onClick={() => {
+          localStorage.setItem("jwt", "");
+          navigate("/");
+        }}
+      >
+        Logout
+      </button>
     </div>
   );
 }

@@ -15,7 +15,10 @@ function Login({ setTriSystems }) {
     e.preventDefault();
 
     function jwtReceived() {
-      navigate("/main_menu");
+      if (localStorage.getItem("jwt")) {
+        console.log("token present");
+        navigate("/main_menu");
+      } else console.log("token does not exist");
     }
 
     const loginData = {
@@ -51,10 +54,6 @@ function Login({ setTriSystems }) {
   function createProfile(e) {
     e.preventDefault();
 
-    function jwtReceived() {
-      navigate("/main_menu");
-    }
-
     fetch(`http://localhost:3000/api/v1/users`, {
       method: "POST",
       headers: {
@@ -64,17 +63,20 @@ function Login({ setTriSystems }) {
       body: JSON.stringify({ user: { username, password } }),
     })
       .then((res) => res.json())
-      .then((json) => console.log("here's the json:", json))
-      .then(jwtReceived());
+      .then((json) => {
+        console.log("here's the json:", json);
+        setAccountExists(true);
+      });
   }
 
   return (
-    <div>
+    <>
       {accountExists ? (
-        <div>
+        <div className="all_login_containers">
           <form className="login" onSubmit={logUserIn}>
             Username:{" "}
             <input
+              className="username"
               type="text"
               value={loginUsername}
               onChange={(e) => setLoginUsername(e.target.value)}
@@ -82,20 +84,22 @@ function Login({ setTriSystems }) {
             />
             Password:{" "}
             <input
+              className="password"
               type="password"
               value={loginPassword}
               onChange={(e) => setLoginPassword(e.target.value)}
               placeholder="Password"
             />
-            <button type="submit">Login</button>
+            <button className="login_submit" type="submit">Login</button>
           </form>
           <button onClick={hideLogin}>Need an account?</button>
         </div>
       ) : (
         <div>
-          <form className="create_profile" onSubmit={createProfile}>
+          <form className="login" onSubmit={createProfile}>
             Username:{" "}
             <input
+              className="username"
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -103,17 +107,18 @@ function Login({ setTriSystems }) {
             />
             Password:{" "}
             <input
+              className="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Create Password"
             />
-            <button type="submit">Create Profile</button>
+            <button className="login_submit" type="submit">Create Profile & Re-enter credentials</button>
           </form>
           <button onClick={showLogin}>Have an account?</button>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

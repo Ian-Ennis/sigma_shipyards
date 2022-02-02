@@ -2,6 +2,52 @@
   text-align: center;
 }
 
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+}
+
+.username {
+  display: block;
+  margin: 0 auto;
+}
+
+.password {
+  display: block;
+  margin: 0 auto;
+}
+
+.login_submit {
+  display: block;
+  margin: 0 auto;
+}
+
+.misson_container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+}
+
+#proxima {
+  margin: 20px;
+  border: 2px solid #000000;
+  padding: 24px;
+}
+
+#tau {
+  margin: 20px;
+  border: 2px solid #000000;
+  padding: 24px;
+}
+
+#upsilon { 
+  margin: 20px;
+  border: 2px solid #000000;
+  padding: 24px;
+}
+
 .stats_parts_container {
   display: flex;
   flex-direction: row;
@@ -14,11 +60,13 @@
 .statistics {
   margin: 25px;
   width: 16%;
+  border: 2px solid #000000;
 }
 
 .parts {
   margin: 25px;
   width: 16%;
+  border: 2px solid #000000;
 }
 
 .engine_parts {
