@@ -2,6 +2,22 @@
   text-align: center;
 }
 
+.stats_parts_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.your_spaceship {
+  width: 68%;
+}
+
+.statistics {
+  width: 16%;
+}
+
+.parts {
+  width: 16%;
+}
 
 /* 
 .App-logo {

@@ -1,16 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import Select from "react-select";
 import { useNavigate } from "react-router-dom";
 
-function Sigma_Shipyard() {
+function MissionDebrief({setSelectedSystem}) {
   const [isDebriefed, setIsDebriefed] = useState(false);
   const [triSystems, setTriSystems] = useState([]);
-//   const [readableSystems, setReadableSystems] = useState([]);
-  const [selectedSystem, setSelectedSystem] = useState([]);
+
   const navigate = useNavigate();
 
-  function getSystems(e) {
+
+  function getSystems() {
     fetch(`http://localhost:3000/star_systems`, {
       method: "GET",
       headers: {
@@ -23,25 +22,26 @@ function Sigma_Shipyard() {
       .then((data) => {
         console.log(data[0]);
         setTriSystems(data);
-        // setReadableSystems([
-        //   { value: triSystems[0].name, label: triSystems[0].name },
-        //   { value: triSystems[1].name, label: triSystems[1].name },
-        //   { value: triSystems[2].name, label: triSystems[2].name },
-        // ]);
         setIsDebriefed(true);
       });
   }
 
   function selectProxima(e) {
+    e.preventDefault();
     setSelectedSystem(triSystems[0]);
+    navigate("/Shipyard")
   }
 
-  function selectTauCeti(e) {
+  function selectTau(e) {
+    e.preventDefault();
     setSelectedSystem(triSystems[1]);
+    navigate("/Shipyard")
   }
 
   function selectUpsilon(e) {
+    e.preventDefault();
     setSelectedSystem(triSystems[2]);
+    navigate("/Shipyard")
   }
 
   function navigateToLogin() {
@@ -56,7 +56,7 @@ function Sigma_Shipyard() {
     <div>
       {isDebriefed ? (
         <div>
-          <div id="card_1">
+          <div id="proxima">
             <h3>System: {triSystems[0].name}</h3>
             <h3>Distance: {triSystems[0].distance} light years</h3>
             <h3>Mission complexity: {triSystems[0].mission_complexity}</h3>
@@ -66,7 +66,7 @@ function Sigma_Shipyard() {
             </h3>
             <button onClick={selectProxima}>Choose system</button>
           </div>
-          <div id="card_2">
+          <div id="tau">
             <h3>System: {triSystems[1].name}</h3>
             <h3>Distance: {triSystems[1].distance} light years</h3>
             <h3>Mission complexity: {triSystems[1].mission_complexity}</h3>
@@ -74,10 +74,9 @@ function Sigma_Shipyard() {
               Chance of finding habitable planet:{" "}
               {triSystems[1].habitibility_chance}%
             </h3>
-            <button onClick={selectTauCeti}>Choose system</button>
-
+            <button onClick={selectTau}>Choose system</button>
           </div>
-          <div id="card_3">
+          <div id="upsilon">
             <h3>System: {triSystems[2].name}</h3>
             <h3>Distance: {triSystems[2].distance} light years</h3>
             <h3>Mission complexity: {triSystems[2].mission_complexity}</h3>
@@ -88,43 +87,12 @@ function Sigma_Shipyard() {
             <button onClick={selectUpsilon}>Choose system</button>
           </div>
         </div>
-      ) : (
+      )  : (
         getSystems()
       )}
     </div>
   );
 }
 
-export default Sigma_Shipyard;
+export default MissionDebrief;
 
-{
-  /* <Select
-            className="system_dropdown"
-            placeholder="Select star system"
-            options={readableSystems}
-            onChange={selectSystem}
-          /> */
-}
-
-{
-  /* <button onClick={getSystems}>getSystems</button>
-<button onClick={navigateToLogin}>Back to Login</button>
-<button onClick={navigateToMainMenu}>Back to Main Menu</button> */
-}
-
-/* <div>
-            <h1>{selectedSystem}</h1>
-            <h2>Distance from earth: 11.9 light years </h2>
-            <h2>Voyage complexity: Low</h2>
-            <h2>Probability of locating habitable planet: 35%</h2>
-          </div>
-           */
-
-/* <div>
-          <div className="ship_statistics"></div>
-
-          <div className="parts"></div>
-
-          <button onClick={navigateToLogin}>Back to Login</button>
-          <button onClick={navigateToMainMenu}>Back to Main Menu</button>
-        </div> */

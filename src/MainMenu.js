@@ -5,7 +5,7 @@ function MainMenu() {
   const navigate = useNavigate();
 
   function shuttleToShipyard() {
-    navigate("/Sigma_Shipyard");
+    navigate("/MissionDebrief");
   }
 
   function navigateToLogin() {

@@ -4,18 +4,21 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Login from "./Login";
 import MainMenu from "./MainMenu";
-import Sigma_Shipyard from "./Sigma_Shipyard";
+import MissionDebrief from "./MissionDebrief";
+import Shipyard from "./Shipyard"
 
 function App() {
-  const title = <h1>Sigma Shipyards</h1>;
+  const [selectedSystem, setSelectedSystem] = useState([]);
 
+  
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/main_menu" element={<MainMenu />} />
-        <Route path="/Sigma_Shipyard" element={<Sigma_Shipyard />} />
+        <Route path="/MissionDebrief" element={<MissionDebrief setSelectedSystem={setSelectedSystem} />} />
+        <Route path="/Shipyard" element={<Shipyard selectedSystem={selectedSystem} />} />
       </Routes>
     </div>
   );
