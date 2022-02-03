@@ -90,9 +90,20 @@ function Login({ setTriSystems }) {
               onChange={(e) => setLoginPassword(e.target.value)}
               placeholder="Password"
             />
-            <button className="login_submit" type="submit">Login</button>
+            <button className="login_submit" type="submit">
+              Login
+            </button>
+            <button className="need_account" id="need_account" onClick={hideLogin}>Need an account?</button>
+            <button
+              className="logout"
+              onClick={() => {
+                localStorage.setItem("jwt", "");
+                navigate("/");
+              }}
+            >
+              Logout
+            </button>
           </form>
-          <button onClick={hideLogin}>Need an account?</button>
         </div>
       ) : (
         <div>
@@ -113,9 +124,20 @@ function Login({ setTriSystems }) {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Create Password"
             />
-            <button className="login_submit" type="submit">Create Profile & Re-enter credentials</button>
+            <button className="login_submit" type="submit">
+              Create Profile & Re-enter credentials
+            </button>
+            <button onClick={showLogin}>Have an account?</button>
+            <button
+              className="logout"
+              onClick={() => {
+                localStorage.setItem("jwt", "");
+                navigate("/");
+              }}
+            >
+              Logout
+            </button>
           </form>
-          <button onClick={showLogin}>Have an account?</button>
         </div>
       )}
     </>

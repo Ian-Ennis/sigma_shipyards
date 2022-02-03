@@ -54,36 +54,36 @@ function MissionDebrief({ setSelectedSystem }) {
     <div>
       {isDebriefed ? (
         <div>
-          <h2 id="mission_select">Choose your misson:</h2>
+          <h2 id="mission_select">Choose your misson..</h2>
           <div className="misson_container">
             <div id="proxima">
-              <h3>System: <em>{triSystems[0].name}</em></h3>
-              <h3>Distance: {triSystems[0].distance} light years</h3>
-              <h3>Mission complexity: {triSystems[0].mission_complexity}</h3>
-              <h3>
+              <p>System: <b><em>{triSystems[0].name}</em></b></p>
+              <p>Distance: <b>{triSystems[0].distance} light years</b></p>
+              <p>Mission complexity: <b>{triSystems[0].mission_complexity}</b></p>
+              <p>
                 Chance of finding habitable planet:{" "}
-                {triSystems[0].habitibility_chance}%
-              </h3>
+                <b>{triSystems[0].habitibility_chance}%</b>
+              </p>
               <button onClick={selectProxima}>Choose system</button>
             </div>
             <div id="tau">
-              <h3>System: <em>{triSystems[1].name}</em></h3>
-              <h3>Distance: {triSystems[1].distance} light years</h3>
-              <h3>Mission complexity: {triSystems[1].mission_complexity}</h3>
-              <h3>
+              <p>System: <b><em>{triSystems[1].name}</em></b></p>
+              <p>Distance: <b>{triSystems[1].distance} light years</b></p>
+              <p>Mission complexity: <b>{triSystems[1].mission_complexity}</b></p>
+              <p>
                 Chance of finding habitable planet:{" "}
-                {triSystems[1].habitibility_chance}%
-              </h3>
+                <b>{triSystems[1].habitibility_chance}%</b>
+              </p>
               <button onClick={selectTau}>Choose system</button>
             </div>
             <div id="upsilon">
-              <h3>System: <em>{triSystems[2].name}</em></h3>
-              <h3>Distance: {triSystems[2].distance} light years</h3>
-              <h3>Mission complexity: {triSystems[2].mission_complexity}</h3>
-              <h3>
+              <p>System: <b><em>{triSystems[2].name}</em></b></p>
+              <p>Distance: <b>{triSystems[2].distance} light years</b></p>
+              <p>Mission complexity: <b>{triSystems[2].mission_complexity}</b></p>
+              <p>
                 Chance of finding habitable planet:{" "}
-                {triSystems[2].habitibility_chance}%
-              </h3>
+                <b>{triSystems[2].habitibility_chance}%</b>
+              </p>
               <button onClick={selectUpsilon}>Choose system</button>
             </div>
           </div>

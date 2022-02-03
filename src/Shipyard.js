@@ -1,16 +1,18 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import part from ".//Images/part.png";
 
 function Shipyard({ selectedSystem }) {
   const [viewport, setViewport] = useState(false);
   const [chosenShip, setChosenShip] = useState([]);
   const [engineParts, setEngineParts] = useState([]);
   const [hullParts, setHullParts] = useState([]);
+  const [credits, setCredits] = useState(1000000);
+  const [hullStrength, setHullStrength] = useState(0);
+  const [shipRange, setShipRange] = useState(0);
   const navigate = useNavigate();
 
-  const credits = 1000000;
-  const hullStrength = 0;
   const range = 0;
 
   function getShip() {
@@ -67,38 +69,68 @@ function Shipyard({ selectedSystem }) {
 
   function epart1Clicked(e) {
     e.preventDefault();
-    console.log(e);
+    if (credits - engineParts[0].cost >= 0) {
+      setCredits(credits - engineParts[0].cost);
+      setShipRange(shipRange + engineParts[0].range);
+    } else {
+      console.log("can't afford");
+    }
   }
 
   function epart2Clicked(e) {
     e.preventDefault();
-    console.log(e);
+    if (credits - engineParts[1].cost >= 0) {
+      setCredits(credits - engineParts[1].cost);
+      setShipRange(shipRange + engineParts[1].range);
+    } else {
+      console.log("can't afford");
+    }
   }
 
   function epart3Clicked(e) {
     e.preventDefault();
-    console.log(e);
+    if (credits - engineParts[2].cost >= 0) {
+      setCredits(credits - engineParts[2].cost);
+      setShipRange(shipRange + engineParts[2].range);
+    } else {
+      console.log("can't afford");
+    }
   }
 
   function hpart1Clicked(e) {
     e.preventDefault();
-    console.log(e);
+    if (credits - hullParts[0].cost >= 0) {
+      setCredits(credits - hullParts[0].cost);
+      setHullStrength(hullStrength + hullParts[0].hull_strength);
+    } else {
+      console.log("can't afford");
+    }
   }
 
   function hpart2Clicked(e) {
     e.preventDefault();
-    console.log(e);
+    if (credits - hullParts[1].cost >= 0) {
+      setCredits(credits - hullParts[1].cost);
+      setHullStrength(hullStrength + hullParts[1].hull_strength);
+    } else {
+      console.log("can't afford");
+    }
   }
 
   function hpart3Clicked(e) {
     e.preventDefault();
-    console.log(e);
+    if (credits - hullParts[2].cost >= 0) {
+      setCredits(credits - hullParts[2].cost);
+      setHullStrength(hullStrength + hullParts[2].hull_strength);
+    } else {
+      console.log("can't afford");
+    }
   }
 
   return (
-    <div>
+    <>
       {viewport ? (
-        <div>
+        <div className="shipyard">
           <div className="stats_parts_container">
             <div className="statistics">
               <h3>Destination</h3>
@@ -108,7 +140,7 @@ function Shipyard({ selectedSystem }) {
               <p>Credits: {credits}</p>
               <h3>{chosenShip[0].name} Statistics</h3>
               <p>Hull strength: {hullStrength}%</p>
-              <p>Fuel tank: {range} light years</p>
+              <p>Fuel tank range: {shipRange} light years</p>
             </div>
             <div className="your_spaceship">{chosenShip[0].name}</div>
             <div className="parts">
@@ -116,37 +148,43 @@ function Shipyard({ selectedSystem }) {
               <h4>Engine:</h4>
               <div className="engine_parts">
                 <div id="epart1" onClick={epart1Clicked}>
+                  <img className="part" src={part} alt="part" />
                   <p>{engineParts[0].part_name}</p>
-                  <p>{engineParts[0].tank_size}</p>
-                  <p>{engineParts[0].cost}</p>
+                  <p>{engineParts[0].range} ly</p>
+                  <p>{engineParts[0].cost} c</p>
                 </div>
                 <div id="epart2" onClick={epart2Clicked}>
+                  <img className="part" src={part} alt="part" />
                   <p>{engineParts[1].part_name}</p>
-                  <p>{engineParts[1].tank_size}</p>
-                  <p>{engineParts[1].cost}</p>
+                  <p>{engineParts[1].range} ly</p>
+                  <p>{engineParts[1].cost} c</p>
                 </div>
                 <div id="epart3" onClick={epart3Clicked}>
+                  <img className="part" src={part} alt="part" />
                   <p>{engineParts[2].part_name}</p>
-                  <p>{engineParts[2].tank_size}</p>
-                  <p>{engineParts[2].cost}</p>
+                  <p>{engineParts[2].range} ly</p>
+                  <p>{engineParts[2].cost} c</p>
                 </div>
               </div>
               <h4>Hull:</h4>
               <div className="hull_parts">
                 <div id="hpart1" onClick={hpart1Clicked}>
+                  <img className="part" src={part} alt="part" />
                   <p>{hullParts[0].part_name}</p>
-                  <p>{hullParts[0].hull_strength}</p>
-                  <p>{hullParts[0].cost}</p>
+                  <p>+{hullParts[0].hull_strength}%</p>
+                  <p>{hullParts[0].cost} c</p>
                 </div>
                 <div id="hpart2" onClick={hpart2Clicked}>
+                  <img className="part" src={part} alt="part" />
                   <p>{hullParts[1].part_name}</p>
-                  <p>{hullParts[1].hull_strength}</p>
-                  <p>{hullParts[1].cost}</p>
+                  <p>+{hullParts[1].hull_strength}%</p>
+                  <p>{hullParts[1].cost} c</p>
                 </div>
                 <div id="hpart3" onClick={hpart3Clicked}>
+                  <img className="part" src={part} alt="part" />
                   <p>{hullParts[2].part_name}</p>
-                  <p>{hullParts[2].hull_strength}</p>
-                  <p>{hullParts[2].cost}</p>
+                  <p>+{hullParts[2].hull_strength}%</p>
+                  <p>{hullParts[2].cost} c</p>
                 </div>
               </div>
             </div>
@@ -164,16 +202,16 @@ function Shipyard({ selectedSystem }) {
           </button>
         </div>
       ) : (
-        <div>
-          <p>
+        <div id="intro_to_shipyard">
+          <p id="approach_terminal">
             Thoughts of self-doubt, but intrigue over what lies ahead...
-            Suddenly, you are overcome with confidence in your ship-making
-            abilities...
+            Yet somehow, you sense a fleeting glimmer of confidence in your ship-making
+            abilities, as you step forth to the shipyard computer terminal...
           </p>
-          <button onClick={getShip}>Approach shipyard computer terminal</button>
+          <button onClick={getShip}>Name your ship</button>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

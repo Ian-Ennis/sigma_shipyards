@@ -2,6 +2,24 @@
   text-align: center;
 }
 
+body {
+  color: white;
+  background-color: rgb(0, 0, 0);
+}
+
+.title {
+  font-size: 25px;
+}
+
+p {
+  font-size: 12px;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+}
+
 .login {
   display: flex;
   flex-direction: column;
@@ -18,10 +36,20 @@
   margin: 0 auto;
 }
 
-.login_submit {
+.need_account {
+  display: block;
+  margin: 10 auto;
+}
+
+/* .login_submit {
   display: block;
   margin: 0 auto;
-}
+} */
+
+/* .logout {
+  display: block;
+  margin: 0 auto;
+} */ 
 
 .misson_container {
   display: flex;
@@ -30,22 +58,42 @@
   justify-content: center;
 }
 
+.intro_to_shipyard {
+  display: flex;
+  flex-direction: column;
+
+}
+
+#approach_terminal {
+  font-size: 12px;
+  margin: 0 auto;
+  margin-bottom: 3%;
+  max-width: 90%;
+}
+
 #proxima {
   margin: 20px;
-  border: 2px solid #000000;
+  border: 2px solid #505050;
   padding: 24px;
 }
 
 #tau {
   margin: 20px;
-  border: 2px solid #000000;
+  border: 2px solid #505050;
   padding: 24px;
 }
 
 #upsilon { 
   margin: 20px;
-  border: 2px solid #000000;
+  border: 2px solid #505050;
   padding: 24px;
+}
+
+.shipyard {
+  background-image: url('.//Images/original_shipyard.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .stats_parts_container {
@@ -54,19 +102,19 @@
 }
 
 .your_spaceship {
-  width: 68%;
+  width: 52%;
 }
 
 .statistics {
-  margin: 25px;
-  width: 16%;
-  border: 2px solid #000000;
+  margin: 10px;
+  width: 24%;
+  border: 2px solid #505050;
 }
 
 .parts {
-  margin: 25px;
-  width: 16%;
-  border: 2px solid #000000;
+  margin: 10px;
+  width: 24%;
+  border: 2px solid #505050;
 }
 
 .engine_parts {
@@ -76,14 +124,27 @@
 
 #epart1 {
   margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
 }
 
 #epart2 {
   margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
 }
 
 #epart3 {
   margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
+}
+
+.part {
+  width: 50%
 }
 
 .hull_parts {
@@ -93,14 +154,23 @@
 
 #hpart1 {
   margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
 }
 
 #hpart2 {
   margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
 }
 
 #hpart3 {
   margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
 }
 
 /* 
