@@ -19,7 +19,7 @@ function MainMenu() {
         particular, Sigma Shipyards, has asked you to lead construction of their
         fleet. They have three star systems selected already. All you have to do
         is build a suitable ship and try to reach one of the systems. Will you
-        be the one to save humanity?.. Do you even have a choice...?{" "}
+        be the one to save humanity? ..Do you even have a choice...?{" "}
       </p>
       <button onClick={shuttleToShipyard}>
         Attempt to Save Humanity (board suborbital shuttle to shipyard)

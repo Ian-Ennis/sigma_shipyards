@@ -5,6 +5,7 @@ import Header from "./Header";
 import Login from "./Login";
 import MainMenu from "./MainMenu";
 import MissionDebrief from "./MissionDebrief";
+import ShipCards from "./ShipCards";
 import Shipyard from "./Shipyard"
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/main_menu" element={<MainMenu />} />
         <Route path="/MissionDebrief" element={<MissionDebrief setSelectedSystem={setSelectedSystem} />} />
+        <Route path="/ShipCards" element={<ShipCards />} />
         <Route path="/Shipyard" element={<Shipyard selectedSystem={selectedSystem} />} />
       </Routes>
     </div>
