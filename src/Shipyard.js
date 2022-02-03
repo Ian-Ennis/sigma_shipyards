@@ -1,7 +1,15 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import part from ".//Images/part.png";
+import nuclear_reactor from ".//Images/nuclear_reactor.png";
+import fusion_reactor from ".//Images/fusion_reactor.jpeg";
+import antimatter_drive from ".//Images/antimatter_drive.jpeg";
+import carbon_fiber from ".//Images/carbon_fiber.jpeg";
+import graphene_weave from ".//Images/graphene_weave.jpeg"
+import neutrino_repulsor from ".//Images/neutrino_repulsor.png"
+
+
+
 
 function Shipyard({ selectedSystem }) {
   const [viewport, setViewport] = useState(false);
@@ -148,19 +156,19 @@ function Shipyard({ selectedSystem }) {
               <h4>Engine:</h4>
               <div className="engine_parts">
                 <div id="epart1" onClick={epart1Clicked}>
-                  <img className="part" src={part} alt="part" />
+                  <img className="part" src={nuclear_reactor} alt="nuclear_reactor" />
                   <p>{engineParts[0].part_name}</p>
                   <p>{engineParts[0].range} ly</p>
                   <p>{engineParts[0].cost} c</p>
                 </div>
                 <div id="epart2" onClick={epart2Clicked}>
-                  <img className="part" src={part} alt="part" />
+                  <img className="part" src={fusion_reactor} alt="fusion_reactor" />
                   <p>{engineParts[1].part_name}</p>
                   <p>{engineParts[1].range} ly</p>
                   <p>{engineParts[1].cost} c</p>
                 </div>
                 <div id="epart3" onClick={epart3Clicked}>
-                  <img className="part" src={part} alt="part" />
+                  <img className="part" src={antimatter_drive} alt="antimatter_drive" />
                   <p>{engineParts[2].part_name}</p>
                   <p>{engineParts[2].range} ly</p>
                   <p>{engineParts[2].cost} c</p>
@@ -169,19 +177,19 @@ function Shipyard({ selectedSystem }) {
               <h4>Hull:</h4>
               <div className="hull_parts">
                 <div id="hpart1" onClick={hpart1Clicked}>
-                  <img className="part" src={part} alt="part" />
+                  <img className="part" src={carbon_fiber} alt="part" />
                   <p>{hullParts[0].part_name}</p>
                   <p>+{hullParts[0].hull_strength}%</p>
                   <p>{hullParts[0].cost} c</p>
                 </div>
                 <div id="hpart2" onClick={hpart2Clicked}>
-                  <img className="part" src={part} alt="part" />
+                  <img className="part" src={graphene_weave} alt="part" />
                   <p>{hullParts[1].part_name}</p>
                   <p>+{hullParts[1].hull_strength}%</p>
                   <p>{hullParts[1].cost} c</p>
                 </div>
                 <div id="hpart3" onClick={hpart3Clicked}>
-                  <img className="part" src={part} alt="part" />
+                  <img className="part" src={neutrino_repulsor} alt="part" />
                   <p>{hullParts[2].part_name}</p>
                   <p>+{hullParts[2].hull_strength}%</p>
                   <p>{hullParts[2].cost} c</p>
