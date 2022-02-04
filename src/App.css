@@ -179,6 +179,16 @@ button {
   gap: 25px 0px;
 }
 
+.createShip {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+}
+
+#new_ship_input{
+  margin-bottom: 10%;
+}
+
 .shipyard {
   background-image: url('.//Images/original_shipyard.jpeg');
   background-position: center;

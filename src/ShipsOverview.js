@@ -126,10 +126,10 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
             <button onClick={getShips}>Access shipyard data</button>
           </div>
           <div id="add_new_ship">
-            <h3>Or, start a new ship</h3>
+            <h3>Or,&#10;create a new ship</h3>
             <form className="createShip" onSubmit={createShip}>
-              <label for="ship_name">Name of your ship:</label>
-              <input type="text" name="ship_name" placeholder="" />
+              <label for="ship_name">Name your ship:</label>
+              <input id="new_ship_input" type="text" name="ship_name" placeholder="" />
               <button type="submit">Create ship</button>
             </form>
             <button onClick={goBack}>Back to mission select</button>

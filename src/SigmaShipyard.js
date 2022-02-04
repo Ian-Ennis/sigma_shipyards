@@ -20,7 +20,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const navigate = useNavigate();
 
   function loadParts() {
-    console.log('in load parts')
     fetch(`http://localhost:3000/engine_parts`, {
       method: "GET",
       headers: {

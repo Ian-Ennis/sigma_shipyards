@@ -24,7 +24,6 @@ function MissionSelect({ setSelectedSystem }) {
       .then((data) => {
         setTriSystems(data);
         setIsDebriefed(true);
-        console.log(triSystems)
       });
   }
 
@@ -129,9 +128,9 @@ function MissionSelect({ setSelectedSystem }) {
             </button>
           </div>
         </div>
-      ) : (
+      ) : 
         getSystems()
-      )}
+        }
     </>
   );
 }
