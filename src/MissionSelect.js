@@ -27,21 +27,21 @@ function MissionSelect({ setSelectedSystem }) {
       });
   }
 
-  function selectProxima(e) {
+  function selectProxima(e, system) {
     e.preventDefault();
-    setSelectedSystem(triSystems[0]);
+    setSelectedSystem(system);
     navigate("/ships_overview");
   }
 
-  function selectTau(e) {
+  function selectTau(e, system) {
     e.preventDefault();
-    setSelectedSystem(triSystems[1]);
+    setSelectedSystem(system);
     navigate("/ships_overview");
   }
 
-  function selectUpsilon(e) {
+  function selectUpsilon(e, system) {
     e.preventDefault();
-    setSelectedSystem(triSystems[2]);
+    setSelectedSystem(system);
     navigate("/ships_overview");
   }
 
@@ -73,7 +73,7 @@ function MissionSelect({ setSelectedSystem }) {
                 Chance of finding habitable planet:{" "}
                 <b>{triSystems[0].habitibility_chance}%</b>
               </p>
-              <button onClick={selectProxima}>Choose system</button>
+              <button onClick={(e) => selectProxima(e, triSystems[0])}>Choose system</button>
             </div>
             <div id="tau">
               <p>
@@ -93,7 +93,7 @@ function MissionSelect({ setSelectedSystem }) {
                 Chance of finding habitable planet:{" "}
                 <b>{triSystems[1].habitibility_chance}%</b>
               </p>
-              <button onClick={selectTau}>Choose system</button>
+              <button onClick={(e) => selectTau(e, triSystems[1])}>Choose system</button>
             </div>
             <div id="upsilon">
               <p>
@@ -113,10 +113,10 @@ function MissionSelect({ setSelectedSystem }) {
                 Chance of finding habitable planet:{" "}
                 <b>{triSystems[2].habitibility_chance}%</b>
               </p>
-              <button onClick={selectUpsilon}>Choose system</button>
+              <button onClick={(e) => selectUpsilon(e, triSystems[2])}>Choose system</button>
             </div>
           </div>
-            <button onClick={goBack}>Go back</button>
+          <button onClick={goBack}>Go back</button>
           <div id="logout">
             <button
               onClick={() => {

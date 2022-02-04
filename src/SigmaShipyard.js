@@ -9,7 +9,7 @@ import graphene_weave from ".//Images/graphene_weave.jpeg";
 import neutrino_repulsor from ".//Images/neutrino_repulsor.png";
 
 
-function SigmaShipyard({ selectedSystem, chosenShip }) {
+function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const [viewport, setViewport] = useState(false);
   const [engineParts, setEngineParts] = useState([]);
   const [hullParts, setHullParts] = useState([]);
@@ -20,6 +20,7 @@ function SigmaShipyard({ selectedSystem, chosenShip }) {
   const navigate = useNavigate();
 
   function loadParts() {
+    console.log('in load parts')
     fetch(`http://localhost:3000/engine_parts`, {
       method: "GET",
       headers: {
@@ -32,7 +33,7 @@ function SigmaShipyard({ selectedSystem, chosenShip }) {
       .then((data) => {
         setEngineParts(data);
       })
-      .then(
+      .then(() => {
         fetch(`http://localhost:3000/hull_parts`, {
           method: "GET",
           headers: {
@@ -44,17 +45,13 @@ function SigmaShipyard({ selectedSystem, chosenShip }) {
           .then((res) => res.json())
           .then((data) => {
             setHullParts(data);
+            setViewport(true)
           })
-          .then(setViewport(true))
-      );
+        });
   }
 
-  function navigateToMenu() {
-    navigate("/main_menu");
-  }
-
-  function navigateToDebrief() {
-    navigate("/MissionDebrief");
+  function goBack() {
+    navigate("/ships_overview")
   }
 
   function epart1Clicked(e) {
@@ -128,12 +125,12 @@ function SigmaShipyard({ selectedSystem, chosenShip }) {
               <p>Distance: {selectedSystem.distance} light years</p>
               <h3>Budget</h3>
               <p>Credits: {credits}</p>
-              {/* <h3>{chosenShip.spaceship_name} Statistics</h3> */}
+              <h3><em>{chosenShip.spaceship_name}</em> Statistics</h3>
               <p>Hull strength: {hullStrength}%</p>
               <p>Fuel tank range: {shipRange} light years</p>
             </div>
-            <div classname="your_spaceship">
-              {/* {chosenShip.spaceship_name} */}
+            <div className="your_spaceship">
+              <em>{chosenShip.spaceship_name}</em>
             </div>
             <div className="parts">
               <h3>Available Parts</h3>
@@ -193,8 +190,7 @@ function SigmaShipyard({ selectedSystem, chosenShip }) {
               </div>
             </div>
           </div>
-          <button onClick={navigateToMenu}>Main Menu</button>
-          <button onClick={navigateToDebrief}>Mission Debrief</button>
+          <button onClick={goBack}>Go back</button>
           <button
             id="decline_logout"
             onClick={() => {
@@ -206,7 +202,7 @@ function SigmaShipyard({ selectedSystem, chosenShip }) {
           </button>
         </div>
       ) : (
-        <button onClick={loadParts}>Show shipyard</button>
+        loadParts()
       )}
     </div>
   );

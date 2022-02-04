@@ -18,7 +18,7 @@ function MainMenu() {
         creating their own orbital shipyards left and right, and one in
         particular, Sigma Shipyards, has asked you to lead construction of their
         fleet. They have three star systems selected already. All you have to do
-        is build a suitable ship and try to reach one of the systems. Will you
+        is choose a system, and build a suitable ship to reach it. Will you
         be the one to save humanity? ..Do you even have a choice...?{" "}
       </p>
       <button onClick={goToShipsMenu}>

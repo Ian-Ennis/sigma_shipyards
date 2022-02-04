@@ -2,11 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ShipsOverview({ setSelectedSystem, setChosenShip }) {
+function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   const [allShips, setAllShips] = useState([]);
-  // const [shipsVisible, setShipsVisible] = useState(false)
   const navigate = useNavigate();
-
 
   function getShips() {
     fetch(`http://localhost:3000/spaceships`, {
@@ -24,9 +22,9 @@ function ShipsOverview({ setSelectedSystem, setChosenShip }) {
   }
 
   function selectShip(e, ship) {
-      e.preventDefault()
-      setChosenShip(ship)
-      navigate("/sigma_shipyard")
+    e.preventDefault();
+    setChosenShip(ship);
+    navigate("/sigma_shipyard");
   }
 
   function createShip(e) {
@@ -43,20 +41,29 @@ function ShipsOverview({ setSelectedSystem, setChosenShip }) {
       body: JSON.stringify({
         spaceship_name,
       }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setChosenShip(data);
-      });
+    }).then(() => {
+      fetch(`http://localhost:3000/spaceships`, {
+        method: "GET",
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setChosenShip(data[data.length - 1]);
+          setAllShips(data);
+        });
+    });
   }
 
   function goBack() {
-    setSelectedSystem([])
-    navigate("/misson_select")
+    setSelectedSystem([]);
+    navigate("/misson_select");
   }
 
-  const eachShip = []
+  const eachShip = [];
 
   if (allShips.length) {
     allShips.forEach((ship) => {
@@ -71,25 +78,30 @@ function ShipsOverview({ setSelectedSystem, setChosenShip }) {
         somehow, you sense a fleeting glimmer of confidence in your ship-making
         abilities, as you step forth to the shipyard computer terminal...
       </p>
-      <div>
-        {eachShip.length
-          ? eachShip.map((ship) => (
-              <div key={ship.id}>
-                <p>{ship.spaceship_name}</p>
-                <button onClick={(ship) => selectShip(ship)}>Select ship</button>
-              </div>
-            ))
-          : null}
-        <button onClick={getShips}>Access shipyard data</button>
-      </div>
-      <div>
-        <h4>Make a new ship</h4>
-        <form className="createShip" onSubmit={createShip}>
-          <label for="ship_name">Name of your ship:</label>
-          <input type="text" name="ship_name" placeholder="" />
-          <button type="submit">Create a spaceship</button>
-        </form>
-        <button onClick={goBack}>Back to mission select</button>
+      <div className="all_options">
+        <div className="ships_in_db">
+          <h3>View current ships..</h3>
+          {eachShip.length
+            ? eachShip.map((ship) => (
+                <div key={ship.id}>
+                  <p>{ship.spaceship_name}</p>
+                  <button onClick={(e) => selectShip(e, ship)}>
+                    Select ship
+                  </button>
+                </div>
+              ))
+            : null}
+          <button onClick={getShips}>Access shipyard data</button>
+        </div>
+        <div id="add_new_ship">
+          <h3>Or, start a new ship</h3>
+          <form className="createShip" onSubmit={createShip}>
+            <label for="ship_name">Name of your ship:</label>
+            <input type="text" name="ship_name" placeholder="" />
+            <button type="submit">Create ship</button>
+          </form>
+          <button onClick={goBack}>Back to mission select</button>
+        </div>
       </div>
     </div>
   );

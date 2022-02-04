@@ -20,7 +20,7 @@ function App() {
         <Route path="/main_menu" element={<MainMenu />} />
         <Route path="/misson_select" element={<MissionSelect setSelectedSystem={setSelectedSystem} />} />
         <Route path="/ships_overview" element={<ShipsOverview selectedSystem={selectedSystem} setSelectedSystem={setSelectedSystem} setChosenShip={setChosenShip}/>} />
-        <Route path="/sigma_shipyard" element={<SigmaShipyard selectedSystem={selectedSystem} chosenShip={chosenShip}/>} />
+        <Route path="/sigma_shipyard" element={<SigmaShipyard selectedSystem={selectedSystem} chosenShip={chosenShip}/>} setChosenShip={setChosenShip} />
       </Routes>
     </div>
   );
