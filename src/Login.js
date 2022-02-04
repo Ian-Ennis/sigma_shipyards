@@ -74,69 +74,87 @@ function Login({ setTriSystems }) {
       {accountExists ? (
         <div className="all_login_containers">
           <form className="login" onSubmit={logUserIn}>
-            Username:{" "}
-            <input
-              className="username"
-              type="text"
-              value={loginUsername}
-              onChange={(e) => setLoginUsername(e.target.value)}
-              placeholder="Username"
-            />
-            Password:{" "}
-            <input
-              className="password"
-              type="password"
-              value={loginPassword}
-              onChange={(e) => setLoginPassword(e.target.value)}
-              placeholder="Password"
-            />
-            <button className="login_submit" type="submit">
-              Login
-            </button>
-            <button className="need_account" id="need_account" onClick={hideLogin}>Need an account?</button>
-            <button
-              className="logout"
-              onClick={() => {
-                localStorage.setItem("jwt", "");
-                navigate("/");
-              }}
-            >
-              Logout
-            </button>
+            <div className="username_password">
+              Username:{" "}
+              <input
+                className="username"
+                type="text"
+                value={loginUsername}
+                onChange={(e) => setLoginUsername(e.target.value)}
+                placeholder="Username"
+              />
+              Password:{" "}
+              <input
+                className="password"
+                type="password"
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
+                placeholder="Password"
+              />
+            </div>
+            <div className="login_create_have_logout">
+              <button className="login_submit" type="submit">
+                Login
+              </button>
+              <button
+                className="need_account"
+                id="need_account"
+                onClick={hideLogin}
+              >
+                Need an account?
+              </button>
+              <div id="logout">
+                <button
+                  className="logout"
+                  onClick={() => {
+                    localStorage.setItem("jwt", "");
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       ) : (
         <div>
           <form className="login" onSubmit={createProfile}>
-            Username:{" "}
-            <input
-              className="username"
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Create Username"
-            />
-            Password:{" "}
-            <input
-              className="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Create Password"
-            />
-            <button className="login_submit" type="submit">
-              Create Profile & Re-enter credentials
-            </button>
-            <button onClick={showLogin}>Have an account?</button>
-            <button
-              className="logout"
-              onClick={() => {
-                localStorage.setItem("jwt", "");
-                navigate("/");
-              }}
-            >
-              Logout
-            </button>
+            <div className="username_password">
+              Username:{" "}
+              <input
+                className="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Create Username"
+              />
+              Password:{" "}
+              <input
+                className="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Create Password"
+              />
+            </div>
+            <div className="login_create_have_logout">
+              <button className="login_submit" type="submit">
+                Create Profile & Re-enter credentials
+              </button>
+              <button onClick={showLogin}>Have an account?</button>
+              <div id="logout">
+                <button
+                  className="logout"
+                  onClick={() => {
+                    localStorage.setItem("jwt", "");
+                    navigate("/");
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
           </form>
         </div>
       )}

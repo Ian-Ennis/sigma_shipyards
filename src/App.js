@@ -4,23 +4,23 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Login from "./Login";
 import MainMenu from "./MainMenu";
-import MissionDebrief from "./MissionDebrief";
-import ShipCards from "./ShipCards";
-import Shipyard from "./Shipyard"
+import MissionSelect from "./MissionSelect";
+import ShipsOverview from "./ShipsOverview";
+import SigmaShipyard from "./SigmaShipyard"
 
 function App() {
   const [selectedSystem, setSelectedSystem] = useState([]);
+  const [chosenShip, setChosenShip] = useState({});
 
-  
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/main_menu" element={<MainMenu />} />
-        <Route path="/MissionDebrief" element={<MissionDebrief setSelectedSystem={setSelectedSystem} />} />
-        <Route path="/ShipCards" element={<ShipCards />} />
-        <Route path="/Shipyard" element={<Shipyard selectedSystem={selectedSystem} />} />
+        <Route path="/misson_select" element={<MissionSelect setSelectedSystem={setSelectedSystem} />} />
+        <Route path="/ships_overview" element={<ShipsOverview selectedSystem={selectedSystem} setSelectedSystem={setSelectedSystem} setChosenShip={setChosenShip}/>} />
+        <Route path="/sigma_shipyard" element={<SigmaShipyard selectedSystem={selectedSystem} chosenShip={chosenShip}/>} />
       </Routes>
     </div>
   );

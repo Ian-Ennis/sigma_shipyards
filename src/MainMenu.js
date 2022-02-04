@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 function MainMenu() {
   const navigate = useNavigate();
 
-  function shuttleToShipyard() {
-    navigate("/MissionDebrief");
+  function goToShipsMenu() {
+    navigate("/misson_select");
   }
 
   return (
-    <div>
-      <p>
+    <div className="intro_div">
+      <p id="intro_story">
         It's the year 2089, and things really aren't looking good. Scientists
         have discovered the sun is readying to release an insurvivable solar
         flare! Humanity's last hope to continue onwards is by reaching distant
@@ -21,11 +21,11 @@ function MainMenu() {
         is build a suitable ship and try to reach one of the systems. Will you
         be the one to save humanity? ..Do you even have a choice...?{" "}
       </p>
-      <button onClick={shuttleToShipyard}>
-        Attempt to Save Humanity (board suborbital shuttle to shipyard)
+      <button onClick={goToShipsMenu}>
+        Board shuttle to Sigma Shipyards
       </button>
       <button
-        id="decline_logout"
+        id="logout"
         onClick={() => {
           localStorage.setItem("jwt", "");
           navigate("/");

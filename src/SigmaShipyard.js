@@ -8,45 +8,19 @@ import carbon_fiber from ".//Images/carbon_fiber.jpeg";
 import graphene_weave from ".//Images/graphene_weave.jpeg";
 import neutrino_repulsor from ".//Images/neutrino_repulsor.png";
 
-function Shipyard({ selectedSystem }) {
+
+function SigmaShipyard({ selectedSystem, chosenShip }) {
   const [viewport, setViewport] = useState(false);
-  const [allShips, setAllShips] = useState([])
-  const [shipsExist, setShipsExist] = useState(false)
-  const [chosenShip, setChosenShip] = useState([]);
   const [engineParts, setEngineParts] = useState([]);
   const [hullParts, setHullParts] = useState([]);
   const [credits, setCredits] = useState(1000000);
   const [hullStrength, setHullStrength] = useState(0);
   const [shipRange, setShipRange] = useState(0);
 
-  const eachShip = []
   const navigate = useNavigate();
 
-  function createShip(e) {
-    e.preventDefault();
-    const spaceship_name = e.target.ship_name.value;
-
-    fetch(`http://localhost:3000/spaceships`, {
-      method: "POST",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-      body: JSON.stringify({
-        spaceship_name,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setChosenShip(data);
-        // setViewport(true);
-      });
-  }
-
-  function getShips() {
-    fetch(`http://localhost:3000/spaceships`, {
+  function loadParts() {
+    fetch(`http://localhost:3000/engine_parts`, {
       method: "GET",
       headers: {
         Accepts: "application/json",
@@ -56,83 +30,24 @@ function Shipyard({ selectedSystem }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setAllShips(data);
-    });
+        setEngineParts(data);
+      })
+      .then(
+        fetch(`http://localhost:3000/hull_parts`, {
+          method: "GET",
+          headers: {
+            Accepts: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setHullParts(data);
+          })
+          .then(setViewport(true))
+      );
   }
-
-  if (allShips.length) {
-    allShips.forEach((ship) => {
-        eachShip.push(ship);
-      }
-    )};
-
-
-    const shipCardMaker = allShips.map((eachShip) => {
-      return (
-        <div>
-          <h4>{eachShip.spaceship_name}</h4>
-        </div>
-      )
-    })
-  }
-
-  // function getShip() {
-  //   fetch(`http://localhost:3000/spaceships`, {
-  //     method: "POST",
-  //     headers: {
-  //       Accepts: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-  //     },
-  //     // body: JSON.stringify({
-  //     //   name,
-  //     // }),
-  //   }).then(
-  //     fetch(`http://localhost:3000/spaceships`, {
-  //       method: "GET",
-  //       headers: {
-  //         Accepts: "application/json",
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-  //       },
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         // setChosenShip(data);
-  //       })
-  //       .then(
-  //         fetch(`http://localhost:3000/engine_parts`, {
-  //           method: "GET",
-  //           headers: {
-  //             Accepts: "application/json",
-  //             "Content-Type": "application/json",
-  //             Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-  //           },
-  //         })
-  //           .then((res) => res.json())
-  //           .then((data) => {
-  //             setEngineParts(data);
-  //           })
-  //           .then(
-  //             fetch(`http://localhost:3000/hull_parts`, {
-  //               method: "GET",
-  //               headers: {
-  //                 Accepts: "application/json",
-  //                 "Content-Type": "application/json",
-  //                 Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-  //               },
-  //             })
-  //               .then((res) => res.json())
-  //               .then((data) => {
-  //                 setHullParts(data);
-  //                 setViewport(true);
-  //               })
-  //           )
-  //       )
-  //   );
-  // }
 
   function navigateToMenu() {
     navigate("/main_menu");
@@ -203,7 +118,7 @@ function Shipyard({ selectedSystem }) {
   }
 
   return (
-    <>
+    <div>
       {viewport ? (
         <div className="shipyard">
           <div className="stats_parts_container">
@@ -213,12 +128,12 @@ function Shipyard({ selectedSystem }) {
               <p>Distance: {selectedSystem.distance} light years</p>
               <h3>Budget</h3>
               <p>Credits: {credits}</p>
-              <h3>{chosenShip.spaceship_name} Statistics</h3>
+              {/* <h3>{chosenShip.spaceship_name} Statistics</h3> */}
               <p>Hull strength: {hullStrength}%</p>
               <p>Fuel tank range: {shipRange} light years</p>
             </div>
-            <div classspaceship_name="your_spaceship">
-              {chosenShip.spaceship_name}
+            <div classname="your_spaceship">
+              {/* {chosenShip.spaceship_name} */}
             </div>
             <div className="parts">
               <h3>Available Parts</h3>
@@ -291,25 +206,10 @@ function Shipyard({ selectedSystem }) {
           </button>
         </div>
       ) : (
-        <div id="intro_to_shipyard">
-          <p id="approach_terminal">
-            Thoughts of self-doubt, but intrigue over what lies ahead... Yet
-            somehow, you sense a fleeting glimmer of confidence in your
-            ship-making abilities, as you step forth to the shipyard computer
-            terminal...
-          </p>
-          <form className="createShip" onSubmit={createShip}>
-            <label for="ship_name">Name of your ship:</label>
-            <input type="text" name="ship_name" placeholder="" />
-            <button type="submit">Create spaceship</button>
-          </form>
-
-          <button onClick={getShips}>get ships</button>
-          {shipsExist ? {shipCardMaker} : null}
-        </div>
+        <button onClick={loadParts}>Show shipyard</button>
       )}
-    </>
+    </div>
   );
 }
 
-export default Shipyard;
+export default SigmaShipyard;
