@@ -24,6 +24,7 @@ function MissionSelect({ setSelectedSystem }) {
       .then((data) => {
         setTriSystems(data);
         setIsDebriefed(true);
+        console.log(triSystems)
       });
   }
 
@@ -62,7 +63,7 @@ function MissionSelect({ setSelectedSystem }) {
                   <em>{triSystems[0].name}</em>
                 </b>
               </p>
-              <img src={proxima_centauri} alt="proxima_centauri" />
+              <img className="img_proxima" src={proxima_centauri} alt="proxima_centauri" />
               <p>
                 Distance: <b>{triSystems[0].distance} light years</b>
               </p>
@@ -82,7 +83,7 @@ function MissionSelect({ setSelectedSystem }) {
                   <em>{triSystems[1].name}</em>
                 </b>
               </p>
-              <img src={tau_ceti} alt="tau_ceti" />
+              <img className="img_tau_ceti" src={tau_ceti} alt="tau_ceti" />
               <p>
                 Distance: <b>{triSystems[1].distance} light years</b>
               </p>
@@ -102,7 +103,7 @@ function MissionSelect({ setSelectedSystem }) {
                   <em>{triSystems[2].name}</em>
                 </b>
               </p>
-              <img src={upsilon_andromedae} alt="upsilon_andromedae" />
+              <img className="img_upsilon" src={upsilon_andromedae} alt="upsilon_andromedae" />
               <p>
                 Distance: <b>{triSystems[2].distance} light years</b>
               </p>

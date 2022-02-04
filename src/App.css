@@ -77,6 +77,24 @@ button {
   justify-content: center;
 }
 
+.img_proxima {
+  width: 100%;
+  height: auto;
+  object-fit: contain;  
+}
+
+.img_tau_ceti {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.img_upsilon {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 #proxima {
   margin: 20px;
   border: 2px solid #505050;
@@ -113,11 +131,37 @@ button {
   max-width: 48%;
 }
 
+#ships_with_img {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0-x 10-x
+}
+
+#system_by_missions {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+}
+
 .all_options {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 16px 0px;  
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+}
+
+#system_misson_img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;  
 }
 
 .ships_in_db {
@@ -126,9 +170,14 @@ button {
   gap: 10px 0px;
 }
 
-/* .add_new_ship {
-
-} */
+#add_new_ship {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+  gap: 25px 0px;
+}
 
 .shipyard {
   background-image: url('.//Images/original_shipyard.jpeg');
