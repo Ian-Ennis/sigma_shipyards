@@ -64,6 +64,7 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data)
           setChosenShip(data[data.length - 1]);
           setAllShips(data);
         });
@@ -141,3 +142,9 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
 }
 
 export default ShipsOverview;
+
+
+
+// #<User:0x00007fda77214518>
+
+// #<User:0x00007fb90d87b220>

@@ -1,15 +1,16 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import proxima_centauri from ".//Images/proxima_centauri.jpeg";
 import tau_ceti from ".//Images/tau_ceti.jpeg";
 import upsilon_andromedae from ".//Images/upsilon_andromedae.jpeg";
 
 function MissionSelect({ setSelectedSystem }) {
+  const [triSystems, setTriSystems] = useState([])
   const [isDebriefed, setIsDebriefed] = useState(false);
-  const [triSystems, setTriSystems] = useState([]);
 
   const navigate = useNavigate();
+  // let triSystems = [];
 
   function getSystems() {
     fetch(`http://localhost:3000/star_systems`, {
@@ -22,10 +23,12 @@ function MissionSelect({ setSelectedSystem }) {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(triSystems)
         setTriSystems(data);
-        setIsDebriefed(true);
-      });
-  }
+        setIsDebriefed(true)
+      })
+    }
+
 
   function selectProxima(e, system) {
     e.preventDefault();
@@ -51,7 +54,7 @@ function MissionSelect({ setSelectedSystem }) {
 
   return (
     <>
-      {isDebriefed ? (
+    {isDebriefed ? 
         <div className="misson_div">
           <h2 id="mission_select">Choose your misson..</h2>
           <div className="misson_container">
@@ -127,10 +130,8 @@ function MissionSelect({ setSelectedSystem }) {
               Logout
             </button>
           </div>
-        </div>
-      ) : 
-        getSystems()
-        }
+        </div> : getSystems()
+  }
     </>
   );
 }
