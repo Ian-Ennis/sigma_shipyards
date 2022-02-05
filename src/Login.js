@@ -25,11 +25,11 @@ function Login({ setTriSystems }) {
       user: { username: loginUsername, password: loginPassword },
     };
 
-    fetch(`http://localhost:3000/api/v1/login`, {
+    fetch(`http://localhost:3000/users`, {
       method: "POST",
       headers: {
-        accepts: "application/json",
         "Content-type": "application/json",
+        "Accept": "application/json",
       },
       body: JSON.stringify(loginData),
     })
