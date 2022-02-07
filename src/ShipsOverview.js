@@ -64,7 +64,7 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data)
+          console.log(data);
           setChosenShip(data[data.length - 1]);
           setAllShips(data);
         });
@@ -130,20 +130,23 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
             <h3>Or,&#10;create a new ship</h3>
             <form className="createShip" onSubmit={createShip}>
               <label for="ship_name">Name your ship:</label>
-              <input id="new_ship_input" type="text" name="ship_name" placeholder="" />
+              <input
+                id="new_ship_input"
+                type="text"
+                name="ship_name"
+                placeholder=""
+              />
               <button type="submit">Create ship</button>
             </form>
-            <button onClick={goBack}>Back to mission select</button>
           </div>
         </div>
       </div>
+      <button onClick={goBack}>Back to mission select</button>
     </div>
   );
 }
 
 export default ShipsOverview;
-
-
 
 // #<User:0x00007fda77214518>
 

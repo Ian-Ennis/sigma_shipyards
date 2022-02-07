@@ -56,7 +56,7 @@ function MissionSelect({ setSelectedSystem }) {
     <>
     {isDebriefed ? 
         <div className="misson_div">
-          <h2 id="mission_select">Choose your misson..</h2>
+          <h2 id="mission_select">Choose your destination:</h2>
           <div className="misson_container">
             <div id="proxima">
               <p>
