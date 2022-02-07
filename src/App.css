@@ -2,6 +2,300 @@
   text-align: center;
 }
 
+body {
+  color: white;
+  background-color: rgb(0, 0, 0);
+}
+
+.title {
+  font-size: 25px;
+}
+
+p {
+  font-size: 12px;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+}
+
+.username_password {
+  display: flex;
+  flex-direction: column;
+  gap: 15px 0px;
+  margin-bottom: 14px;
+}
+
+.username {
+  display: block;
+  margin: 0 auto;
+}
+
+.password {
+  display: block;
+  margin: 0 auto;
+}
+
+.login_create_have_logout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px 0px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: 15px 0px;
+}
+
+.need_account {
+  display: block;
+  margin: 10 auto;
+}
+
+#logout {
+  margin-top: 54px;
+}
+
+.intro_div {
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0px;
+}
+
+#intro_story {
+  font-size: 13px;
+  margin: 0 auto;
+  max-width: 48%;
+}
+
+.misson_container {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+}
+
+.img_proxima {
+  width: 100%;
+  height: auto;
+  object-fit: contain;  
+}
+
+.img_tau_ceti {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.img_upsilon {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#proxima {
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+}
+
+#tau {
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+}
+
+#upsilon { 
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+}
+
+#back_logout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px 0px;
+}
+
+.intro_to_shipyard {
+  display: flex;
+  flex-direction: column;
+}
+
+#approach_terminal {
+  font-size: 13px;
+  margin: 0 auto;
+  margin-bottom: 2%;
+  max-width: 48%;
+}
+
+#ships_with_img {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0-x 10-x
+}
+
+#system_by_missions {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+}
+
+.all_options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px 0px;  
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+}
+
+#system_misson_img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;  
+}
+
+.ships_in_db {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+}
+
+#add_new_ship {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 2px solid #505050;
+  padding: 24px;
+  gap: 25px 0px;
+}
+
+.createShip {
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0px;
+}
+
+#new_ship_input{
+  margin-bottom: 10%;
+}
+
+.shipyard {
+  background-image: url('.//Images/original_shipyard.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0 0 8px 8px #020202 inset;
+
+}
+
+.stats_parts_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#shipyard_mission {
+  margin: 10px;
+}
+
+#shipyard_misson_img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.your_spaceship {
+  width: 48%;
+}
+
+.statistics {
+  margin: 10px;
+  width: 24%;
+  border: 2px solid #505050;
+  background-color: rgba(45, 45, 45, 0.5);
+}
+
+.part {
+  width: 50%
+}
+
+.parts {
+  margin: 10px;
+  width: 24%;
+  border: 2px solid #505050;
+  background-color: rgba(45, 45, 45, 0.5);
+}
+
+.engine_parts {
+  display: flex;
+  flex-direction: row;
+}
+
+#epart1 {
+  margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
+  background-color: black;
+}
+
+#epart2 {
+  margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
+  background-color: black;
+}
+
+#epart3 {
+  margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
+  background-color: black;
+}
+
+.hull_parts {
+  display: flex;
+  flex-direction: row;
+  
+}
+
+#hpart1 {
+  margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
+  background-color: black;
+}
+
+#hpart2 {
+  margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
+  background-color: black;
+}
+
+#hpart3 {
+  margin: 6px;
+  border: 2px solid #505050;
+  padding: 0px;
+  max-width: 33.33%;
+  background-color: black;
+}
+
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -9,31 +303,15 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
+    animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: rgb(112, 76, 182);
-}
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-  50% {
-    transform: translateY(10px);
+  to {
+    transform: rotate(360deg);
   }
-  100% {
-    transform: translateY(0px);
-  }
-}
+} */
