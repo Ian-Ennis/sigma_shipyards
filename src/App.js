@@ -5,9 +5,9 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Login from "./Login";
 import MainMenu from "./MainMenu";
-import MissionSelect from "./MissionSelect";
-import ShipsOverview from "./ShipsOverview";
-import SigmaShipyard from "./SigmaShipyard"
+import MissionSelect from "./features/systems/MissionSelect";
+import ShipsOverview from "./features/ships/ShipsOverview";
+import SigmaShipyard from "./features/shipstatistics/SigmaShipyard"
 
 
 function App() {

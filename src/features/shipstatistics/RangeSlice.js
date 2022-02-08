@@ -3,30 +3,39 @@ import { createSlice } from "@reduxjs/toolkit"
 const rangeSlice = createSlice({
     name: 'range',
     initialState: {
-        distance: 0
+        distance: 0,
+        nuclearCount: 0,
+        fusionCount: 0,
+        antimatterCount: 0
     },
     reducers: {
-        getNuclear: state => {
+        installNuclear: state => {
             state.distance += 3
+            nuclearCount += 1
         },
-        ridNuclear: state => {
+        removeNuclear: state => {
             state.distance -= 3
+            nuclearCount -= 1
         },
-        getFusion: state => {
+        installFusion: state => {
             state.distance += 7
+            fusionCount += 1
         },
-        ridFusion: state => {
+        removeFusion: state => {
             state.distance -= 7
+            fusionCount -= 1
         },
-        getAntimatter: state => {
+        installAntimatter: state => {
             state.distance += 10
+            antimatterCount += 1
         },
-        ridAntimatter: state => {
+        removeAntimatter: state => {
             state.distance -= 10
+            antimatterCount -= 1
         }
     }
 })
 
-export const { getNuclear, ridNuclear, getFusion, ridFusion, getAntimatter, ridAntimatter} = slice.actions
+export const { installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter} = rangeSlice.actions
 
 export default rangeSlice.reducer

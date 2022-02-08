@@ -45,6 +45,6 @@ const creditSlice = createSlice({
     }
 })
 
-export const { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbonFiber, sellCarbonFiber, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} = slice.actions
+export const { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbonFiber, sellCarbonFiber, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} = creditSlice.actions
 
 export default creditSlice.reducer

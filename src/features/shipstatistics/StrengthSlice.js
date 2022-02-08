@@ -3,30 +3,39 @@ import { createSlice } from "@reduxjs/toolkit"
 const strengthSlice = createSlice({
     name: 'strength',
     initialState: {
-        hull: 0
+        hull: 0,
+        carbonCount: 0,
+        grapheneCount: 0,
+        neutrinoCount: 0
     },
     reducers: {
-        getCarbon: state => {
+        installCarbon: state => {
             state.hull += 5
+            carbonCount += 1
         },
-        ridCarbon: state => {
+        removeCarbon: state => {
             state.hull -= 5
+            carbonCount -= 1
         },
-        getGraphene: state => {
+        installGraphene: state => {
             state.hull += 15
+            grapheneCount += 1
         },
-        ridGraphene: state => {
+        removeGraphene: state => {
             state.hull -= 15
+            grapheneCount -= 1
         },
-        getNeutrino: state => {
+        installNeutrino: state => {
             state.hull += 50
+            neutrinoCount += 1
         },
-        ridNeutrino: state => {
+        removeNeutrino: state => {
             state.hull -= 50
+            neutrinoCount -= 1
         }
     }
 })
 
-export const { getCarbon, ridCarbon, getGraphene, ridGraphene, getNeutrino, ridNeutrino} = slice.actions
+export const { installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} = strengthSlice.actions
 
 export default strengthSlice.reducer
