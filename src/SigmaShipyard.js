@@ -72,9 +72,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function buyEPart1(e) {
     e.preventDefault();
     if (credits - engineParts[0].cost >= 0) {
-      console.log(nuclearReactors)
       nuclearReactors += 1;
-      console.log(nuclearReactors)
       setCredits(credits - engineParts[0].cost);
       setShipRange(shipRange + engineParts[0].range);
     } else {

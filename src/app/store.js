@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import creditsReducer from "../features/shipstatistics/CreditsSlice"
+import rangeReducer from "../features/shipstatistics/RangeSlice"
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-  },
+    credits: creditsReducer,
+    range: rangeReducer,
+    strength: strengthReducer
+  }
 });
