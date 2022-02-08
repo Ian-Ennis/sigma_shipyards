@@ -2,9 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} from "./creditsSlice"
-import { installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter} from "./rangeSlice"
-import { installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} from "./strengthSlice"
+import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} from "./CreditsSlice"
+import { installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter} from "./RangeSlice"
+import { installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} from "./StrengthSlice"
 import { useDispatch } from "react-redux"
 import nuclear_reactor from "../../Images/nuclear_reactor.png";
 import fusion_reactor from "../../Images/fusion_reactor.jpeg";
