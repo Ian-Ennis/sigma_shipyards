@@ -1,5 +1,5 @@
 {
-  "name": "front_end_redux",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3000",
