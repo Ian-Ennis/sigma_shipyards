@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbonFiber, sellCarbonFiber, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} from "./creditsSlice"
+import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} from "./creditsSlice"
 import { installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter} from "./rangeSlice"
 import { installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} from "./strengthSlice"
 import { useDispatch } from "react-redux"
@@ -22,9 +22,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const [viewport, setViewport] = useState(false);
   const [engineParts, setEngineParts] = useState([]);
   const [hullParts, setHullParts] = useState([]);
-  // const [credits, setCredits] = useState(1000000);
-  // const [hullStrength, setHullStrength] = useState(0);
-  // const [shipRange, setShipRange] = useState(0);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,10 +36,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const carbonCount = storeState.strength.carbonCount
   const grapheneCount = storeState.strength.grapheneCount
   const neutrinoCount = storeState.strength.neutrinoCount
-
-
-  // console.log(nuclearCount, fusionCount, antimatterCount)
-  // console.log(carbonCount, grapheneCount, neutrinoCount)
 
 
   let sysImg = "";
@@ -98,6 +91,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     e.preventDefault();
     if (nuclearCount > 0) {
       dispatch(sellNuclear, removeNuclear)
+      console.log(budget, range)
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -107,8 +101,19 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     e.preventDefault();
     if (budget >= 250000) {
       dispatch(buyFusion, installFusion)
+      console.log(budget, range)
     } else {
       window.confirm("You have run out of credits. Sell parts to increase your budget.");
+    }
+  }
+
+  function sellEPart2(e) {
+    e.preventDefault();
+    if (fusionCount > 0) {
+      dispatch(sellFusion, removeFusion)
+      console.log(budget, range)
+    } else {
+      window.confirm("You have no more to sell.");
     }
   }
 
@@ -121,12 +126,30 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     }
   }
 
+  function sellEPart3(e) {
+    e.preventDefault();
+    if (antimatterCount > 0) {
+      dispatch(sellAntimatter, removeAntimatter)
+    } else {
+      window.confirm("You have no more to sell.");
+    }
+  }
+
   function buyHPart1(e) {
     e.preventDefault();
     if (budget >= 20000) {
-      dispatch(buyCarbonFiber, installCarbon)
+      dispatch(buyCarbon, installCarbon)
     } else {
       window.confirm("You have run out of credits. Sell parts to increase your budget.");
+    }
+  }
+
+  function sellHPart1(e) {
+    e.preventDefault();
+    if (carbonCount > 0) {
+      dispatch(sellCarbon, removeCarbon)
+    } else {
+      window.confirm("You have no more to sell.");
     }
   }
 
@@ -139,12 +162,30 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     }
   }
 
+  function sellHPart2(e) {
+    e.preventDefault();
+    if (grapheneCount > 0) {
+    dispatch(sellGraphene, removeGraphene)
+    } else {
+      window.confirm("You have no more to sell.");
+    }
+  }
+
   function buyHPart3(e) {
     e.preventDefault();
     if (budget >= 300000) {
       dispatch(buyNeutrino, installNeutrino)
     } else {
       console.log("You have run out of credits. Sell parts to increase your budget.");
+    }
+  }
+
+  function sellHPart3(e) {
+    e.preventDefault();
+    if (neutrinoCount > 0) {
+    dispatch(sellNeutrino, removeNeutrino)
+    } else {
+      window.confirm("You have no more to sell.");
     }
   }
 
@@ -208,7 +249,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                   <p>{engineParts[0].cost} c</p>
                   <button onClick={buyEPart1}>Buy</button>
                   <button onClick={sellEPart1}>Sell</button>
-
                 </div>
                 <div id="epart2">
                   <img
@@ -220,6 +260,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                   <p>{engineParts[1].range} ly</p>
                   <p>{engineParts[1].cost} c</p>
                   <button onClick={buyEPart2}>Buy</button>
+                  <button onClick={sellEPart2}>Sell</button>
                 </div>
                 <div id="epart3">
                   <img
@@ -231,6 +272,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                   <p>{engineParts[2].range} ly</p>
                   <p>{engineParts[2].cost} c</p>
                   <button onClick={buyEPart3}>Buy</button>
+                  <button onClick={sellEPart3}>Sell</button>
                 </div>
               </div>
               <h4>Hull:</h4>
@@ -241,6 +283,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                   <p>+{hullParts[0].hull_strength}%</p>
                   <p>{hullParts[0].cost} c</p>
                   <button onClick={buyHPart1}>Buy</button>
+                  <button onClick={sellHPart1}>Sell</button>
                 </div>
                 <div id="hpart2">
                   <img className="part" src={graphene_weave} alt="part" />
@@ -248,6 +291,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                   <p>+{hullParts[1].hull_strength}%</p>
                   <p>{hullParts[1].cost} c</p>
                   <button onClick={buyHPart2}>Buy</button>
+                  <button onClick={sellHPart2}>Sell</button>
                 </div>
                 <div id="hpart3">
                   <img className="part" src={neutrino_repulsor} alt="part" />
@@ -255,6 +299,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                   <p>+{hullParts[2].hull_strength}%</p>
                   <p>{hullParts[2].cost} c</p>
                   <button onClick={buyHPart3}>Buy</button>
+                  <button onClick={sellHPart3}>Sell</button>
                 </div>
               </div>
             </div>

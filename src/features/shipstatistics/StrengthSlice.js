@@ -11,27 +11,27 @@ const strengthSlice = createSlice({
     reducers: {
         installCarbon: state => {
             state.hull += 5
-            carbonCount += 1
+            state.carbonCount += 1
         },
         removeCarbon: state => {
             state.hull -= 5
-            carbonCount -= 1
+            state.carbonCount -= 1
         },
         installGraphene: state => {
             state.hull += 15
-            grapheneCount += 1
+            state.grapheneCount += 1
         },
         removeGraphene: state => {
             state.hull -= 15
-            grapheneCount -= 1
+            state.grapheneCount -= 1
         },
         installNeutrino: state => {
             state.hull += 50
-            neutrinoCount += 1
+            state.neutrinoCount += 1
         },
         removeNeutrino: state => {
             state.hull -= 50
-            neutrinoCount -= 1
+            state.neutrinoCount -= 1
         }
     }
 })

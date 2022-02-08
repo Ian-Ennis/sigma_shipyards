@@ -24,10 +24,10 @@ const creditSlice = createSlice({
         sellAntimatter: state => {
             state.balance += 400000
         },
-        buyCarbonFiber: state => {
+        buyCarbon: state => {
             state.balance -= 20000
         },
-        sellCarbonFiber: state => {
+        sellCarbon: state => {
             state.balance += 20000
         },
         buyGraphene: state => {
@@ -45,6 +45,6 @@ const creditSlice = createSlice({
     }
 })
 
-export const { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbonFiber, sellCarbonFiber, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} = creditSlice.actions
+export const { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} = creditSlice.actions
 
 export default creditSlice.reducer

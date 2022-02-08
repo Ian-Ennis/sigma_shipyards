@@ -11,27 +11,27 @@ const rangeSlice = createSlice({
     reducers: {
         installNuclear: state => {
             state.distance += 3
-            nuclearCount += 1
+            state.nuclearCount += 1
         },
         removeNuclear: state => {
             state.distance -= 3
-            nuclearCount -= 1
+            state.nuclearCount -= 1
         },
         installFusion: state => {
             state.distance += 7
-            fusionCount += 1
+            state.fusionCount += 1
         },
         removeFusion: state => {
             state.distance -= 7
-            fusionCount -= 1
+            state.fusionCount -= 1
         },
         installAntimatter: state => {
             state.distance += 10
-            antimatterCount += 1
+            state.antimatterCount += 1
         },
         removeAntimatter: state => {
             state.distance -= 10
-            antimatterCount -= 1
+            state.antimatterCount -= 1
         }
     }
 })
