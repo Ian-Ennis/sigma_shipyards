@@ -10,7 +10,6 @@ function MissionSelect({ setSelectedSystem }) {
     const [isDebriefed, setIsDebriefed] = useState(false);
   
     const navigate = useNavigate();
-    // let triSystems = [];
   
     function getSystems() {
       fetch(`http://localhost:3000/star_systems`, {
