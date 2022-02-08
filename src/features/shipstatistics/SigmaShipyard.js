@@ -27,7 +27,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const dispatch = useDispatch();
 
   const storeState = useSelector(state => state)
-  const budget = storeState
+  console.log(storeState)
+
+  const budget = storeState.credits.balance
   const range = storeState.range.distance
   const nuclearCount = storeState.range.nuclearCount
   const fusionCount = storeState.range.fusionCount
@@ -80,8 +82,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function buyEPart1(e) {
     e.preventDefault();
     if (budget >= 150000) {
-      dispatch(buyNuclear, installNuclear)
-      console.log(budget, range)
+      dispatch(buyNuclear()) 
+      dispatch(installNuclear())
+      console.log(budget, nuclearCount, range)
     } else {
       window.confirm("You have run out of credits. Sell parts to increase your budget.");
     }
@@ -90,8 +93,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function sellEPart1(e) {
     e.preventDefault();
     if (nuclearCount > 0) {
-      dispatch(sellNuclear, removeNuclear)
-      console.log(budget, range)
+      dispatch(sellNuclear())
+      dispatch(removeNuclear())
+      console.log(budget, nuclearCount, range)
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -100,8 +104,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function buyEPart2(e) {
     e.preventDefault();
     if (budget >= 250000) {
-      dispatch(buyFusion, installFusion)
-      console.log(budget, range)
+      dispatch(buyFusion())
+      dispatch(installFusion())
+      console.log(budget, fusionCount, range)
     } else {
       window.confirm("You have run out of credits. Sell parts to increase your budget.");
     }
@@ -110,8 +115,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function sellEPart2(e) {
     e.preventDefault();
     if (fusionCount > 0) {
-      dispatch(sellFusion, removeFusion)
-      console.log(budget, range)
+      dispatch(sellFusion())
+      dispatch(removeFusion())
+      console.log(budget, fusionCount, range)
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -120,7 +126,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function buyEPart3(e) {
     e.preventDefault();
     if (budget >= 400000) {
-      dispatch(buyAntimatter, installAntimatter)
+      dispatch(buyAntimatter())
+      dispatch(installAntimatter())
+      console.log(budget, antimatterCount, range)
     } else {
       window.confirm("You have run out of credits. Sell parts to increase your budget.");
     }
@@ -129,7 +137,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function sellEPart3(e) {
     e.preventDefault();
     if (antimatterCount > 0) {
-      dispatch(sellAntimatter, removeAntimatter)
+      dispatch(sellAntimatter())
+      dispatch(removeAntimatter())
+      console.log(budget, antimatterCount, range)
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -138,7 +148,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function buyHPart1(e) {
     e.preventDefault();
     if (budget >= 20000) {
-      dispatch(buyCarbon, installCarbon)
+      dispatch(buyCarbon())
+      dispatch(installCarbon())
+      console.log(budget, carbonCount, range)
     } else {
       window.confirm("You have run out of credits. Sell parts to increase your budget.");
     }
@@ -147,7 +159,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function sellHPart1(e) {
     e.preventDefault();
     if (carbonCount > 0) {
-      dispatch(sellCarbon, removeCarbon)
+      dispatch(sellCarbon())
+      dispatch(removeCarbon())
+      console.log(budget, carbonCount, range)
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -156,7 +170,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function buyHPart2(e) {
     e.preventDefault();
     if (budget >= 90000) {
-    dispatch(buyGraphene, installGraphene)
+    dispatch(buyGraphene())
+    dispatch(installGraphene())
+    console.log(budget, grapheneCount, range)
     } else {
       window.confirm("You have run out of credits. Sell parts to increase your budget.");
     }
@@ -165,7 +181,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function sellHPart2(e) {
     e.preventDefault();
     if (grapheneCount > 0) {
-    dispatch(sellGraphene, removeGraphene)
+    dispatch(sellGraphene())
+    dispatch(removeGraphene())
+    console.log(budget, grapheneCount, range)
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -174,7 +192,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function buyHPart3(e) {
     e.preventDefault();
     if (budget >= 300000) {
-      dispatch(buyNeutrino, installNeutrino)
+      dispatch(buyNeutrino())
+      dispatch(installNeutrino())
+      console.log(budget, neutrinoCount, range)
     } else {
       console.log("You have run out of credits. Sell parts to increase your budget.");
     }
@@ -183,7 +203,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function sellHPart3(e) {
     e.preventDefault();
     if (neutrinoCount > 0) {
-    dispatch(sellNeutrino, removeNeutrino)
+    dispatch(sellNeutrino())
+    dispatch(removeNeutrino())
+    console.log(budget, neutrinoCount, range)
     } else {
       window.confirm("You have no more to sell.");
     }
