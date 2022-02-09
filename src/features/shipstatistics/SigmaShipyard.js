@@ -169,7 +169,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     }
   }
 
-  function buyHPart1(e) {
+  function buySPart1(e) {
     e.preventDefault();
     if (credits >= 20000) {
       dispatch(buyCarbon());
@@ -180,7 +180,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     }
   }
 
-  function sellHPart1(e) {
+  function sellSPart1(e) {
     e.preventDefault();
     if (carbonCount > 0) {
       dispatch(sellCarbon());
@@ -191,7 +191,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     }
   }
 
-  function buyHPart2(e) {
+  function buySPart2(e) {
     e.preventDefault();
     if (credits >= 90000) {
       dispatch(buyGraphene());
@@ -202,7 +202,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     }
   }
 
-  function sellHPart2(e) {
+  function sellSPart2(e) {
     e.preventDefault();
     if (grapheneCount > 0) {
       dispatch(sellGraphene());
@@ -213,7 +213,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     }
   }
 
-  function buyHPart3(e) {
+  function buySPart3(e) {
     e.preventDefault();
     if (credits >= 300000) {
       dispatch(buyNeutrino());
@@ -224,7 +224,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     }
   }
 
-  function sellHPart3(e) {
+  function sellSPart3(e) {
     e.preventDefault();
     if (neutrinoCount > 0) {
       dispatch(sellNeutrino());
@@ -286,63 +286,63 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
         <div className="whole_shipyard">
           <div className="shipyard">
             <div className="stats_parts_container">
-              <h3>Available Parts</h3>
+              <h3>Shipyard Parts Inventory</h3>
               <div className="parts">
+                <div id="shield_parts_container">
+                  <h4>Shields:</h4>
+                  <div className="shield_parts">
+                    <div id="spart1">
+                      <div id="carbon_div"></div>
+                      <p className="inside_part">{hullParts[0].part_name}</p>
+                      <p className="inside_part">+{hullParts[0].hull_strength}%</p>
+                      <p className="inside_part">{hullParts[0].cost} c</p>
+                      <button className="part_button" onClick={buySPart1}>Buy</button>
+                      <button className="part_button" onClick={sellSPart1}>Sell</button>
+                    </div>
+                    <div id="spart2">
+                      <div id="graphene_div"></div>
+                      <p className="inside_part">{hullParts[1].part_name}</p>
+                      <p className="inside_part">+{hullParts[1].hull_strength}%</p>
+                      <p className="inside_part">{hullParts[1].cost} c</p>
+                      <button className="part_button" onClick={buySPart2}>Buy</button>
+                      <button className="part_button" onClick={sellSPart2}>Sell</button>
+                    </div>
+                    <div id="spart3">
+                      <div id="neutrino_div"></div>
+                      <p className="inside_part">{hullParts[2].part_name}</p>
+                      <p className="inside_part">+{hullParts[2].hull_strength}%</p>
+                      <p className="inside_part">{hullParts[2].cost} c</p>
+                      <button className="part_button" onClick={buySPart3}>Buy</button>
+                      <button className="part_button" onClick={sellSPart3}>Sell</button>
+                    </div>
+                  </div>
+                </div>
                 <div id="engine_parts_container">
                   <h4>Propulsion:</h4>
                   <div className="engine_parts">
                     <div id="epart1">
                       <div id="nuclear_div"></div>
-                      <p>{engineParts[0].part_name}</p>
-                      <p>{engineParts[0].range} ly</p>
-                      <p>{engineParts[0].cost} c</p>
-                      <button onClick={buyEPart1}>Buy</button>
-                      <button onClick={sellEPart1}>Sell</button>
+                      <p className="inside_part">{engineParts[0].part_name}</p>
+                      <p className="inside_part">{engineParts[0].range} ly</p>
+                      <p className="inside_part">{engineParts[0].cost} c</p>
+                      <button className="part_button" onClick={buyEPart1}>Buy</button>
+                      <button className="part_button" onClick={sellEPart1}>Sell</button>
                     </div>
                     <div id="epart2">
                       <div id="fusion_div"></div>
-                      <p>{engineParts[1].part_name}</p>
-                      <p>{engineParts[1].range} ly</p>
-                      <p>{engineParts[1].cost} c</p>
-                      <button onClick={buyEPart2}>Buy</button>
-                      <button onClick={sellEPart2}>Sell</button>
+                      <p className="inside_part">{engineParts[1].part_name}</p>
+                      <p className="inside_part">{engineParts[1].range} ly</p>
+                      <p className="inside_part">{engineParts[1].cost} c</p>
+                      <button className="part_button" onClick={buyEPart2}>Buy</button>
+                      <button className="part_button" onClick={sellEPart2}>Sell</button>
                     </div>
                     <div id="epart3">
                       <div id="antimatter_div"></div>
-                      <p>{engineParts[2].part_name}</p>
-                      <p>{engineParts[2].range} ly</p>
-                      <p>{engineParts[2].cost} c</p>
-                      <button onClick={buyEPart3}>Buy</button>
-                      <button onClick={sellEPart3}>Sell</button>
-                    </div>
-                  </div>
-                </div>
-                <div id="shield_parts_container">
-                  <h4>Shields:</h4>
-                  <div className="hull_parts">
-                    <div id="hpart1">
-                      <div id="carbon_div"></div>
-                      <p>{hullParts[0].part_name}</p>
-                      <p>+{hullParts[0].hull_strength}%</p>
-                      <p>{hullParts[0].cost} c</p>
-                      <button onClick={buyHPart1}>Buy</button>
-                      <button onClick={sellHPart1}>Sell</button>
-                    </div>
-                    <div id="hpart2">
-                      <div id="graphene_div"></div>
-                      <p>{hullParts[1].part_name}</p>
-                      <p>+{hullParts[1].hull_strength}%</p>
-                      <p>{hullParts[1].cost} c</p>
-                      <button onClick={buyHPart2}>Buy</button>
-                      <button onClick={sellHPart2}>Sell</button>
-                    </div>
-                    <div id="hpart3">
-                      <div id="neutrino_div"></div>
-                      <p>{hullParts[2].part_name}</p>
-                      <p>+{hullParts[2].hull_strength}%</p>
-                      <p>{hullParts[2].cost} c</p>
-                      <button onClick={buyHPart3}>Buy</button>
-                      <button onClick={sellHPart3}>Sell</button>
+                      <p className="inside_part">{engineParts[2].part_name}</p>
+                      <p className="inside_part">{engineParts[2].range} ly</p>
+                      <p className="inside_part">{engineParts[2].cost} c</p>
+                      <button className="part_button" onClick={buyEPart3}>Buy</button>
+                      <button className="part_button" onClick={sellEPart3}>Sell</button>
                     </div>
                   </div>
                 </div>

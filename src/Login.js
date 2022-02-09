@@ -6,10 +6,6 @@ function Login({ setTriSystems }) {
   const [profileExists, setProfileExists] = useState(true);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  // const [username, setusername] = useState("");
-  // const [password, setpassword] = useState("");
-  // const [username, setusername] = useState("");
-  // const [password, setpassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -33,9 +29,9 @@ function Login({ setTriSystems }) {
     e.preventDefault();
 
     function jwtReceived() {
-      if (localStorage.getItem("jwt")) {
-        console.log("token present");
-        navigate("/main_menu");
+      if (localStorage.getItem("token")) {
+        console.log(localStorage.getItem("token"));
+        // navigate("/main_menu");
       } else console.log("token does not exist");
     }
 
@@ -54,14 +50,44 @@ function Login({ setTriSystems }) {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("token", data.jwt)
-        console.log(data)
-        // navigate("/main_menu")
-      // .then(jwtReceived());
+        // console.log(data)
+        // jwtReceived();
+        navigate("/main_menu")
       })
     setUsername("");
     setPassword("");
   }
 
+  function createProfile(e) {
+    e.preventDefault();
+
+    function jwtReceived() {
+      if (localStorage.getItem("token")) {
+        console.log(localStorage.getItem("token"));
+        // navigate("/main_menu");
+      } else console.log("token does not exist");
+    }
+
+    fetch(`http://localhost:3000/users`, {
+      method: "POST",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username: username, password: password}),
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      localStorage.setItem("token", data.include[0].jwt)
+      // console.log(data)
+      // jwtReceived();
+      // setProfileExists(true);
+      navigate("/main_menu")
+    });
+    setUsername("")
+    setPassword("")
+  }
+  
   function hideLogin(e) {
     e.preventDefault();
     setProfileExists(false);
@@ -70,28 +96,6 @@ function Login({ setTriSystems }) {
   function showLogin(e) {
     e.preventDefault();
     setProfileExists(true);
-  }
-
-  function createProfile(e) {
-    e.preventDefault();
-    console.log(password)
-    fetch(`http://localhost:3000/users`, {
-      method: "POST",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ user: { username, password } }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // navigate("/main_menu")
-        localStorage.setItem("token", data.jwt)
-        console.log(data)
-        // setProfileExists(true);
-      });
-      setUsername("")
-      setPassword("")
   }
 
   return (
@@ -132,8 +136,8 @@ function Login({ setTriSystems }) {
                 <button
                   className="logout"
                   onClick={() => {
-                    localStorage.setItem("jwt", "");
-                    navigate("/");
+                    localStorage.setItem("token", "");
+                    // navigate("/");
                   }}
                 >
                   Logout
@@ -172,8 +176,8 @@ function Login({ setTriSystems }) {
                 <button
                   className="logout"
                   onClick={() => {
-                    localStorage.setItem("jwt", "");
-                    navigate("/");
+                    localStorage.setItem("token", "");
+                    // navigate("/");
                   }}
                 >
                   Logout
