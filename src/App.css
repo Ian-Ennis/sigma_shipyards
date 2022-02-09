@@ -217,20 +217,18 @@ button {
 }
 
 .shipyard {
-  background-image: url('.//Images/original_shipyard.jpeg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0 0 8px 8px #020202 inset;
+  display: flex;
+  flex-direction: column;
+  gap: 123px 0px;
 }
 
 .stats_parts_container {
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center; */
 }
 
-#shipyard_mission {
+#system_div {
   margin: 10px;
 }
 
@@ -245,10 +243,24 @@ button {
 }
 
 .statistics {
-  margin: 10px;
-  width: 24%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0px 140px;  
+  margin: 0px auto;
+  max-width: 90%;
+}
+
+#ship_info {
+  width: 50%;
   border: 2px solid #505050;
-  background-color: rgba(45, 45, 45, 0.5);
+  background-color: rgb(0 0 0);
+}
+
+#destination {
+  width: 50%;
+  border: 2px solid #505050;
+  background-color: rgb(0 0 0);
 }
 
 .part {
@@ -256,10 +268,16 @@ button {
 }
 
 .parts {
-  margin: 10px;
-  width: 24%;
-  border: 2px solid #505050;
-  background-color: rgba(45, 45, 45, 0.5);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10%;
+  margin: 0px auto;
+  max-width: 90%;
+}
+
+#engine_parts_container {
+  max-width: 35%;
 }
 
 .engine_parts {
@@ -273,6 +291,78 @@ button {
   padding: 0px;
   max-width: 33.33%;
   background-color: black;
+}
+
+#nuclear_div {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 34%;
+  background: url("./Images/nuclear_reactor.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset;
+}
+
+#fusion_div {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 34%;
+  background: url("./Images/fusion_reactor.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset;
+}
+
+#antimatter_div {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 34%;
+  background: url("./Images/antimatter_drive.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset;
+}
+
+#carbon_div {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 34%;
+  background: url("./Images/carbon_fiber.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset;
+}
+
+#graphene_div {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 34%;
+  background: url("./Images/graphene_weave.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset;
+}
+
+#neutrino_div {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 34%;
+  background: url("./Images/neutrino_repulsor.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset;
 }
 
 #epart2 {
@@ -289,6 +379,10 @@ button {
   padding: 0px;
   max-width: 33.33%;
   background-color: black;
+}
+
+#shield_parts_container {
+  max-width: 35%;
 }
 
 .hull_parts {
