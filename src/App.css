@@ -4,8 +4,13 @@
 
 body {
   color: white;
-  background-color: rgb(0, 0, 0);
+  background: url('./Images/stars2.webp') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+/* background-image: url('./Images/stars2.webp'); */
 
 .title {
   font-size: 25px;
@@ -46,7 +51,15 @@ button {
 .login {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 15px 0px;
+  max-width: 20%;
+  margin: 0 auto;
+  background: url(./Images/black.jpeg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 25px 25px rgb(0 0 0);
 }
 
 .need_account {
@@ -65,9 +78,14 @@ button {
 }
 
 #intro_story {
+  background: url('./Images/black.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 25px 25px rgb(0 0 0);
   font-size: 13px;
   margin: 0 auto;
-  max-width: 48%;
+  max-width: 50%;
 }
 
 .misson_container {
@@ -99,18 +117,21 @@ button {
   margin: 20px;
   border: 2px solid #505050;
   padding: 24px;
+  background-color: black;
 }
 
 #tau {
   margin: 20px;
   border: 2px solid #505050;
   padding: 24px;
+  background-color: black;
 }
 
 #upsilon { 
   margin: 20px;
   border: 2px solid #505050;
   padding: 24px;
+  background-color: black;
 }
 
 #back_logout {
@@ -125,10 +146,14 @@ button {
 }
 
 #approach_terminal {
+  background: url('./Images/black.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 0px 0px 25px 25px rgb(0 0 0);
   font-size: 13px;
   margin: 0 auto;
-  margin-bottom: 2%;
-  max-width: 48%;
+  max-width: 50%;
 }
 
 #ships_with_img {
@@ -145,6 +170,7 @@ button {
   justify-content: center;
   margin: 20px;
   border: 2px solid #505050;
+  background-color: black;
   padding: 24px;
 }
 
@@ -155,6 +181,7 @@ button {
   gap: 16px 0px;  
   margin: 20px;
   border: 2px solid #505050;
+  background-color: black;
   padding: 24px;
 }
 
@@ -195,7 +222,6 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 8px 8px #020202 inset;
-
 }
 
 .stats_parts_container {

@@ -54,8 +54,10 @@ function Login({ setTriSystems }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        localStorage.setItem("token", data.jwt)
-        console.log(data)
+        navigate("/main_menu")
+
+        // localStorage.setItem("token", data.jwt)
+        // console.log(data)
       // .then(jwtReceived());
       })
     setUsername("");
@@ -85,8 +87,9 @@ function Login({ setTriSystems }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        localStorage.setItem("token", data.jwt)
+        navigate("/main_menu")
+        // console.log(data)
+        // localStorage.setItem("token", data.jwt)
         // setProfileExists(true);
       });
       setUsername("")
