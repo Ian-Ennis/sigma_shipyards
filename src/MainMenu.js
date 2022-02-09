@@ -22,16 +22,18 @@ function MainMenu() {
         be the one to save humanity? ..Do you even have a choice...?{" "}
       </p>
       <button onClick={goToShipsMenu}>
-        Board shuttle to Sigma Shipyards
+        <span>
+        BOARD SHUTTLE TO SHIPYARD
+        </span>
       </button>
       <button
-        id="logout"
+        id="main_menu_logout"
         onClick={() => {
           localStorage.setItem("jwt", "");
           navigate("/");
         }}
       >
-        Logout
+        LOGOUT
       </button>
     </div>
   );

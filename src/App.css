@@ -17,12 +17,65 @@ body {
 }
 
 p {
-  font-size: 12px;
+  font-size: 16px;
 }
 
 button {
   display: block;
   margin: 0 auto;
+  background-color: black;
+  border: 1px solid #ffffff;
+  font-size: 18px;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  border-radius: 4px;
+  color: white;
+  background-color: black;
+  border: 1px solid #ffffff;
+  font-size: 18px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+button:hover span {
+  padding-right: 25px;
+}
+
+button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+button .button_zoom {
+  padding: 10px;
+  background-color: green;
+  transition: transform .2s; /* Animation */
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
 .username_password {
@@ -82,10 +135,17 @@ button {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0px 0px 25px 25px rgb(0 0 0);
-  font-size: 13px;
-  margin: 0 auto;
+  box-shadow: 0px 0px 75px 40px rgb(0 0 0);
+  margin: 68px auto;
+  margin-bottom: 5%;
   max-width: 50%;
+  font-size: 18px;
+  -webkit-text-stroke: 0.5px #f5f0f0;
+  text-shadow: 0px 0px 0px rgb(255 255 255);
+}
+
+#main_menu_logout {
+  margin-top: 20%;
 }
 
 .misson_container {
@@ -115,21 +175,21 @@ button {
 
 #proxima {
   margin: 20px;
-  border: 2px solid #505050;
+  border: 2px solid #ffb000;
   padding: 24px;
   background-color: black;
 }
 
 #tau {
   margin: 20px;
-  border: 2px solid #505050;
+  border: 2px solid #ffb000;
   padding: 24px;
   background-color: black;
 }
 
 #upsilon { 
   margin: 20px;
-  border: 2px solid #505050;
+  border: 2px solid #ffb000;
   padding: 24px;
   background-color: black;
 }
@@ -150,8 +210,10 @@ button {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0px 0px 25px 25px rgb(0 0 0);
-  font-size: 13px;
+  box-shadow: 0px 0px 75px 40px rgb(0 0 0);
+  font-size: 18px;
+  -webkit-text-stroke: 0.5px #f5f0f0;
+  text-shadow: 0px 0px 0px rgb(255 255 255);
   margin: 0 auto;
   max-width: 50%;
 }
@@ -238,10 +300,6 @@ button {
   object-fit: contain;
 }
 
-.your_spaceship {
-  width: 48%;
-}
-
 .statistics {
   display: flex;
   flex-direction: row;
@@ -253,13 +311,24 @@ button {
 
 #ship_info {
   width: 50%;
-  border: 2px solid #505050;
+  border: 2px solid #04dcff;  
   background-color: rgb(0 0 0);
+}
+
+#luminous_ship {
+  width: 85%;
+  height: 38%;
+  margin: 0 auto;
+  background: url("./Images/luminous_ship.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* box-shadow: 0px 0px 6px 6px rgb(0 0 0) inset; */
 }
 
 #destination {
   width: 50%;
-  border: 2px solid #505050;
+  border: 2px solid #ffb000;
   background-color: rgb(0 0 0);
 }
 

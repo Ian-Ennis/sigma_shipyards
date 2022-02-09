@@ -119,7 +119,9 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
                   <div key={ship.id}>
                     <p>{ship.spaceship_name}</p>
                     <button onClick={(e) => selectShip(e, ship)}>
+                    <span>
                       Select ship
+                      </span>
                     </button>
                   </div>
                 ))
@@ -136,7 +138,7 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
                 name="ship_name"
                 placeholder=""
               />
-              <button type="submit">Create ship</button>
+              <button type="submit"><span>Create ship</span></button>
             </form>
           </div>
         </div>

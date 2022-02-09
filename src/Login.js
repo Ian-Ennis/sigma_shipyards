@@ -123,14 +123,15 @@ function Login({ setTriSystems }) {
             </div>
             <div className="login_create_have_logout">
               <button className="login_submit" type="submit">
-                Login
+                <span>LOGIN</span>
               </button>
               <button
                 className="need_account"
                 id="need_account"
                 onClick={hideLogin}
-              >
-                Need an account?
+              ><span>
+                REGISTER
+                </span>
               </button>
               <div id="logout">
                 <button
@@ -140,7 +141,7 @@ function Login({ setTriSystems }) {
                     // navigate("/");
                   }}
                 >
-                  Logout
+                  LOGOUT
                 </button>
               </div>
             </div>

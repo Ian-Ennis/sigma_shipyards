@@ -73,6 +73,10 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     sysImg = upsilon_andromedae;
   }
 
+  // let shipPictures = [nuclear_reactor, fusion_reactor, antimatter_drive, carbon_fiber, graphene_weave, neutrino_repulsor]
+  // var item = shipPictures[Math.floor(Math.random()*shipPictures.length)];
+  // console.log(item)
+
   function loadParts() {
     fetch(`http://localhost:3000/engine_parts`, {
       method: "GET",
@@ -268,8 +272,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
       }).then((res) => {
         if (res.ok) {
           console.log(res);
-        } else {
-          res.json().then(console.log);
         }
       });
       navigate("/ships_overview");
@@ -286,10 +288,10 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
         <div className="whole_shipyard">
           <div className="shipyard">
             <div className="stats_parts_container">
-              <h3>Shipyard Parts Inventory</h3>
+              <h2>【﻿Ｓｈｉｐｙａｒｄ　Ｐａｒｔｓ　Ｉｎｖｅｎｔｏｒｙ】</h2>
               <div className="parts">
                 <div id="shield_parts_container">
-                  <h4>Shields:</h4>
+                  <h4>【﻿ｓｈｉｅｌｄｓ】</h4>
                   <div className="shield_parts">
                     <div id="spart1">
                       <div id="carbon_div"></div>
@@ -318,7 +320,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                   </div>
                 </div>
                 <div id="engine_parts_container">
-                  <h4>Propulsion:</h4>
+                  <h4>【﻿ｐｒｏｐｕｌｓｉｏｎ】</h4>
                   <div className="engine_parts">
                     <div id="epart1">
                       <div id="nuclear_div"></div>
@@ -356,6 +358,8 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                 <p>Range: {range} light years</p>
                 <p>Shields: {strength}%</p>
                 <p>Credits: {credits}</p>
+              <div id="luminous_ship">
+              </div>
               </div>
               <div id="destination">
                 <div id="destination_info">
@@ -378,9 +382,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
             </div>
           </div>
           <div id="shipyard_buttons">
-            <button onClick={saveShip}>Save ship</button>
-            <button onClick={scrapShip}>Scrap ship</button>
-            <button onClick={goBack}>Go back</button>
+            <button className = "button_zoom" onClick={saveShip}>Save ship</button>
+            <button className = "button_zoom"onClick={scrapShip}>Scrap ship</button>
+            <button className = "button_zoom" onClick={goBack}>Go back</button>
             <button
               id="decline_logout"
               onClick={() => {
