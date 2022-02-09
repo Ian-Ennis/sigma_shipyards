@@ -1,17 +1,34 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login({ setTriSystems }) {
-  const [accountExists, setAccountExists] = useState(true);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [loginUsername, setLoginUsername] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [profileExists, setProfileExists] = useState(true);
+  const [newUsername, setNewUsername] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  
+  const [currentUsername, setCurrentUsername] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
 
   const navigate = useNavigate();
 
-  function logUserIn(e) {
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if(token){
+      fetch(`http://localhost:3000/auto_login`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data)
+        // setUser(data)
+      })
+    }
+  }, [])
+
+  function login(e) {
     e.preventDefault();
 
     function jwtReceived() {
@@ -22,10 +39,10 @@ function Login({ setTriSystems }) {
     }
 
     const loginData = {
-      user: { username: loginUsername, password: loginPassword },
+      user: { username: currentUsername, password: currentPassword },
     };
 
-    fetch(`http://localhost:3000/api/v1/login`, {
+    fetch(`http://localhost:3000/login`, {
       method: "POST",
       headers: {
         accepts: "application/json",
@@ -34,53 +51,56 @@ function Login({ setTriSystems }) {
       body: JSON.stringify(loginData),
     })
       .then((res) => res.json())
-      .then((json) => localStorage.setItem("jwt", json.jwt))
-      .then(jwtReceived());
+      .then((data) => localStorage.setItem("token", data.jwt))
+      .then(console.log(data))
+      // .then(jwtReceived());
 
-    setLoginUsername("");
-    setLoginPassword("");
+    setCurrentUsername("");
+    setCurrentPassword("");
   }
 
   function hideLogin(e) {
     e.preventDefault();
-    setAccountExists(false);
+    setProfileExists(false);
   }
 
   function showLogin(e) {
     e.preventDefault();
-    setAccountExists(true);
+    setProfileExists(true);
   }
 
   function createProfile(e) {
     e.preventDefault();
-
-    fetch(`http://localhost:3000/api/v1/users`, {
+    fetch(`http://localhost:3000/users`, {
       method: "POST",
       headers: {
         Accepts: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user: { username, password } }),
+      body: JSON.stringify({ user: { newUsername, newPassword } }),
     })
       .then((res) => res.json())
-      .then((json) => {
-        console.log("here's the json:", json);
-        setAccountExists(true);
+      .then((data) => {
+        localStorage.setItem("token", data.jwt)
+        console.log(data)
+        // setProfileExists(true);
       });
+      setNewUsername("")
+      setNewPassword("")
   }
 
   return (
     <>
-      {accountExists ? (
+      {profileExists ? (
         <div className="all_login_containers">
-          <form className="login" onSubmit={logUserIn}>
+          <form className="login" onSubmit={login}>
             <div className="username_password">
               Username:{" "}
               <input
                 className="username"
                 type="text"
                 value={loginUsername}
-                onChange={(e) => setLoginUsername(e.target.value)}
+                onChange={(e) => setCurrentUsername(e.target.value)}
                 placeholder="Username"
               />
               Password:{" "}
@@ -88,7 +108,7 @@ function Login({ setTriSystems }) {
                 className="password"
                 type="password"
                 value={loginPassword}
-                onChange={(e) => setLoginPassword(e.target.value)}
+                onChange={(e) => setCurrentPassword(e.target.value)}
                 placeholder="Password"
               />
             </div>
@@ -126,7 +146,7 @@ function Login({ setTriSystems }) {
                 className="username"
                 type="text"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setNewUsername(e.target.value)}
                 placeholder="Create Username"
               />
               Password:{" "}
@@ -134,7 +154,7 @@ function Login({ setTriSystems }) {
                 className="password"
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="Create Password"
               />
             </div>
