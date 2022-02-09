@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 
 function Login({ setTriSystems }) {
   const [profileExists, setProfileExists] = useState(true);
-  const [newUsername, setNewUsername] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  // const [username, setusername] = useState("");
+  // const [password, setpassword] = useState("");
   
-  const [currentUsername, setCurrentUsername] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
+  // const [username, setusername] = useState("");
+  // const [password, setpassword] = useState("");
 
   const navigate = useNavigate();
 
@@ -39,7 +41,7 @@ function Login({ setTriSystems }) {
     }
 
     const loginData = {
-      user: { username: currentUsername, password: currentPassword },
+      user: { username: username, password: password },
     };
 
     fetch(`http://localhost:3000/login`, {
@@ -51,12 +53,13 @@ function Login({ setTriSystems }) {
       body: JSON.stringify(loginData),
     })
       .then((res) => res.json())
-      .then((data) => localStorage.setItem("token", data.jwt))
-      .then(console.log(data))
+      .then((data) => {
+        localStorage.setItem("token", data.jwt)
+        console.log(data)
       // .then(jwtReceived());
-
-    setCurrentUsername("");
-    setCurrentPassword("");
+      })
+    setUsername("");
+    setPassword("");
   }
 
   function hideLogin(e) {
@@ -71,22 +74,23 @@ function Login({ setTriSystems }) {
 
   function createProfile(e) {
     e.preventDefault();
+    console.log(password)
     fetch(`http://localhost:3000/users`, {
       method: "POST",
       headers: {
         Accepts: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user: { newUsername, newPassword } }),
+      body: JSON.stringify({ user: { username, password } }),
     })
       .then((res) => res.json())
       .then((data) => {
-        localStorage.setItem("token", data.jwt)
         console.log(data)
+        localStorage.setItem("token", data.jwt)
         // setProfileExists(true);
       });
-      setNewUsername("")
-      setNewPassword("")
+      setUsername("")
+      setPassword("")
   }
 
   return (
@@ -99,16 +103,16 @@ function Login({ setTriSystems }) {
               <input
                 className="username"
                 type="text"
-                value={loginUsername}
-                onChange={(e) => setCurrentUsername(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
               />
               Password:{" "}
               <input
                 className="password"
                 type="password"
-                value={loginPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
               />
             </div>
@@ -146,7 +150,7 @@ function Login({ setTriSystems }) {
                 className="username"
                 type="text"
                 value={username}
-                onChange={(e) => setNewUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder="Create Username"
               />
               Password:{" "}
@@ -154,7 +158,7 @@ function Login({ setTriSystems }) {
                 className="password"
                 type="password"
                 value={password}
-                onChange={(e) => setNewPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Create Password"
               />
             </div>
