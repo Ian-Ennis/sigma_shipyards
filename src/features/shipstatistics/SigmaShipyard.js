@@ -50,10 +50,8 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const [hullParts, setHullParts] = useState([]);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const storeState = useSelector((state) => state);
-  console.log(storeState);
+  const dispatch = useDispatch();
 
   const spaceship_name = chosenShip.spaceship_name;
   const credits = storeState.credits.balance;

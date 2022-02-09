@@ -8,7 +8,6 @@ function Login({ setTriSystems }) {
   const [password, setPassword] = useState("")
   // const [username, setusername] = useState("");
   // const [password, setpassword] = useState("");
-  
   // const [username, setusername] = useState("");
   // const [password, setpassword] = useState("");
 
@@ -54,10 +53,9 @@ function Login({ setTriSystems }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        navigate("/main_menu")
-
-        // localStorage.setItem("token", data.jwt)
-        // console.log(data)
+        localStorage.setItem("token", data.jwt)
+        console.log(data)
+        // navigate("/main_menu")
       // .then(jwtReceived());
       })
     setUsername("");
@@ -87,9 +85,9 @@ function Login({ setTriSystems }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        navigate("/main_menu")
-        // console.log(data)
-        // localStorage.setItem("token", data.jwt)
+        // navigate("/main_menu")
+        localStorage.setItem("token", data.jwt)
+        console.log(data)
         // setProfileExists(true);
       });
       setUsername("")

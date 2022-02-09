@@ -55,11 +55,11 @@ button {
   gap: 15px 0px;
   max-width: 20%;
   margin: 0 auto;
-  background: url(./Images/black.jpeg);
+  /* background: url(./Images/black.jpeg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  box-shadow: 0px 0px 25px 25px rgb(0 0 0);
+  box-shadow: 0px 0px 25px 25px rgb(0 0 0); */
 }
 
 .need_account {
