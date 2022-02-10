@@ -9,6 +9,7 @@ function Login({ setTriSystems }) {
 
   const navigate = useNavigate();
 
+  // use effect for auth#auto_login
   useEffect(() => {
     const token = localStorage.getItem("token")
     if(token){
@@ -20,11 +21,11 @@ function Login({ setTriSystems }) {
       .then(resp => resp.json())
       .then(data => {
         console.log(data)
-        // setUser(data)
       })
     }
   }, [])
 
+  // login registered user
   function login(e) {
     e.preventDefault();
 
@@ -58,15 +59,9 @@ function Login({ setTriSystems }) {
     setPassword("");
   }
 
+  // register new user
   function createProfile(e) {
     e.preventDefault();
-
-    function jwtReceived() {
-      if (localStorage.getItem("token")) {
-        console.log(localStorage.getItem("token"));
-        // navigate("/main_menu");
-      } else console.log("token does not exist");
-    }
 
     fetch(`http://localhost:3000/users`, {
       method: "POST",
@@ -79,10 +74,9 @@ function Login({ setTriSystems }) {
     .then((res) => res.json())
     .then((data) => {
       localStorage.setItem("token", data.include[0].jwt)
-      // console.log(data)
-      // jwtReceived();
+      console.log(data)
       // setProfileExists(true);
-      navigate("/main_menu")
+      // navigate("/main_menu")
     });
     setUsername("")
     setPassword("")
@@ -148,7 +142,7 @@ function Login({ setTriSystems }) {
           </form>
         </div>
       ) : (
-        <div>
+        <div className="all_login_containers">
           <form className="login" onSubmit={createProfile}>
             <div className="username_password">
               Username:{" "}

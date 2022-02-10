@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import {
   buyNuclear,
   sellNuclear,
@@ -15,30 +14,23 @@ import {
   sellGraphene,
   buyNeutrino,
   sellNeutrino,
-} from "./CreditsSlice";
-import {
+  resetCredits,
   installNuclear,
   removeNuclear,
   installFusion,
   removeFusion,
   installAntimatter,
   removeAntimatter,
-} from "./RangeSlice";
-import {
+  resetRange,
   installCarbon,
   removeCarbon,
   installGraphene,
   removeGraphene,
   installNeutrino,
   removeNeutrino,
-} from "./StrengthSlice";
-import { useDispatch } from "react-redux";
-import nuclear_reactor from "../../Images/nuclear_reactor.png";
-import fusion_reactor from "../../Images/fusion_reactor.jpeg";
-import antimatter_drive from "../../Images/antimatter_drive.jpeg";
-import carbon_fiber from "../../Images/carbon_fiber.jpeg";
-import graphene_weave from "../../Images/graphene_weave.jpeg";
-import neutrino_repulsor from "../../Images/neutrino_repulsor.png";
+  resetStrength,
+} from "./ShipyardSlice";
+import { useDispatch, useSelector } from "react-redux";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -54,15 +46,20 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const dispatch = useDispatch();
 
   const spaceship_name = chosenShip.spaceship_name;
-  const credits = storeState.credits.balance;
-  const range = storeState.range.distance;
-  const nuclearCount = storeState.range.nuclearCount;
-  const fusionCount = storeState.range.fusionCount;
-  const antimatterCount = storeState.range.antimatterCount;
-  const strength = storeState.strength.hull;
-  const carbonCount = storeState.strength.carbonCount;
-  const grapheneCount = storeState.strength.grapheneCount;
-  const neutrinoCount = storeState.strength.neutrinoCount;
+  const credits = storeState.actions.balance;
+  const range = storeState.actions.distance;
+  const nuclearCount = storeState.actions.nuclearCount;
+  const fusionCount = storeState.actions.fusionCount;
+  const antimatterCount = storeState.actions.antimatterCount;
+  const strength = storeState.actions.hull;
+  const carbonCount = storeState.actions.carbonCount;
+  const grapheneCount = storeState.actions.grapheneCount;
+  const neutrinoCount = storeState.actions.neutrinoCount;
+
+  const shipName = chosenShip.spaceship_name;
+  const shipCredits = chosenShip.credits;
+  const shipRange = chosenShip.range;
+  const shipShields = chosenShip.strength;
 
   let sysImg = "";
   if (selectedSystem.name === "Proxima Centauri") {
@@ -73,9 +70,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     sysImg = upsilon_andromedae;
   }
 
-  // let shipPictures = [nuclear_reactor, fusion_reactor, antimatter_drive, carbon_fiber, graphene_weave, neutrino_repulsor]
-  // var item = shipPictures[Math.floor(Math.random()*shipPictures.length)];
-  // console.log(item)
+  console.log(chosenShip);
 
   function loadParts() {
     fetch(`http://localhost:3000/engine_parts`, {
@@ -240,7 +235,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   }
 
   function saveShip() {
-    console.log(chosenShip);
+    console.log(chosenShip.id);
 
     fetch(`http://localhost:3000/spaceships/${chosenShip.id}`, {
       method: "PATCH",
@@ -254,11 +249,18 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
         credits,
         range,
         strength,
+        nuclearCount,
+        fusionCount,
+        antimatterCount,
+        carbonCount,
+        grapheneCount,
+        neutrinoCount,
       }),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        // console.log(storeState)
       });
   }
 
@@ -279,6 +281,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   }
 
   function goBack() {
+    dispatch(resetCredits());
+    dispatch(resetRange());
+    dispatch(resetStrength());
     navigate("/ships_overview");
   }
 
@@ -296,26 +301,44 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                     <div id="spart1">
                       <div id="carbon_div"></div>
                       <p className="inside_part">{hullParts[0].part_name}</p>
-                      <p className="inside_part">+{hullParts[0].hull_strength}%</p>
+                      <p className="inside_part">
+                        +{hullParts[0].hull_strength}%
+                      </p>
                       <p className="inside_part">{hullParts[0].cost} c</p>
-                      <button className="part_button" onClick={buySPart1}>Buy</button>
-                      <button className="part_button" onClick={sellSPart1}>Sell</button>
+                      <button className="part_button" onClick={buySPart1}>
+                        Buy
+                      </button>
+                      <button className="part_button" onClick={sellSPart1}>
+                        Sell
+                      </button>
                     </div>
                     <div id="spart2">
                       <div id="graphene_div"></div>
                       <p className="inside_part">{hullParts[1].part_name}</p>
-                      <p className="inside_part">+{hullParts[1].hull_strength}%</p>
+                      <p className="inside_part">
+                        +{hullParts[1].hull_strength}%
+                      </p>
                       <p className="inside_part">{hullParts[1].cost} c</p>
-                      <button className="part_button" onClick={buySPart2}>Buy</button>
-                      <button className="part_button" onClick={sellSPart2}>Sell</button>
+                      <button className="part_button" onClick={buySPart2}>
+                        Buy
+                      </button>
+                      <button className="part_button" onClick={sellSPart2}>
+                        Sell
+                      </button>
                     </div>
                     <div id="spart3">
                       <div id="neutrino_div"></div>
                       <p className="inside_part">{hullParts[2].part_name}</p>
-                      <p className="inside_part">+{hullParts[2].hull_strength}%</p>
+                      <p className="inside_part">
+                        +{hullParts[2].hull_strength}%
+                      </p>
                       <p className="inside_part">{hullParts[2].cost} c</p>
-                      <button className="part_button" onClick={buySPart3}>Buy</button>
-                      <button className="part_button" onClick={sellSPart3}>Sell</button>
+                      <button className="part_button" onClick={buySPart3}>
+                        Buy
+                      </button>
+                      <button className="part_button" onClick={sellSPart3}>
+                        Sell
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -327,24 +350,36 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                       <p className="inside_part">{engineParts[0].part_name}</p>
                       <p className="inside_part">{engineParts[0].range} ly</p>
                       <p className="inside_part">{engineParts[0].cost} c</p>
-                      <button className="part_button" onClick={buyEPart1}>Buy</button>
-                      <button className="part_button" onClick={sellEPart1}>Sell</button>
+                      <button className="part_button" onClick={buyEPart1}>
+                        Buy
+                      </button>
+                      <button className="part_button" onClick={sellEPart1}>
+                        Sell
+                      </button>
                     </div>
                     <div id="epart2">
                       <div id="fusion_div"></div>
                       <p className="inside_part">{engineParts[1].part_name}</p>
                       <p className="inside_part">{engineParts[1].range} ly</p>
                       <p className="inside_part">{engineParts[1].cost} c</p>
-                      <button className="part_button" onClick={buyEPart2}>Buy</button>
-                      <button className="part_button" onClick={sellEPart2}>Sell</button>
+                      <button className="part_button" onClick={buyEPart2}>
+                        Buy
+                      </button>
+                      <button className="part_button" onClick={sellEPart2}>
+                        Sell
+                      </button>
                     </div>
                     <div id="epart3">
                       <div id="antimatter_div"></div>
                       <p className="inside_part">{engineParts[2].part_name}</p>
                       <p className="inside_part">{engineParts[2].range} ly</p>
                       <p className="inside_part">{engineParts[2].cost} c</p>
-                      <button className="part_button" onClick={buyEPart3}>Buy</button>
-                      <button className="part_button" onClick={sellEPart3}>Sell</button>
+                      <button className="part_button" onClick={buyEPart3}>
+                        Buy
+                      </button>
+                      <button className="part_button" onClick={sellEPart3}>
+                        Sell
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -353,13 +388,12 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
             <div className="statistics">
               <div id="ship_info">
                 <h3>
-                  <em>{chosenShip.spaceship_name}</em>
+                  <em>{shipName}</em>
                 </h3>
                 <p>Range: {range} light years</p>
                 <p>Shields: {strength}%</p>
                 <p>Credits: {credits}</p>
-              <div id="luminous_ship">
-              </div>
+                <div id="luminous_ship"></div>
               </div>
               <div id="destination">
                 <div id="destination_info">
@@ -382,9 +416,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
             </div>
           </div>
           <div id="shipyard_buttons">
-            <button className = "button_zoom" onClick={saveShip}>Save ship</button>
-            <button className = "button_zoom"onClick={scrapShip}>Scrap ship</button>
-            <button className = "button_zoom" onClick={goBack}>Go back</button>
             <button
               id="decline_logout"
               onClick={() => {
@@ -393,6 +424,15 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
               }}
             >
               Logout
+            </button>
+            <button className="button_zoom" onClick={goBack}>
+              Go back
+            </button>
+            <button className="button_zoom" onClick={saveShip}>
+              Save ship
+            </button>
+            <button className="button_zoom" onClick={scrapShip}>
+              Scrap ship
             </button>
           </div>
         </div>

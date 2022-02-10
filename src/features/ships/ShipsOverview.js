@@ -1,6 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// import { store } from "../../app/store";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSpaceships } from "./ShipsOverviewSlice"
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -9,41 +11,40 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   const [allShips, setAllShips] = useState([]);
   const navigate = useNavigate();
 
-  let sysImg = "";
-  if (selectedSystem.name === "Proxima Centauri") {
-    sysImg = proxima_centauri;
-  } else if (selectedSystem.name === "Tau Ceti") {
-    sysImg = tau_ceti;
-  } else {
-    sysImg = upsilon_andromedae;
-  }
+  const dispatch = useDispatch()
+  const state = useSelector((state) => state);
+  console.log(state)
 
   function getShips() {
+    // console.log('in get ships')
+    // dispatch(fetchSpaceships())
+
     fetch(`http://localhost:3000/spaceships`, {
-      method: "GET",
-      headers: {
-        Accepts: "application/json",
+        method: "GET",
+        headers: {
+            Accepts: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setAllShips(data);
       });
   }
-
+  
   function selectShip(e, ship) {
     e.preventDefault();
     console.log(ship);
     setChosenShip(ship);
     navigate("/sigma_shipyard");
   }
-
+  
   function createShip(e) {
     e.preventDefault();
     const spaceship_name = e.target.ship_name.value;
-
+    
     fetch(`http://localhost:3000/spaceships`, {
       method: "POST",
       headers: {
@@ -63,26 +64,36 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
       })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setChosenShip(data[data.length - 1]);
-          setAllShips(data);
-        });
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setChosenShip(data[data.length - 1]);
+        setAllShips(data);
+      });
     });
   }
-
+  
   function goBack() {
     setSelectedSystem([]);
     navigate("/misson_select");
   }
-
+  
   const eachShip = [];
-
+  
+  // change this to use storestate.spaceships (if (storestate.length))
   if (allShips.length) {
     allShips.forEach((ship) => {
       eachShip.push(ship);
     });
+  }
+  
+  let sysImg = "";
+  if (selectedSystem.name === "Proxima Centauri") {
+    sysImg = proxima_centauri;
+  } else if (selectedSystem.name === "Tau Ceti") {
+    sysImg = tau_ceti;
+  } else {
+    sysImg = upsilon_andromedae;
   }
 
   return (
@@ -160,9 +171,3 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
 }
 
 export default ShipsOverview;
-
-{
-  /* #<User:0x00007fda77214518>
-
-#<User:0x00007fb90d87b220> */
-}

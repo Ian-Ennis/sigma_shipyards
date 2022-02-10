@@ -517,6 +517,11 @@ button .button_zoom {
   gap: 0px 10px;
 }
 
+#shipyard_buttons {
+  display: flex;
+  margin-top: 5%;
+}
+
 /* 
 .App-logo {
   height: 40vmin;

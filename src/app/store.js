@@ -1,12 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import creditsReducer from "../features/shipstatistics/CreditsSlice"
-import rangeReducer from "../features/shipstatistics/RangeSlice"
-import strengthReducer from "../features/shipstatistics/StrengthSlice"
+import { configureStore } from "@reduxjs/toolkit";
+import fetchShipsReducer from "../features/ships/ShipsOverviewSlice";
+import shipyardReducer from "../features/shipstatistics/ShipyardSlice";
 
 export const store = configureStore({
+  reducer: fetchShipsReducer,
   reducer: {
-    credits: creditsReducer,
-    range: rangeReducer,
-    strength: strengthReducer
-  }
+    actions: shipyardReducer,
+  },
 });
