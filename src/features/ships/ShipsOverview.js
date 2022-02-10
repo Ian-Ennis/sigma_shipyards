@@ -9,11 +9,10 @@ import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
 
 function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   const [allShips, setAllShips] = useState([]);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   const dispatch = useDispatch()
   const state = useSelector((state) => state);
-  console.log(state)
 
   function getShips() {
     // console.log('in get ships')
@@ -156,16 +155,6 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
         </div>
       </div>
       <button onClick={goBack}>Back to mission select</button>
-      <div id="ships_overview_logout">
-        <button
-          onClick={() => {
-            localStorage.setItem("jwt", "");
-            navigate("/");
-          }}
-        >
-          Logout
-        </button>
-      </div>
     </div>
   );
 }

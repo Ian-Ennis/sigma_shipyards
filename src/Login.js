@@ -9,7 +9,6 @@ function Login({ setTriSystems }) {
 
   const navigate = useNavigate();
 
-  // use effect for auth#auto_login
   useEffect(() => {
     const token = localStorage.getItem("token")
     if(token){
@@ -20,12 +19,11 @@ function Login({ setTriSystems }) {
       })
       .then(resp => resp.json())
       .then(data => {
-        console.log(data)
+        // console.log(data)
       })
     }
   }, [])
 
-  // login registered user
   function login(e) {
     e.preventDefault();
 
@@ -59,9 +57,9 @@ function Login({ setTriSystems }) {
     setPassword("");
   }
 
-  // register new user
   function createProfile(e) {
     e.preventDefault();
+    console.log('a')
 
     fetch(`http://localhost:3000/users`, {
       method: "POST",
@@ -73,10 +71,10 @@ function Login({ setTriSystems }) {
     })
     .then((res) => res.json())
     .then((data) => {
-      localStorage.setItem("token", data.include[0].jwt)
-      console.log(data)
+      // localStorage.setItem("token", data.include[0].jwt)
+      // console.log(data)
       // setProfileExists(true);
-      // navigate("/main_menu")
+      navigate("/main_menu")
     });
     setUsername("")
     setPassword("")
@@ -164,9 +162,9 @@ function Login({ setTriSystems }) {
             </div>
             <div className="login_create_have_logout">
               <button className="login_submit" type="submit">
-                Create Profile & Re-enter credentials
+                <span>Register</span>
               </button>
-              <button onClick={showLogin}>Have an account?</button>
+              <button onClick={showLogin}><span>Already registered?</span></button>
               <div id="logout">
                 <button
                   className="logout"

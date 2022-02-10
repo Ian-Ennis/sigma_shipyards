@@ -136,16 +136,6 @@ function MissionSelect({ setSelectedSystem }) {
           <button onClick={goBack}>
             Go back
           </button>
-          <div id="mission_select_logout">
-            <button
-              onClick={() => {
-                localStorage.setItem("jwt", "");
-                navigate("/");
-              }}
-            >
-              Logout
-            </button>
-          </div>
         </div>
       ) : (
         getSystems()

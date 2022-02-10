@@ -1,25 +1,15 @@
-.App {
-  /* background-color: black; */
-  /* background-size: cover; */
-  text-align: center;
-}
-
 body {
+  /* font-family: "Courier New", "Lucida Console", "Monospace"; */
   color: white;
+  font-size: 13px;
+  text-align: center;
+  text-decoration: solid;
   background: black;
   background-size: cover;
 }
 
 p {
   font-size: 16px;
-}
-
-button {
-  display: block;
-  margin: 0 auto;
-  background-color: black;
-  border: 1px solid #ffffff;
-  font-size: 18px;
 }
 
 button {
@@ -119,11 +109,6 @@ button .button_zoom {
   gap: 15px 0px;
   max-width: 20%;
   margin: 0 auto;
-  /* background: url(./Images/black.jpeg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0px 0px 25px 25px rgb(0 0 0); */
 }
 
 .need_account {
@@ -138,21 +123,14 @@ button .button_zoom {
 .intro_div {
   display: flex;
   flex-direction: column;
-  gap: 20px 0px;
 }
 
-#intro_story {
-  background: url('./Images/black.jpeg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0px 0px 75px 40px rgb(0 0 0);
-  margin: 68px auto;
-  margin-bottom: 5%;
+.intro_story {
+  margin: 14px auto;
+  margin-bottom: 3%;
   max-width: 50%;
-  font-size: 18px;
-  -webkit-text-stroke: 0.5px #f5f0f0;
-  text-shadow: 0px 0px 0px rgb(255 255 255);
+  /* font-size: 18px; */
+  -webkit-text-stroke: 0.2px #dddbdb;
 }
 
 #main_menu_logout {
@@ -210,10 +188,6 @@ button .button_zoom {
   background-color: black;
 }
 
-#mission_select_logout {
-  margin-top: 7%;
-}
-
 #intro_to_shipyard {
   margin-top: 5%;
   display: flex;
@@ -221,17 +195,11 @@ button .button_zoom {
 }
 
 #approach_terminal {
-  background: url('./Images/black.jpeg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  box-shadow: 0px 0px 75px 40px rgb(0 0 0);
-  font-size: 18px;
-  -webkit-text-stroke: 0.5px #f5f0f0;
-  text-shadow: 0px 0px 0px rgb(255 255 255);
-  margin: 0 auto;
+  margin: 14px auto;
+  margin-bottom: 3%;
   max-width: 50%;
-}
+  /* font-size: 18px; */
+  -webkit-text-stroke: 0.2px #dddbdb;}
 
 #ships_with_img {
   display: flex;
@@ -293,20 +261,10 @@ button .button_zoom {
   margin-bottom: 10%;
 }
 
-#ships_overview_logout {
-  margin-top:7%
-}
-
 .shipyard {
   display: flex;
   flex-direction: column;
-  gap: 123px 0px;
-}
-
-.stats_parts_container {
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center; */
+  gap: 75px 0px;
 }
 
 #system_div {
@@ -342,7 +300,6 @@ button .button_zoom {
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* box-shadow: 0px 0px 6px 6px rgb(0 0 0) inset; */
 }
 
 #destination {
@@ -376,10 +333,6 @@ button .button_zoom {
   border: 1px solid #8beb32;
   font-size: 13px;
 }
-
-/* #engine_parts_container {
-  max-width: 35%;
-} */
 
 .engine_parts {
   display: flex;
@@ -506,10 +459,6 @@ button .button_zoom {
   background-repeat: no-repeat;
   background-size: contain;
 }
-
-/* #shield_parts_container {
-  max-width: 35%;
-} */
 
 .shield_parts {
   display: flex;

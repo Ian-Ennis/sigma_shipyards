@@ -296,7 +296,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
               <h2>【﻿Ｓｈｉｐｙａｒｄ　Ｐａｒｔｓ　Ｉｎｖｅｎｔｏｒｙ】</h2>
               <div className="parts">
                 <div id="shield_parts_container">
-                  <h4>【﻿ｓｈｉｅｌｄｓ】</h4>
+                  <h3>【﻿ｓｈｉｅｌｄｓ】</h3>
                   <div className="shield_parts">
                     <div id="spart1">
                       <div id="carbon_div"></div>
@@ -343,7 +343,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                   </div>
                 </div>
                 <div id="engine_parts_container">
-                  <h4>【﻿ｐｒｏｐｕｌｓｉｏｎ】</h4>
+                  <h3>【﻿ｐｒｏｐｕｌｓｉｏｎ】</h3>
                   <div className="engine_parts">
                     <div id="epart1">
                       <div id="nuclear_div"></div>
@@ -416,15 +416,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
             </div>
           </div>
           <div id="shipyard_buttons">
-            <button
-              id="decline_logout"
-              onClick={() => {
-                localStorage.setItem("jwt", "");
-                navigate("/");
-              }}
-            >
-              Logout
-            </button>
             <button className="button_zoom" onClick={goBack}>
               Go back
             </button>
