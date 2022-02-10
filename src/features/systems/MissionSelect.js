@@ -53,11 +53,11 @@ function MissionSelect({ setSelectedSystem }) {
   return (
     <>
       {isDebriefed ? (
-        <div className="misson_div">
+        <div className="mission_div">
           <h2 id="mission_select">
             【﻿ｃｈｏｏｓｅ　ｙｏｕｒ　ｄｅｓｔｉｎａｔｉｏｎ】
           </h2>
-          <div className="misson_container">
+          <div className="mission_container">
             <div id="proxima">
               <p>
                 System:{" "}
@@ -136,7 +136,7 @@ function MissionSelect({ setSelectedSystem }) {
           <button onClick={goBack}>
             Go back
           </button>
-          <div id="logout">
+          <div id="mission_select_logout">
             <button
               onClick={() => {
                 localStorage.setItem("jwt", "");

@@ -99,7 +99,7 @@ function Login({ setTriSystems }) {
   }
 
   return (
-    <>
+    <div className="login_background">
       {profileExists ? (
         <div className="all_login_containers">
           <form className="login" onSubmit={login}>
@@ -123,14 +123,14 @@ function Login({ setTriSystems }) {
             </div>
             <div className="login_create_have_logout">
               <button className="login_submit" type="submit">
-                <span>LOGIN</span>
+                <span>Login</span>
               </button>
               <button
                 className="need_account"
                 id="need_account"
                 onClick={hideLogin}
               ><span>
-                REGISTER
+                Register
                 </span>
               </button>
               <div id="logout">
@@ -141,7 +141,7 @@ function Login({ setTriSystems }) {
                     // navigate("/");
                   }}
                 >
-                  LOGOUT
+                  Logout
                 </button>
               </div>
             </div>
@@ -188,7 +188,7 @@ function Login({ setTriSystems }) {
           </form>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

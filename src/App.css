@@ -1,19 +1,13 @@
 .App {
+  /* background-color: black; */
+  /* background-size: cover; */
   text-align: center;
 }
 
 body {
   color: white;
-  background: url('./Images/stars2.webp') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background: black;
   background-size: cover;
-}
-/* background-image: url('./Images/stars2.webp'); */
-
-.title {
-  font-size: 25px;
 }
 
 p {
@@ -78,6 +72,23 @@ button .button_zoom {
   transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 
+.title {
+  font-size: 25px;
+}
+
+.login_background {
+  background: url('./Images/stars2.webp') no-repeat center center fixed;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  margin-top: -150px;
+}
+
+.all_login_containers {
+  margin-top: 5%;
+  padding: 200px;
+}
+
 .username_password {
   display: flex;
   flex-direction: column;
@@ -121,7 +132,7 @@ button .button_zoom {
 }
 
 #logout {
-  margin-top: 54px;
+  margin-top: 8%;
 }
 
 .intro_div {
@@ -148,7 +159,11 @@ button .button_zoom {
   margin-top: 20%;
 }
 
-.misson_container {
+.mission_div {
+  margin-top: 5%;
+}
+
+.mission_container {
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -168,6 +183,7 @@ button .button_zoom {
 }
 
 .img_upsilon {
+  margin-top: 5%;
   width: 100%;
   height: auto;
   object-fit: contain;
@@ -194,13 +210,12 @@ button .button_zoom {
   background-color: black;
 }
 
-#back_logout {
-  display: flex;
-  flex-direction: column;
-  gap: 20px 0px;
+#mission_select_logout {
+  margin-top: 7%;
 }
 
-.intro_to_shipyard {
+#intro_to_shipyard {
+  margin-top: 5%;
   display: flex;
   flex-direction: column;
 }
@@ -231,7 +246,7 @@ button .button_zoom {
   text-align: center;
   justify-content: center;
   margin: 20px;
-  border: 2px solid #505050;
+  border: 2px solid #ffb000;
   background-color: black;
   padding: 24px;
 }
@@ -242,7 +257,7 @@ button .button_zoom {
   justify-content: center;
   gap: 16px 0px;  
   margin: 20px;
-  border: 2px solid #505050;
+  border: 2px solid #6500a2;
   background-color: black;
   padding: 24px;
 }
@@ -263,7 +278,7 @@ button .button_zoom {
   display: flex;
   flex-direction: column;
   margin: 20px;
-  border: 2px solid #505050;
+  border: 2px solid #04dcff;
   padding: 24px;
   gap: 25px 0px;
 }
@@ -276,6 +291,10 @@ button .button_zoom {
 
 #new_ship_input{
   margin-bottom: 10%;
+}
+
+#ships_overview_logout {
+  margin-top:7%
 }
 
 .shipyard {
@@ -304,7 +323,7 @@ button .button_zoom {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 0px 140px;  
+  gap: 0px 140px;
   margin: 0px auto;
   max-width: 90%;
 }
@@ -358,9 +377,9 @@ button .button_zoom {
   font-size: 13px;
 }
 
-#engine_parts_container {
+/* #engine_parts_container {
   max-width: 35%;
-}
+} */
 
 .engine_parts {
   display: flex;
@@ -369,134 +388,128 @@ button .button_zoom {
 }
 
 #epart1 {
-  height: 174px;
+  height: 100%;
   width: 100px;
   margin: 0px;
-  border: 2px solid #6500a2;  
-  padding: 1px;
+  border: 2px solid #6500a2;
+  padding: 10px;
   max-width: 33.33%;
   background-color: black;
 }
 
 #nuclear_div {
-  width: 85%;
-  height: 38%;
+  width: 50px;
+  height: 50px;
   margin: 0 auto;
   background: url("./Images/nuclear_reactor.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset; */
 }
 
 #epart2 {
-  height: 174px;
+  height: 100%;
   width: 100px;
   margin: 0px;
-  border: 2px solid #6500a2;  
-  padding: 1px;
+  border: 2px solid #6500a2;
+  padding: 10px;
   max-width: 33.33%;
   background-color: black;
 }
 
 #fusion_div {
-  width: 85%;
-  height: 38%;
+  width: 50px;
+  height: 50px;
   margin: 0 auto;
   background: url("./Images/fusion_reactor.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset; */
 }
 
 #epart3 {
-  height: 174px;
+  height: 100%;
   width: 100px;
   margin: 0px;
-  border: 2px solid #6500a2;  
-  padding: 1px;
+  border: 2px solid #6500a2;
+  padding: 10px;
   max-width: 33.33%;
   background-color: black;
 }
 
 #antimatter_div {
-  width: 85%;
-  height: 38%;
+  width: 50px;
+  height: 50px;
   margin: 0 auto;
   background: url("./Images/antimatter_drive.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset; */
 }
 
 #spart1 {
-  height: 174px;
+  height: 100%;
   width: 100px;
   margin: 0px;
-  border: 2px solid #6500a2;  
-  padding: 1px;
+  border: 2px solid #6500a2;
+  padding: 10px;
   max-width: 33.33%;
   background-color: black;
 }
 
 #carbon_div {
-  width: 85%;
-  height: 38%;
+  width: 50px;
+  height: 50px;
   margin: 0 auto;
   background: url("./Images/carbon_fiber.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset; */
 }
 
 #spart2 {
-  height: 174px;
+  height: 100%;
   width: 100px;
   margin: 0px;
-  border: 2px solid #6500a2;  
-  padding: 1px;
+  border: 2px solid #6500a2;
+  padding: 10px;
   max-width: 33.33%;
   background-color: black;
 }
 
 #graphene_div {
-  width: 85%;
-  height: 38%;
+  width: 50px;
+  height: 50px;
   margin: 0 auto;
   background: url("./Images/graphene_weave.jpeg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset; */
 }
 
 #spart3 {
-  height: 174px;
+  height: 100%;
   width: 100px;
   margin: 0px;
-  border: 2px solid #6500a2;  
-  padding: 1px;
+  border: 2px solid #6500a2;
+  padding: 10px;
   max-width: 33.33%;
   background-color: black;
 }
 
 #neutrino_div {
-  width: 85%;
-  height: 38%;
+  width: 50px;
+  height: 50px;
   margin: 0 auto;
   background: url("./Images/neutrino_repulsor.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  /* box-shadow: 0px 0px 3px 2px rgb(0 0 0) inset; */
 }
 
-#shield_parts_container {
+/* #shield_parts_container {
   max-width: 35%;
-}
+} */
 
 .shield_parts {
   display: flex;

@@ -35,6 +35,7 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
 
   function selectShip(e, ship) {
     e.preventDefault();
+    console.log(ship);
     setChosenShip(ship);
     navigate("/sigma_shipyard");
   }
@@ -119,9 +120,7 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
                   <div key={ship.id}>
                     <p>{ship.spaceship_name}</p>
                     <button onClick={(e) => selectShip(e, ship)}>
-                    <span>
-                      Select ship
-                      </span>
+                      <span>Select ship</span>
                     </button>
                   </div>
                 ))
@@ -138,18 +137,32 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
                 name="ship_name"
                 placeholder=""
               />
-              <button type="submit"><span>Create ship</span></button>
+              <button type="submit">
+                <span>Create ship</span>
+              </button>
             </form>
           </div>
         </div>
       </div>
       <button onClick={goBack}>Back to mission select</button>
+      <div id="ships_overview_logout">
+        <button
+          onClick={() => {
+            localStorage.setItem("jwt", "");
+            navigate("/");
+          }}
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
 
 export default ShipsOverview;
 
-// #<User:0x00007fda77214518>
+{
+  /* #<User:0x00007fda77214518>
 
-// #<User:0x00007fb90d87b220>
+#<User:0x00007fb90d87b220> */
+}

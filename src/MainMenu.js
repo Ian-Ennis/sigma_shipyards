@@ -33,7 +33,7 @@ function MainMenu() {
           navigate("/");
         }}
       >
-        LOGOUT
+        Logout
       </button>
     </div>
   );
