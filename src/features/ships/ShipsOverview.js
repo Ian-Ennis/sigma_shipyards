@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { store } from "../../app/store";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpaceships } from "./ShipsOverviewSlice"
+import { fetchSpaceships } from "./ShipsOverviewSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -11,7 +11,7 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   const [allShips, setAllShips] = useState([]);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const state = useSelector((state) => state);
 
   function getShips() {
@@ -19,31 +19,31 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
     // dispatch(fetchSpaceships())
 
     fetch(`http://localhost:3000/spaceships`, {
-        method: "GET",
-        headers: {
-            Accepts: "application/json",
+      method: "GET",
+      headers: {
+        Accepts: "application/json",
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
         setAllShips(data);
       });
   }
-  
+
   function selectShip(e, ship) {
     e.preventDefault();
     console.log(ship);
     setChosenShip(ship);
     navigate("/sigma_shipyard");
   }
-  
+
   function createShip(e) {
     e.preventDefault();
     const spaceship_name = e.target.ship_name.value;
-    
+
     fetch(`http://localhost:3000/spaceships`, {
       method: "POST",
       headers: {
@@ -63,29 +63,29 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
       })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setChosenShip(data[data.length - 1]);
-        setAllShips(data);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setChosenShip(data[data.length - 1]);
+          setAllShips(data);
+        });
     });
   }
-  
+
   function goBack() {
     setSelectedSystem([]);
     navigate("/misson_select");
   }
-  
+
   const eachShip = [];
-  
+
   // change this to use storestate.spaceships (if (storestate.length))
   if (allShips.length) {
     allShips.forEach((ship) => {
       eachShip.push(ship);
     });
   }
-  
+
   let sysImg = "";
   if (selectedSystem.name === "Proxima Centauri") {
     sysImg = proxima_centauri;
@@ -98,9 +98,12 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   return (
     <div id="intro_to_shipyard">
       <p id="approach_terminal">
-        Thoughts of self-doubt, but intrigue over what lies ahead... Yet
-        somehow, you sense a fleeting glimmer of confidence in your ship-making
-        abilities, as you step forth to the shipyard computer terminal...
+        Your shuttle has docked with the shipyard. You make your way toward the
+        viewport overlooking Sigma Shipyard's fleet, and you notice the nearby shipyard computer
+        terminal. Thoughts of self-doubt swirl in your head, accompanied by
+        intrigue over what lies ahead... Yet, you suddenly sense a fleeting glimmer
+        of confidence in your ship-making abilities, and you reach out and grasp
+        it as you step forth to the terminal...
       </p>
       <div id="ships_with_img">
         <div id="system_by_missions">
@@ -154,7 +157,7 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
           </div>
         </div>
       </div>
-      <button onClick={goBack}>Back to mission select</button>
+      <button id="back_to_mission_select" onClick={goBack}>Back to mission select</button>
     </div>
   );
 }

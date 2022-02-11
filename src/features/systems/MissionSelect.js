@@ -54,6 +54,7 @@ function MissionSelect({ setSelectedSystem }) {
     <>
       {isDebriefed ? (
         <div className="mission_div">
+          <p id="shuttle_systems">On the shuttle, a display of missions corresponding to different star systems presents itself..</p>
           <h2 id="mission_select">
             【﻿ｃｈｏｏｓｅ　ｙｏｕｒ　ｄｅｓｔｉｎａｔｉｏｎ】
           </h2>
