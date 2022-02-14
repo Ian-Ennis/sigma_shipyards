@@ -29,7 +29,7 @@ import {
   installNeutrino,
   removeNeutrino,
   resetStrength,
-} from "./ShipyardSlice";
+} from "./PartsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
@@ -69,8 +69,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   } else {
     sysImg = upsilon_andromedae;
   }
-
-  console.log(chosenShip);
 
   function loadParts() {
     fetch(`http://localhost:3000/engine_parts`, {

@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import fetchShipsReducer from "../features/ships/ShipsOverviewSlice";
-import shipyardReducer from "../features/shipstatistics/ShipyardSlice";
+import systemsReducer from "../features/systems/SystemsSlice";
+import spaceshipsReducer from "../features/ships/ShipsSlice";
+import shipyardReducer from "../features/shipstatistics/PartsSlice";
 
 export const store = configureStore({
-  reducer: fetchShipsReducer,
   reducer: {
-    actions: shipyardReducer,
+    systems: systemsReducer,
+    spaceships: spaceshipsReducer,
+    parts: shipyardReducer,
   },
 });

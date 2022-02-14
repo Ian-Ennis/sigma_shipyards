@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const shipyardSlice = createSlice({
-    name: 'actions',
+const partsSlice = createSlice({
+    name: 'parts',
     initialState: {
         balance: 1000000,
         distance: 0,
@@ -14,6 +14,7 @@ const shipyardSlice = createSlice({
         neutrinoCount: 0
     },
     reducers: {
+        // these are individual functions (action creators) that make up the reducer object, and are invoked after passing as an argument into the useDispatch() function
         buyNuclear: state => {
             state.balance -= 150000
         },
@@ -116,6 +117,6 @@ const shipyardSlice = createSlice({
     }
 })
 
-export const { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} = shipyardSlice.actions
+export const { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} = partsSlice.actions
 
-export default shipyardSlice.reducer
+export default partsSlice.reducer

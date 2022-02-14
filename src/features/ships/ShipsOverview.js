@@ -1,36 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { store } from "../../app/store";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpaceships } from "./ShipsOverviewSlice";
+import { fetchSpaceships } from "./ShipsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
+import { store } from "../../app/store";
 
 function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
-  const [allShips, setAllShips] = useState([]);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const storeState = useSelector((state) => state); /* redux state*/
 
   function getShips() {
-    // console.log('in get ships')
-    // dispatch(fetchSpaceships())
-
-    fetch(`http://localhost:3000/spaceships`, {
-      method: "GET",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setAllShips(data);
-      });
+    dispatch(fetchSpaceships())
   }
 
   function selectShip(e, ship) {
@@ -44,32 +27,32 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
     e.preventDefault();
     const spaceship_name = e.target.ship_name.value;
 
-    fetch(`http://localhost:3000/spaceships`, {
-      method: "POST",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-      body: JSON.stringify({
-        spaceship_name,
-      }),
-    }).then(() => {
-      fetch(`http://localhost:3000/spaceships`, {
-        method: "GET",
-        headers: {
-          Accepts: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setChosenShip(data[data.length - 1]);
-          setAllShips(data);
-        });
-    });
+    // fetch(`http://localhost:3000/spaceships`, {
+    //   method: "POST",
+    //   headers: {
+    //     Accepts: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    //   },
+    //   body: JSON.stringify({
+    //     spaceship_name,
+    //   }),
+    // }).then(() => {
+    //   fetch(`http://localhost:3000/spaceships`, {
+    //     method: "GET",
+    //     headers: {
+    //       Accepts: "application/json",
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    //     },
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => {
+    //       console.log(data);
+    //       setChosenShip(data[data.length - 1]);
+    //       setAllShips(data);
+    //     });
+    // });
   }
 
   function goBack() {
@@ -79,9 +62,8 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
 
   const eachShip = [];
 
-  // change this to use storestate.spaceships (if (storestate.length))
-  if (allShips.length) {
-    allShips.forEach((ship) => {
+  if (storeState.spaceships.entities.length) {
+    storeState.spaceships.entities.forEach((ship) => {
       eachShip.push(ship);
     });
   }

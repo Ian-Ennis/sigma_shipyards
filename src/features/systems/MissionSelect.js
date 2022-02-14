@@ -1,32 +1,22 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSystems } from "./SystemsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
 
 function MissionSelect({ setSelectedSystem }) {
-  const [triSystems, setTriSystems] = useState([]);
-  const [isDebriefed, setIsDebriefed] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const storeState = useSelector((state) => state); /* redux state*/
 
-  function getSystems() {
-    fetch(`http://localhost:3000/star_systems`, {
-      method: "GET",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(triSystems);
-        setTriSystems(data);
-        setIsDebriefed(true);
-      });
-  }
+  console.log('here')
+  // dispatch(fetchSystems)
+
+  console.log(storeState)
 
   function selectProxima(e, system) {
     e.preventDefault();
@@ -51,8 +41,6 @@ function MissionSelect({ setSelectedSystem }) {
   }
 
   return (
-    <>
-      {isDebriefed ? (
         <div className="mission_div">
           <p id="shuttle_systems">On the shuttle, a display of missions corresponding to different star systems presents itself..</p>
           <h2 id="mission_select">
@@ -63,7 +51,7 @@ function MissionSelect({ setSelectedSystem }) {
               <p>
                 System:{" "}
                 <b>
-                  <em>{triSystems[0].name}</em>
+                  <em>{storeState.systems.entities[0]}</em>
                 </b>
               </p>
               <img
@@ -72,16 +60,16 @@ function MissionSelect({ setSelectedSystem }) {
                 alt="proxima_centauri"
               />
               <p>
-                Distance: <b>{triSystems[0].distance} light years</b>
+                {/* Distance: <b>{triSystems[0].distance} light years</b> */}
               </p>
               <p>
-                Mission complexity: <b>{triSystems[0].mission_complexity}</b>
+                {/* Mission complexity: <b>{triSystems[0].mission_complexity}</b> */}
               </p>
               <p>
                 Chance of finding habitable planet:{" "}
-                <b>{triSystems[0].habitibility_chance}%</b>
+                {/* <b>{triSystems[0].habitibility_chance}%</b> */}
               </p>
-              <button onClick={(e) => selectProxima(e, triSystems[0])}>
+              <button onClick={(e) => selectProxima(e/*, triSystems[0]*/)}>
                 <span>Choose system</span>
               </button>
             </div>
@@ -89,21 +77,21 @@ function MissionSelect({ setSelectedSystem }) {
               <p>
                 System:{" "}
                 <b>
-                  <em>{triSystems[1].name}</em>
+                  {/* <em>{triSystems[1].name}</em> */}
                 </b>
               </p>
               <img className="img_tau_ceti" src={tau_ceti} alt="tau_ceti" />
               <p>
-                Distance: <b>{triSystems[1].distance} light years</b>
+                {/* Distance: <b>{triSystems[1].distance} light years</b> */}
               </p>
               <p>
-                Mission complexity: <b>{triSystems[1].mission_complexity}</b>
+                {/* Mission complexity: <b>{triSystems[1].mission_complexity}</b> */}
               </p>
               <p>
                 Chance of finding habitable planet:{" "}
-                <b>{triSystems[1].habitibility_chance}%</b>
+                {/* <b>{triSystems[1].habitibility_chance}%</b> */}
               </p>
-              <button onClick={(e) => selectTau(e, triSystems[1])}>
+              <button onClick={(e) => selectTau(e/*, triSystems[1]*/)}>
                 <span>Choose system</span>
               </button>
             </div>
@@ -111,7 +99,7 @@ function MissionSelect({ setSelectedSystem }) {
               <p>
                 System:{" "}
                 <b>
-                  <em>{triSystems[2].name}</em>
+                  {/* <em>{triSystems[2].name}</em> */}
                 </b>
               </p>
               <img
@@ -120,16 +108,16 @@ function MissionSelect({ setSelectedSystem }) {
                 alt="upsilon_andromedae"
               />
               <p>
-                Distance: <b>{triSystems[2].distance} light years</b>
+                {/* Distance: <b>{triSystems[2].distance} light years</b> */}
               </p>
               <p>
-                Mission complexity: <b>{triSystems[2].mission_complexity}</b>
+                {/* Mission complexity: <b>{triSystems[2].mission_complexity}</b> */}
               </p>
               <p>
                 Chance of finding habitable planet:{" "}
-                <b>{triSystems[2].habitibility_chance}%</b>
+                {/* <b>{triSystems[2].habitibility_chance}%</b> */}
               </p>
-              <button onClick={(e) => selectUpsilon(e, triSystems[2])}>
+              <button onClick={(e) => selectUpsilon(e/*, triSystems[2]*/)}>
                 <span>Choose system</span>
               </button>
             </div>
@@ -138,10 +126,6 @@ function MissionSelect({ setSelectedSystem }) {
             Go back
           </button>
         </div>
-      ) : (
-        getSystems()
-      )}
-    </>
   );
 }
 
