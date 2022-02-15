@@ -15,9 +15,9 @@ const partsSlice = createSlice({
     },
     reducers: {
         // these are individual functions (action creators) that make up the reducer object, and are invoked after passing as an argument into the useDispatch() function
-        buyNuclear: state => {
-            state.balance -= 150000
-        },
+        // buyNuclear: state => {
+        //     state.balance -= 150000
+        // },
         sellNuclear: state => {
             state.balance += 150000
         },
@@ -117,6 +117,6 @@ const partsSlice = createSlice({
     }
 })
 
-export const { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} = partsSlice.actions
+export const { /*buyNuclear, */sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} = partsSlice.actions
 
 export default partsSlice.reducer

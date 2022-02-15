@@ -1,35 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  buyNuclear,
-  sellNuclear,
-  buyFusion,
-  sellFusion,
-  buyAntimatter,
-  sellAntimatter,
-  buyCarbon,
-  sellCarbon,
-  buyGraphene,
-  sellGraphene,
-  buyNeutrino,
-  sellNeutrino,
-  resetCredits,
-  installNuclear,
-  removeNuclear,
-  installFusion,
-  removeFusion,
-  installAntimatter,
-  removeAntimatter,
-  resetRange,
-  installCarbon,
-  removeCarbon,
-  installGraphene,
-  removeGraphene,
-  installNeutrino,
-  removeNeutrino,
-  resetStrength,
-} from "./PartsSlice";
+import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} from "../ships/ShipsSlice"
 import { useDispatch, useSelector } from "react-redux";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
@@ -47,13 +19,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
 
   console.log(storeState)
 
-  const spaceship_name = storeState.spaceships.chosenShip.spaceship_name;
-  const credits = storeState.spaceships.chosenShip.balance;
-  const range = storeState.spaceships.chosenShip.distance;
   const nuclearCount = storeState.spaceships.chosenShip.nuclearCount;
   const fusionCount = storeState.spaceships.chosenShip.fusionCount;
   const antimatterCount = storeState.spaceships.chosenShip.antimatterCount;
-  const strength = storeState.spaceships.chosenShip.hull;
   const carbonCount = storeState.spaceships.chosenShip.carbonCount;
   const grapheneCount = storeState.spaceships.chosenShip.grapheneCount;
   const neutrinoCount = storeState.spaceships.chosenShip.neutrinoCount;
@@ -104,10 +72,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
 
   function buyEPart1(e) {
     e.preventDefault();
-    if (credits >= 150000) {
+    if (shipCredits >= 150000) {
       dispatch(buyNuclear());
       dispatch(installNuclear());
-      console.log(credits, nuclearCount, range);
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -118,7 +85,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     if (nuclearCount > 0) {
       dispatch(sellNuclear());
       dispatch(removeNuclear());
-      console.log(credits, nuclearCount, range);
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -126,10 +92,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
 
   function buyEPart2(e) {
     e.preventDefault();
-    if (credits >= 250000) {
+    if (shipCredits >= 250000) {
       dispatch(buyFusion());
       dispatch(installFusion());
-      console.log(credits, fusionCount, range);
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -140,7 +105,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     if (fusionCount > 0) {
       dispatch(sellFusion());
       dispatch(removeFusion());
-      console.log(credits, fusionCount, range);
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -148,10 +112,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
 
   function buyEPart3(e) {
     e.preventDefault();
-    if (credits >= 400000) {
+    if (shipCredits >= 400000) {
       dispatch(buyAntimatter());
       dispatch(installAntimatter());
-      console.log(credits, antimatterCount, range);
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -162,7 +125,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     if (antimatterCount > 0) {
       dispatch(sellAntimatter());
       dispatch(removeAntimatter());
-      console.log(credits, antimatterCount, range);
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -170,10 +132,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
 
   function buySPart1(e) {
     e.preventDefault();
-    if (credits >= 20000) {
+    if (shipCredits >= 20000) {
       dispatch(buyCarbon());
       dispatch(installCarbon());
-      console.log(credits, carbonCount, range);
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -184,7 +145,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     if (carbonCount > 0) {
       dispatch(sellCarbon());
       dispatch(removeCarbon());
-      console.log(credits, carbonCount, range);
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -192,10 +152,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
 
   function buySPart2(e) {
     e.preventDefault();
-    if (credits >= 90000) {
+    if (shipCredits >= 90000) {
       dispatch(buyGraphene());
       dispatch(installGraphene());
-      console.log(credits, grapheneCount, range);
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -206,7 +165,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     if (grapheneCount > 0) {
       dispatch(sellGraphene());
       dispatch(removeGraphene());
-      console.log(credits, grapheneCount, range);
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -214,12 +172,11 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
 
   function buySPart3(e) {
     e.preventDefault();
-    if (credits >= 300000) {
+    if (shipCredits >= 300000) {
       dispatch(buyNeutrino());
       dispatch(installNeutrino());
-      console.log(credits, neutrinoCount, range);
     } else {
-      console.log("You have run out of credits.");
+      window.confirm("You have run out of credits.");
     }
   }
 
@@ -228,7 +185,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
     if (neutrinoCount > 0) {
       dispatch(sellNeutrino());
       dispatch(removeNeutrino());
-      console.log(credits, neutrinoCount, range);
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -237,31 +193,31 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   function saveShip() {
     console.log(chosenShip.id);
 
-    fetch(`http://localhost:3000/spaceships/${chosenShip.id}`, {
-      method: "PATCH",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-      body: JSON.stringify({
-        spaceship_name,
-        credits,
-        range,
-        strength,
-        nuclearCount,
-        fusionCount,
-        antimatterCount,
-        carbonCount,
-        grapheneCount,
-        neutrinoCount,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+    // fetch(`http://localhost:3000/spaceships/${chosenShip.id}`, {
+    //   method: "PATCH",
+    //   headers: {
+    //     Accepts: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    //   },
+    //   body: JSON.stringify({
+    //     spaceship_name,
+    //     credits,
+    //     range,
+    //     strength,
+    //     nuclearCount,
+    //     fusionCount,
+    //     antimatterCount,
+    //     carbonCount,
+    //     grapheneCount,
+    //     neutrinoCount,
+    //   }),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
         // console.log(storeState)
-      });
+      // });
   }
 
   function scrapShip() {
@@ -281,9 +237,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   }
 
   function goBack() {
-    dispatch(resetCredits());
-    dispatch(resetRange());
-    dispatch(resetStrength());
+    // dispatch(resetCredits());
+    // dispatch(resetRange());
+    // dispatch(resetStrength());
     navigate("/ships_overview");
   }
 
@@ -398,10 +354,10 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
               <div id="destination">
                 <div id="destination_info">
                   <h3>Destination</h3>
-                  <p>System: {selectedSystem.name}</p>
-                  <p>Distance: {selectedSystem.distance} light years</p>
+                  <p>System: {storeState.systems.chosenSystem.name}</p>
+                  <p>Distance: {storeState.systems.chosenSystem.distance} light years</p>
                   <p>
-                    Mission complexity: {selectedSystem.mission_complexity};
+                    Mission complexity: {storeState.systems.chosenSystem.mission_complexity};
                   </p>
                   <p>60% shields needed</p>
                 </div>

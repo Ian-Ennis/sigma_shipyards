@@ -17,8 +17,8 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   const system_complexity = storeState.systems.chosenSystem.mission_complexity
   const system_habitability = storeState.systems.chosenSystem.habitibility_chance
 
-  console.log(storeState)
-  
+  // console.log(storeState)
+
   function getShips() {
     dispatch(fetchSpaceships())
   }
