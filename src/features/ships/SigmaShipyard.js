@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} from "../ships/ShipsSlice"
+import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} from "./ShipsSlice"
 import { useDispatch, useSelector } from "react-redux";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
 
-function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
+function SigmaShipyard() {
   const [viewport, setViewport] = useState(false);
   const [engineParts, setEngineParts] = useState([]);
   const [hullParts, setHullParts] = useState([]);
@@ -26,11 +26,12 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const grapheneCount = storeState.spaceships.chosenShip.grapheneCount;
   const neutrinoCount = storeState.spaceships.chosenShip.neutrinoCount;
 
+  console.log(storeState)
 
   let sysImg = "";
-  if (selectedSystem.name === "Proxima Centauri") {
+  if (storeState.systems.chosenSystem.name === "Proxima Centauri") {
     sysImg = proxima_centauri;
-  } else if (selectedSystem.name === "Tau Ceti") {
+  } else if (storeState.systems.chosenSystem.name === "Tau Ceti") {
     sysImg = tau_ceti;
   } else {
     sysImg = upsilon_andromedae;
@@ -187,7 +188,7 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   }
 
   function saveShip() {
-    console.log(chosenShip.id);
+    // console.log(chosenShip.id);
 
     // fetch(`http://localhost:3000/spaceships/${chosenShip.id}`, {
     //   method: "PATCH",
@@ -217,19 +218,19 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   }
 
   function scrapShip() {
-    console.log(chosenShip);
+    // console.log(chosenShip);
 
-    window.confirm(`Delete ${chosenShip.spaceship_name} from database?`);
-    if (window.confirm) {
-      fetch(`http://localhost:3000/spaceships/${chosenShip.id}`, {
-        method: "DELETE",
-      }).then((res) => {
-        if (res.ok) {
-          console.log(res);
-        }
-      });
-      navigate("/ships_overview");
-    }
+    // window.confirm(`Delete ${chosenShip.spaceship_name} from database?`);
+    // if (window.confirm) {
+    //   fetch(`http://localhost:3000/spaceships/${chosenShip.id}`, {
+    //     method: "DELETE",
+    //   }).then((res) => {
+    //     if (res.ok) {
+    //       console.log(res);
+    //     }
+    //   });
+    //   navigate("/ships_overview");
+    // }
   }
 
   function goBack() {

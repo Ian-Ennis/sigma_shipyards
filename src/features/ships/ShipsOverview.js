@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSpaceships, chooseShip } from "./ShipsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
-import { store } from "../../app/store";
 
-function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
+function ShipsOverview() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const storeState = useSelector((state) => state); /* redux state*/
@@ -17,7 +16,6 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   const system_complexity = storeState.systems.chosenSystem.mission_complexity
   const system_habitability = storeState.systems.chosenSystem.habitibility_chance
 
-  // console.log(storeState)
 
   function getShips() {
     dispatch(fetchSpaceships())
@@ -26,7 +24,6 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   function selectShip(e, ship) {
     e.preventDefault();
     dispatch(chooseShip(ship));
-    console.log(storeState)
     navigate("/sigma_shipyard");
   }
 
@@ -63,7 +60,6 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   }
 
   function goBack() {
-    setSelectedSystem([]);
     navigate("/misson_select");
   }
 
@@ -75,7 +71,6 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
     });
   }
 
-  // console.log(storeState.systems.chosenSystem.name)
   let sysImg = "";
   if (storeState.systems.chosenSystem.name === "Proxima Centauri") {
     sysImg = proxima_centauri;

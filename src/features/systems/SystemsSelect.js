@@ -1,21 +1,19 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSystems, chooseSystem } from "./SystemsSlice";
+import { useSelector, useDispatch } from "react-redux"; /*** import hooks to access state, and dispatch actions to said state ***/
+import { fetchSystems, chooseSystem } from "./SystemsSlice"; 
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
-import { store } from "../../app/store";
 
 function MissionSelect() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const storeState = useSelector((state) => state); /* redux state*/
+  const storeState = useSelector((state) => state); /*** here we access redux state ***/
 
   function getSystems(e) {
     e.preventDefault();
-    dispatch(fetchSystems());
+    dispatch(fetchSystems()); /*** here we "dispatch" an "action", fetchSystems(), to a reducer function that we imported above ***/
   }
 
   const eachSystem = [];
@@ -31,18 +29,6 @@ function MissionSelect() {
     dispatch(chooseSystem(system))
     navigate("/ships_overview")
   }
-
-  // function selectTau(e, system) {
-  //   e.preventDefault();
-  //   dispatch(chooseTau(system))
-  //   navigate("/ships_overview")
-  // }
-
-  // function selectUpsilon(e, system) {
-  //   e.preventDefault();
-  //   dispatch(chooseUpsilon(system))
-  //   navigate("/ships_overview")
-  // }
 
   function goBack() {
     navigate("/main_menu");
