@@ -1,12 +1,10 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} from "../ships/ShipsSlice"
 import { useDispatch, useSelector } from "react-redux";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
-import { store } from "../../app/store";
 
 function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const [viewport, setViewport] = useState(false);
@@ -17,8 +15,10 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const storeState = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  console.log(storeState)
-
+  const shipName = storeState.spaceships.chosenShip.spaceship_name;
+  const shipCredits = storeState.spaceships.chosenShip.credits;
+  const shipRange = storeState.spaceships.chosenShip.range;
+  const shipShields = storeState.spaceships.chosenShip.strength;
   const nuclearCount = storeState.spaceships.chosenShip.nuclearCount;
   const fusionCount = storeState.spaceships.chosenShip.fusionCount;
   const antimatterCount = storeState.spaceships.chosenShip.antimatterCount;
@@ -26,10 +26,6 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const grapheneCount = storeState.spaceships.chosenShip.grapheneCount;
   const neutrinoCount = storeState.spaceships.chosenShip.neutrinoCount;
 
-  const shipName = storeState.spaceships.chosenShip.spaceship_name;
-  const shipCredits = storeState.spaceships.chosenShip.credits;
-  const shipRange = storeState.spaceships.chosenShip.range;
-  const shipShields = storeState.spaceships.chosenShip.strength;
 
   let sysImg = "";
   if (selectedSystem.name === "Proxima Centauri") {
