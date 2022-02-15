@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpaceships, chooseShip } from "./ShipsSlice";
+import { fetchSpaceships, fetchPropulsion, fetchShields, chooseShip } from "./ShipsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -19,6 +19,8 @@ function ShipsOverview() {
 
   function getShips() {
     dispatch(fetchSpaceships())
+    dispatch(fetchPropulsion())
+    dispatch(fetchShields())
   }
 
   function selectShip(e, ship) {
@@ -28,8 +30,9 @@ function ShipsOverview() {
   }
 
   function createShip(e) {
-    e.preventDefault();
-    const spaceship_name = e.target.ship_name.value;
+    // e.preventDefault();
+
+    // const spaceship_name = e.target.ship_name.value;
 
     // fetch(`http://localhost:3000/spaceships`, {
     //   method: "POST",
@@ -65,8 +68,8 @@ function ShipsOverview() {
 
   const eachShip = [];
 
-  if (storeState.spaceships.entities.length) {
-    storeState.spaceships.entities.forEach((ship) => {
+  if (storeState.spaceships.spaceships.length) {
+    storeState.spaceships.spaceships.forEach((ship) => {
       eachShip.push(ship);
     });
   }

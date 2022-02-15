@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength} from "./ShipsSlice"
+import { saveSpaceship } from "./ShipsSlice"
 import { useDispatch, useSelector } from "react-redux";
+import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} from "./ShipsSlice"
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
 
 function SigmaShipyard() {
-  const [viewport, setViewport] = useState(false);
-  const [engineParts, setEngineParts] = useState([]);
-  const [hullParts, setHullParts] = useState([]);
-
   const navigate = useNavigate();
   const storeState = useSelector((state) => state);
   const dispatch = useDispatch();
 
+  console.log(storeState)
+
+  const selectedShip = storeState.spaceships.chosenShip
   const shipName = storeState.spaceships.chosenShip.spaceship_name;
   const shipCredits = storeState.spaceships.chosenShip.credits;
   const shipRange = storeState.spaceships.chosenShip.range;
@@ -26,8 +26,6 @@ function SigmaShipyard() {
   const grapheneCount = storeState.spaceships.chosenShip.grapheneCount;
   const neutrinoCount = storeState.spaceships.chosenShip.neutrinoCount;
 
-  console.log(storeState)
-
   let sysImg = "";
   if (storeState.systems.chosenSystem.name === "Proxima Centauri") {
     sysImg = proxima_centauri;
@@ -35,36 +33,6 @@ function SigmaShipyard() {
     sysImg = tau_ceti;
   } else {
     sysImg = upsilon_andromedae;
-  }
-
-  function loadParts() {
-    fetch(`http://localhost:3000/engine_parts`, {
-      method: "GET",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setEngineParts(data);
-      })
-      .then(() => {
-        fetch(`http://localhost:3000/hull_parts`, {
-          method: "GET",
-          headers: {
-            Accepts: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            setHullParts(data);
-            setViewport(true);
-          });
-      });
   }
 
   function buyEPart1(e) {
@@ -187,34 +155,9 @@ function SigmaShipyard() {
     }
   }
 
-  function saveShip() {
-    // console.log(chosenShip.id);
-
-    // fetch(`http://localhost:3000/spaceships/${chosenShip.id}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     Accepts: "application/json",
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    //   },
-    //   body: JSON.stringify({
-    //     spaceship_name,
-    //     credits,
-    //     range,
-    //     strength,
-    //     nuclearCount,
-    //     fusionCount,
-    //     antimatterCount,
-    //     carbonCount,
-    //     grapheneCount,
-    //     neutrinoCount,
-    //   }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-        // console.log(storeState)
-      // });
+  function saveShip(e) {
+    e.preventDefault();
+    dispatch(saveSpaceship(selectedShip))
   }
 
   function scrapShip() {
@@ -242,7 +185,6 @@ function SigmaShipyard() {
 
   return (
     <>
-      {viewport ? (
         <div className="whole_shipyard">
           <div className="shipyard">
             <div className="stats_parts_container">
@@ -253,11 +195,11 @@ function SigmaShipyard() {
                   <div className="shield_parts">
                     <div id="spart1">
                       <div id="carbon_div"></div>
-                      <p className="inside_part">{hullParts[0].part_name}</p>
+                      <p className="inside_part">{storeState.spaceships.shields[0].part_name}</p>
                       <p className="inside_part">
-                        +{hullParts[0].hull_strength}%
+                        +{storeState.spaceships.shields[0].hull_strength}%
                       </p>
-                      <p className="inside_part">{hullParts[0].cost} c</p>
+                      <p className="inside_part">{storeState.spaceships.shields[0].cost} c</p>
                       <button className="part_button" onClick={buySPart1}>
                         Buy
                       </button>
@@ -267,11 +209,11 @@ function SigmaShipyard() {
                     </div>
                     <div id="spart2">
                       <div id="graphene_div"></div>
-                      <p className="inside_part">{hullParts[1].part_name}</p>
+                      <p className="inside_part">{storeState.spaceships.shields[1].part_name}</p>
                       <p className="inside_part">
-                        +{hullParts[1].hull_strength}%
+                        +{storeState.spaceships.shields[1].hull_strength}%
                       </p>
-                      <p className="inside_part">{hullParts[1].cost} c</p>
+                      <p className="inside_part">{storeState.spaceships.shields[1].cost} c</p>
                       <button className="part_button" onClick={buySPart2}>
                         Buy
                       </button>
@@ -281,11 +223,11 @@ function SigmaShipyard() {
                     </div>
                     <div id="spart3">
                       <div id="neutrino_div"></div>
-                      <p className="inside_part">{hullParts[2].part_name}</p>
+                      <p className="inside_part">{storeState.spaceships.shields[2].part_name}</p>
                       <p className="inside_part">
-                        +{hullParts[2].hull_strength}%
+                        +{storeState.spaceships.shields[2].hull_strength}%
                       </p>
-                      <p className="inside_part">{hullParts[2].cost} c</p>
+                      <p className="inside_part">{storeState.spaceships.shields[2].cost} c</p>
                       <button className="part_button" onClick={buySPart3}>
                         Buy
                       </button>
@@ -300,9 +242,9 @@ function SigmaShipyard() {
                   <div className="engine_parts">
                     <div id="epart1">
                       <div id="nuclear_div"></div>
-                      <p className="inside_part">{engineParts[0].part_name}</p>
-                      <p className="inside_part">{engineParts[0].range} ly</p>
-                      <p className="inside_part">{engineParts[0].cost} c</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[0].part_name}</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[0].range} ly</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[0].cost} c</p>
                       <button className="part_button" onClick={buyEPart1}>
                         Buy
                       </button>
@@ -312,9 +254,9 @@ function SigmaShipyard() {
                     </div>
                     <div id="epart2">
                       <div id="fusion_div"></div>
-                      <p className="inside_part">{engineParts[1].part_name}</p>
-                      <p className="inside_part">{engineParts[1].range} ly</p>
-                      <p className="inside_part">{engineParts[1].cost} c</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[1].part_name}</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[1].range} ly</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[1].cost} c</p>
                       <button className="part_button" onClick={buyEPart2}>
                         Buy
                       </button>
@@ -324,9 +266,9 @@ function SigmaShipyard() {
                     </div>
                     <div id="epart3">
                       <div id="antimatter_div"></div>
-                      <p className="inside_part">{engineParts[2].part_name}</p>
-                      <p className="inside_part">{engineParts[2].range} ly</p>
-                      <p className="inside_part">{engineParts[2].cost} c</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[2].part_name}</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[2].range} ly</p>
+                      <p className="inside_part">{storeState.spaceships.propulsion[2].cost} c</p>
                       <button className="part_button" onClick={buyEPart3}>
                         Buy
                       </button>
@@ -380,9 +322,6 @@ function SigmaShipyard() {
             </button>
           </div>
         </div>
-      ) : (
-        loadParts()
-      )}
     </>
   );
 }

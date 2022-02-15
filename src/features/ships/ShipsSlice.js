@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+
 
 export const fetchSpaceships = createAsyncThunk(
   "spaceships/fetchSpaceships",
   async () => {
-    console.log("in new fetch");
+    console.log("in fetch spaceships");
 
     const response = await fetch(`http://localhost:3000/spaceships`, {
       method: "GET",
@@ -18,22 +20,103 @@ export const fetchSpaceships = createAsyncThunk(
   }
 );
 
+export const fetchPropulsion = createAsyncThunk(
+  "propulsion/fetchPropulsion",
+  async () => {
+    console.log("in fetch propulsion");
+
+    const response = await fetch(`http://localhost:3000/engine_parts`, {
+      method: "GET",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    }).then((res) => res.json());
+
+    return response;
+  }
+);
+
+export const fetchShields = createAsyncThunk(
+  "shields/fetchShields",
+  async () => {
+    console.log("in fetch shields");
+
+    const response = await fetch(`http://localhost:3000/hull_parts`, {
+      method: "GET",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    }).then((res) => res.json());
+
+    return response;
+  }
+);
+
+export const saveSpaceship = createAsyncThunk(
+  "ships/saveShip",
+  async (selectedShip) => {
+    console.log('in saveSpaceship')
+    console.log(selectedShip)
+
+    const spaceship_name = selectedShip.spaceship_name
+    const credits = selectedShip.credits
+    const range = selectedShip.range
+    const strength = selectedShip.strength
+    const nuclearCount = selectedShip.nuclearCount
+    const fusionCount = selectedShip.fusionCount
+    const antimatterCount = selectedShip.antimatterCount
+    const carbonCount = selectedShip.carbonCount
+    const grapheneCount = selectedShip.grapheneCount
+    const neutrinoCount = selectedShip.neutrinoCount
+
+    const response = await fetch(`http://localhost:3000/spaceships/${selectedShip.id}`, {
+      method: "PATCH",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+      body: JSON.stringify({
+        spaceship_name,
+        credits,
+        range,
+        strength,
+        nuclearCount,
+        fusionCount, 
+        antimatterCount,
+        carbonCount,
+        grapheneCount,
+        neutrinoCount
+      }),
+    })
+      .then((res) => res.json())
+      return response
+  }); 
+
 const initialState = {
-  entities: {},
+  spaceships: {},
   chosenShip: {},
-  status: "idle",
+  propulsion: {},
+  shields: {},
+  fetchShipStatus: "idle",
+  fetchPropulsionStatus: "idle",
+  fetchShieldsStatus: "idle"
 };
 
 const spaceshipsSlice = createSlice({
-  name: "spaceships",
+  name: "spaceships", /* <name> is used as a prefix for generated action types */
   initialState,
-  // reducers obect with more functions (action creators are automatically generated and correspond to each, with the use of createSlice() (RTK))
   reducers: {
-    chooseShip: (state, action) => {
-      state.chosenShip = action.payload;
-    },
-    buyNuclear: (state) => {
-      state.chosenShip.credits -= 150000;
+    chooseShip: (state, action) => {  
+      console.log(action)     /*  <-- Reducer obect with functions. createSlice() (Redux Toolkit) allows        */   
+      state.chosenShip = action.payload;   /*  us to write logic to change state within these functions, rather than using   */
+    },                                     /*  a switch/case statement. Action creators are automatically generated and correspond to each. */
+    buyNuclear: (state) => {               /* // code can be written in a way that seems to mutate state directly (Immer,    */
+      state.chosenShip.credits -= 150000;  /* comes with createSlice(). Spread operators no longer neccessary)                    */
     },
     sellNuclear: (state) => {
       state.chosenShip.credits += 150000;
@@ -134,22 +217,42 @@ const spaceshipsSlice = createSlice({
     // addSpaceship(state, action) {
     // mutated state, permitted with RTK (rather than using the spread operator)
     // const spaceship = action.payload
-    // state.entities[spaceship.id] = spaceship
+    // state.spaceships[spaceship.id] = spaceship
     // },
     // deleteSpaceship(state, action) {
-    //   delete state.entities[action.payload]
+    //   delete state.spaceships[action.payload]
     // }
   },
   extraReducers: {
     [fetchSpaceships.pending](state) {
-      state.status = "loading";
+      state.fetchShipStatus = "loading";
     },
     [fetchSpaceships.fulfilled](state, action) {
-      state.entities = action.payload;
-      state.status = "idle";
+      state.spaceships = action.payload;
+      state.fetchShipStatus = "idle";
     },
     [fetchSpaceships.rejected](state) {
-      state.status = "most recent fetch rejected";
+      state.fetchShipStatus = "most recent spaceships fetch rejected";
+    },
+    [fetchPropulsion.pending](state) {
+      state.fetchPropulsionStatus = "loading";
+    },
+    [fetchPropulsion.fulfilled](state, action) {
+      state.propulsion = action.payload;
+      state.fetchPropulsionStatus = "idle";
+    },
+    [fetchPropulsion.rejected](state) {
+      state.fetchPropulsionStatus = "most recent propulsion fetch rejected";
+    },
+    [fetchShields.pending](state) {
+      state.fetchShieldsStatus = "loading";
+    },
+    [fetchShields.fulfilled](state, action) {
+      state.shields = action.payload;
+      state.fetchShieldsStatus = "idle";
+    },
+    [fetchShields.rejected](state) {
+      state.fetchShieldsStatus = "most recent shields fetch rejected";
     },
   },
 });
@@ -196,6 +299,16 @@ export default spaceshipsSlice.reducer;
 
 
 
+
+
+
+
+
+
+
+
+
+
 //   console.log('dispatched to fetch spaceships slice')
 //   return function (dispatch) {
 //     dispatch({ type: "spaceships/spaceshipsLoading" });
@@ -218,7 +331,7 @@ export default spaceshipsSlice.reducer;
 // }
 
 // const initialState = {
-//   entities: [], //array of spaceships
+//   spaceships: [], //array of spaceships
 //   status: "idle", //loading status for fetch
 // };
 
@@ -228,7 +341,7 @@ export default spaceshipsSlice.reducer;
 //       return {
 //         ...state,
 //         status: "idle",
-//         entities: action.payload,
+//         spaceships: action.payload,
 //       };
 //     case "spaceships/spaceshipsLoading":
 //       return {
@@ -264,7 +377,7 @@ export default spaceshipsSlice.reducer;
 // }
 
 // const initialState = {
-//   entities: [], //array of spaceships
+//   spaceships: [], //array of spaceships
 //   status: "idle", //loading status for fetch
 // };
 
@@ -274,7 +387,7 @@ export default spaceshipsSlice.reducer;
 //       return {
 //         ...state,
 //         status: "idle",
-//         entities: action.payload,
+//         spaceships: action.payload,
 //       };
 //     case "spaceships/spaceshipsLoading":
 //       return {

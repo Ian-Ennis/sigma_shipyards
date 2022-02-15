@@ -8,13 +8,15 @@ import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
 
 function MissionSelect() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const storeState = useSelector((state) => state); /*** here we access redux state ***/
+  const dispatch = useDispatch(); /*** useDispatch() saved to a variable ***/
+  const storeState = useSelector((state) => state); /*** redux state is made accessible ***/
 
   function getSystems(e) {
     e.preventDefault();
-    dispatch(fetchSystems()); /*** here we "dispatch" an "action", fetchSystems(), to a reducer function that we imported above ***/
+    dispatch(fetchSystems()); /*** 1. Here, an "action", fetchSystems(), is "dispatched" to a reducer function ***/
   }
+
+  console.log(storeState)
 
   const eachSystem = [];
 
