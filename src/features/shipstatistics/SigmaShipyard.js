@@ -45,21 +45,23 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
   const storeState = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const spaceship_name = chosenShip.spaceship_name;
-  const credits = storeState.actions.balance;
-  const range = storeState.actions.distance;
-  const nuclearCount = storeState.actions.nuclearCount;
-  const fusionCount = storeState.actions.fusionCount;
-  const antimatterCount = storeState.actions.antimatterCount;
-  const strength = storeState.actions.hull;
-  const carbonCount = storeState.actions.carbonCount;
-  const grapheneCount = storeState.actions.grapheneCount;
-  const neutrinoCount = storeState.actions.neutrinoCount;
+  console.log(storeState)
 
-  const shipName = chosenShip.spaceship_name;
-  const shipCredits = chosenShip.credits;
-  const shipRange = chosenShip.range;
-  const shipShields = chosenShip.strength;
+  const spaceship_name = storeState.spaceships.chosenShip.spaceship_name;
+  const credits = storeState.spaceships.chosenShip.balance;
+  const range = storeState.spaceships.chosenShip.distance;
+  const nuclearCount = storeState.spaceships.chosenShip.nuclearCount;
+  const fusionCount = storeState.spaceships.chosenShip.fusionCount;
+  const antimatterCount = storeState.spaceships.chosenShip.antimatterCount;
+  const strength = storeState.spaceships.chosenShip.hull;
+  const carbonCount = storeState.spaceships.chosenShip.carbonCount;
+  const grapheneCount = storeState.spaceships.chosenShip.grapheneCount;
+  const neutrinoCount = storeState.spaceships.chosenShip.neutrinoCount;
+
+  const shipName = storeState.spaceships.chosenShip.spaceship_name;
+  const shipCredits = storeState.spaceships.chosenShip.credits;
+  const shipRange = storeState.spaceships.chosenShip.range;
+  const shipShields = storeState.spaceships.chosenShip.strength;
 
   let sysImg = "";
   if (selectedSystem.name === "Proxima Centauri") {
@@ -388,9 +390,9 @@ function SigmaShipyard({ selectedSystem, chosenShip, setChosenShip }) {
                 <h3>
                   <em>{shipName}</em>
                 </h3>
-                <p>Range: {range} light years</p>
-                <p>Shields: {strength}%</p>
-                <p>Credits: {credits}</p>
+                <p>Range: {shipRange} light years</p>
+                <p>Shields: {shipShields}%</p>
+                <p>Credits: {shipCredits}</p>
                 <div id="luminous_ship"></div>
               </div>
               <div id="destination">

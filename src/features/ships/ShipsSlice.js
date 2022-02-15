@@ -18,6 +18,7 @@ export const fetchSpaceships = createAsyncThunk("spaceships/fetchSpaceships", as
 
 const initialState = {
   entities: {},
+  chosenShip: {},
   status: 'idle'
 }
 
@@ -26,15 +27,17 @@ const spaceshipsSlice = createSlice({
   initialState,
   // reducers obect with more functions (action creators are automatically generated and correspond to each, with the use of createSlice() (RTK))
   reducers: {
-    addSpaceship(state, action) {
-      // mutated state, permitted with RTK (rather than using the spread operator)
-      const spaceship = action.payload
-      state.entities[spaceship.id] = spaceship
+    chooseShip: (state, action) => {
+      state.chosenShip = action.payload
     },
-    deleteSpaceship(state, action) {
-      delete state.entities[action.payload]
-    }
-
+    // addSpaceship(state, action) {
+      // mutated state, permitted with RTK (rather than using the spread operator)
+      // const spaceship = action.payload
+      // state.entities[spaceship.id] = spaceship
+    // },
+    // deleteSpaceship(state, action) {
+    //   delete state.entities[action.payload]
+    // }
   },
   extraReducers: {
     [fetchSpaceships.pending](state) {
@@ -51,7 +54,7 @@ const spaceshipsSlice = createSlice({
 });
 
 // here we export each action creator to make it accessible to useDispatch() in ANY component
-export const { addSpaceship, deleteSpaceship } = spaceshipsSlice.actions;
+export const { chooseShip } = spaceshipsSlice.actions;
 
 // here we export the entire reducer function
 export default spaceshipsSlice.reducer;

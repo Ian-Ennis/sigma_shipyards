@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpaceships } from "./ShipsSlice";
+import { fetchSpaceships, chooseShip } from "./ShipsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -12,14 +12,21 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
   const dispatch = useDispatch();
   const storeState = useSelector((state) => state); /* redux state*/
 
+  const systemName = storeState.systems.chosenSystem.name
+  const systemDistance = storeState.systems.chosenSystem.distance
+  const system_complexity = storeState.systems.chosenSystem.mission_complexity
+  const system_habitability = storeState.systems.chosenSystem.habitibility_chance
+
+  console.log(storeState)
+  
   function getShips() {
     dispatch(fetchSpaceships())
   }
 
   function selectShip(e, ship) {
     e.preventDefault();
-    console.log(ship);
-    setChosenShip(ship);
+    dispatch(chooseShip(ship));
+    console.log(storeState)
     navigate("/sigma_shipyard");
   }
 
@@ -68,10 +75,11 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
     });
   }
 
+  // console.log(storeState.systems.chosenSystem.name)
   let sysImg = "";
-  if (selectedSystem.name === "Proxima Centauri") {
+  if (storeState.systems.chosenSystem.name === "Proxima Centauri") {
     sysImg = proxima_centauri;
-  } else if (selectedSystem.name === "Tau Ceti") {
+  } else if (storeState.systems.chosenSystem.name === "Tau Ceti") {
     sysImg = tau_ceti;
   } else {
     sysImg = upsilon_andromedae;
@@ -92,19 +100,19 @@ function ShipsOverview({ selectedSystem, setSelectedSystem, setChosenShip }) {
           <p>
             System:{" "}
             <b>
-              <em>{selectedSystem.name}</em>
+              <em>{systemName}</em>
             </b>
           </p>
           <img id="system_misson_img" src={sysImg} alt="selected_system" />
           <p>
-            Distance: <b>{selectedSystem.distance} light years</b>
+            Distance: <b>{systemDistance} light years</b>
           </p>
           <p>
-            Mission complexity: <b>{selectedSystem.mission_complexity}</b>
+            Mission complexity: <b>{system_complexity}</b>
           </p>
           <p>
             Chance of finding habitable planet:{" "}
-            <b>{selectedSystem.habitibility_chance}%</b>
+            <b>{system_habitability}%</b>
           </p>
         </div>
         <div className="all_options">

@@ -2,47 +2,56 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSystems } from "./SystemsSlice";
+import { fetchSystems, chooseSystem } from "./SystemsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
+import { store } from "../../app/store";
 
-function MissionSelect({ setSelectedSystem }) {
-
+function MissionSelect() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const storeState = useSelector((state) => state); /* redux state*/
 
-  console.log('here')
-  // dispatch(fetchSystems)
-
-  console.log(storeState)
-
-  function selectProxima(e, system) {
+  function getSystems(e) {
     e.preventDefault();
-    setSelectedSystem(system);
-    navigate("/ships_overview");
+    dispatch(fetchSystems());
   }
 
-  function selectTau(e, system) {
-    e.preventDefault();
-    setSelectedSystem(system);
-    navigate("/ships_overview");
+  const eachSystem = [];
+
+  if (storeState.systems.entities.length) {
+    storeState.systems.entities.forEach(system => {
+      eachSystem.push(system)
+    })
   }
 
-  function selectUpsilon(e, system) {
+  function selectSystem(e, system) {
     e.preventDefault();
-    setSelectedSystem(system);
-    navigate("/ships_overview");
+    dispatch(chooseSystem(system))
+    navigate("/ships_overview")
   }
+
+  // function selectTau(e, system) {
+  //   e.preventDefault();
+  //   dispatch(chooseTau(system))
+  //   navigate("/ships_overview")
+  // }
+
+  // function selectUpsilon(e, system) {
+  //   e.preventDefault();
+  //   dispatch(chooseUpsilon(system))
+  //   navigate("/ships_overview")
+  // }
 
   function goBack() {
     navigate("/main_menu");
   }
 
   return (
+    <>
+      {eachSystem.length ? (
         <div className="mission_div">
-          <p id="shuttle_systems">On the shuttle, a display of missions corresponding to different star systems presents itself..</p>
           <h2 id="mission_select">
             【﻿ｃｈｏｏｓｅ　ｙｏｕｒ　ｄｅｓｔｉｎａｔｉｏｎ】
           </h2>
@@ -51,7 +60,7 @@ function MissionSelect({ setSelectedSystem }) {
               <p>
                 System:{" "}
                 <b>
-                  <em>{storeState.systems.entities[0]}</em>
+                  <em>{eachSystem[0].name}</em>
                 </b>
               </p>
               <img
@@ -60,47 +69,41 @@ function MissionSelect({ setSelectedSystem }) {
                 alt="proxima_centauri"
               />
               <p>
-                {/* Distance: <b>{triSystems[0].distance} light years</b> */}
+                Distance: <b>{eachSystem[0].distance} light years</b>
               </p>
               <p>
-                {/* Mission complexity: <b>{triSystems[0].mission_complexity}</b> */}
+                Mission complexity: <b>{eachSystem[0].mission_complexity}</b>
               </p>
               <p>
                 Chance of finding habitable planet:{" "}
-                {/* <b>{triSystems[0].habitibility_chance}%</b> */}
+                <b>{eachSystem[0].habitibility_chance}%</b>
               </p>
-              <button onClick={(e) => selectProxima(e/*, triSystems[0]*/)}>
+              <button onClick={(e) => selectSystem(e, eachSystem[0])}>
                 <span>Choose system</span>
               </button>
             </div>
             <div id="tau">
               <p>
-                System:{" "}
-                <b>
-                  {/* <em>{triSystems[1].name}</em> */}
-                </b>
+                System: <b><em>{eachSystem[1].name}</em></b>
               </p>
               <img className="img_tau_ceti" src={tau_ceti} alt="tau_ceti" />
               <p>
-                {/* Distance: <b>{triSystems[1].distance} light years</b> */}
+                Distance: <b>{eachSystem[1].distance} light years</b>
               </p>
               <p>
-                {/* Mission complexity: <b>{triSystems[1].mission_complexity}</b> */}
+                Mission complexity: <b>{eachSystem[1].mission_complexity}</b>
               </p>
               <p>
                 Chance of finding habitable planet:{" "}
-                {/* <b>{triSystems[1].habitibility_chance}%</b> */}
+                <b>{eachSystem[1].habitibility_chance}%</b>
               </p>
-              <button onClick={(e) => selectTau(e/*, triSystems[1]*/)}>
+              <button onClick={(e) => selectSystem(e, eachSystem[1])}>
                 <span>Choose system</span>
               </button>
             </div>
             <div id="upsilon">
               <p>
-                System:{" "}
-                <b>
-                  {/* <em>{triSystems[2].name}</em> */}
-                </b>
+                System: <b><em>{eachSystem[2].name}</em></b>
               </p>
               <img
                 className="img_upsilon"
@@ -108,24 +111,32 @@ function MissionSelect({ setSelectedSystem }) {
                 alt="upsilon_andromedae"
               />
               <p>
-                {/* Distance: <b>{triSystems[2].distance} light years</b> */}
+                Distance: <b>{eachSystem[2].distance} light years</b>
               </p>
               <p>
-                {/* Mission complexity: <b>{triSystems[2].mission_complexity}</b> */}
+                Mission complexity: <b>{eachSystem[2].mission_complexity}</b>
               </p>
               <p>
                 Chance of finding habitable planet:{" "}
-                {/* <b>{triSystems[2].habitibility_chance}%</b> */}
+                <b>{eachSystem[2].habitibility_chance}%</b>
               </p>
-              <button onClick={(e) => selectUpsilon(e/*, triSystems[2]*/)}>
+              <button onClick={(e) => selectSystem(e, eachSystem[2])}>
                 <span>Choose system</span>
               </button>
             </div>
           </div>
-          <button onClick={goBack}>
-            Go back
-          </button>
+          <button onClick={goBack}>Go back</button>
         </div>
+      ) : (
+        <div className="mission_div">
+          <p id="shuttle_systems">
+            On the shuttle, a display of missions corresponding to different
+            star systems presents itself..
+          </p>
+          <button onClick={getSystems}>View star systems</button>
+        </div>
+      )}
+    </>
   );
 }
 

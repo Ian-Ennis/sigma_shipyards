@@ -12,20 +12,30 @@ export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () =>
     },
   })
   .then((res) => res.json())
-  .then(data => console.log(data))
 
   return response
 })
 
 const initialState = {
   entities: {},
+  chosenSystem: {},
   status: 'idle'
 }
 
 const systemsSlice = createSlice({
   name: "systems",
   initialState,
-  reducers: {},
+  reducers: {
+    chooseSystem: (state, action) => {
+        state.chosenSystem = action.payload
+    },
+    // chooseTau: (state, action) => {
+    //     state.chosenSystem = action.payload
+    // },
+    // chooseUpsilon: (state, action) => {
+    //     state.chosenSystem = action.payload
+    // }
+  },
   extraReducers: {
     [fetchSystems.pending](state) {
       state.status = "loading";
@@ -39,5 +49,7 @@ const systemsSlice = createSlice({
     }
   },
 });
+
+export const { chooseSystem } = systemsSlice.actions
 
 export default systemsSlice.reducer;
