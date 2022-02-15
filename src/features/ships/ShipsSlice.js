@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { setUseProxies } from "immer";
 import { useSelector } from "react-redux";
 
 
@@ -96,6 +97,22 @@ export const saveSpaceship = createAsyncThunk(
       .then((res) => res.json())
       return response
   }); 
+
+export const deleteSpaceship = createAsyncThunk(
+  'ships/deleteShip',
+  async (selectedShip) => {
+    console.log('in deleteSpaceship')
+    console.log(selectedShip)
+
+    const response = await fetch(`http://localhost:3000/spaceships/${selectedShip.id}`, {
+    method: "DELETE",
+    headers: {
+      Accepts: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+    },
+  })
+})
 
 const initialState = {
   spaceships: {},
@@ -214,11 +231,11 @@ const spaceshipsSlice = createSlice({
       state.chosenShip.grapheneCount = 0;
       state.chosenShip.neutrinoCount = 0;
     },
-    // addSpaceship(state, action) {
+    addSpaceship(state, action) {
     // mutated state, permitted with RTK (rather than using the spread operator)
-    // const spaceship = action.payload
-    // state.spaceships[spaceship.id] = spaceship
-    // },
+    const spaceship = action.payload
+    state.spaceships[spaceship.id] = spaceship
+    },
     // deleteSpaceship(state, action) {
     //   delete state.spaceships[action.payload]
     // }

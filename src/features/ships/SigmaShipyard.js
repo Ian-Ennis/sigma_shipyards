@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { saveSpaceship } from "./ShipsSlice"
 import { useDispatch, useSelector } from "react-redux";
+import { saveSpaceship, deleteSpaceship } from "./ShipsSlice"
 import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} from "./ShipsSlice"
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
@@ -160,20 +160,9 @@ function SigmaShipyard() {
     dispatch(saveSpaceship(selectedShip))
   }
 
-  function scrapShip() {
-    // console.log(chosenShip);
-
-    // window.confirm(`Delete ${chosenShip.spaceship_name} from database?`);
-    // if (window.confirm) {
-    //   fetch(`http://localhost:3000/spaceships/${chosenShip.id}`, {
-    //     method: "DELETE",
-    //   }).then((res) => {
-    //     if (res.ok) {
-    //       console.log(res);
-    //     }
-    //   });
-    //   navigate("/ships_overview");
-    // }
+  function scrapShip(e) {
+    e.preventDefault();
+    dispatch(deleteSpaceship(selectedShip))
   }
 
   function goBack() {
