@@ -12,27 +12,20 @@ function Login({ setTriSystems }) {
   useEffect(() => {
     const token = localStorage.getItem("token")
     if(token){
-      fetch(`http://localhost:3000/auto_login`, {
+      fetch(`https://sigma-shipyards-backend.herokuapp.com/auto_login`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
       .then(resp => resp.json())
       .then(data => {
-        // console.log(data)
+        console.log(data)
       })
     }
   }, [])
 
   function login(e) {
     e.preventDefault();
-
-    function jwtReceived() {
-      if (localStorage.getItem("token")) {
-        console.log(localStorage.getItem("token"));
-        // navigate("/main_menu");
-      } else console.log("token does not exist");
-    }
 
     const loginData = {
       user: { username: username, password: password },
@@ -49,8 +42,6 @@ function Login({ setTriSystems }) {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("token", data.jwt)
-        // console.log(data)
-        // jwtReceived();
         navigate("/main_menu")
       })
     setUsername("");
@@ -71,8 +62,7 @@ function Login({ setTriSystems }) {
     })
     .then((res) => res.json())
     .then((data) => {
-      // localStorage.setItem("token", data.include[0].jwt)
-      // console.log(data)
+      localStorage.setItem("token", data.include[0].jwt)
       // setProfileExists(true);
       navigate("/main_menu")
     });
