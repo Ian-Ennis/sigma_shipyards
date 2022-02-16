@@ -4,12 +4,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () => { /*async functions usually return promises*/
   console.log('in systems fetch')
   
-  const response = await fetch(`http://localhost:3000/star_systems`, {
+  const response = await fetch(`https://sigma-shipyards-backend.herokuapp.com/star_systems`, {
     method: "GET",
     headers: {
       Accepts: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      // Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   })
   .then((res) => res.json())
