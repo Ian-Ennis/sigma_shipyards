@@ -9,43 +9,46 @@ function Login({ setTriSystems }) {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token")
-    if(token){
-      fetch(`https://sigma-shipyards-backend.herokuapp.com/auto_login`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then(resp => resp.json())
-      .then(data => {
-        console.log(data)
-      })
-    }
-  }, [])
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token")
+  //   if(token){
+  //     fetch(`https://sigma-shipyards-backend.herokuapp.com/auto_login`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     })
+  //     .then(resp => resp.json())
+  //     .then(data => {
+  //       console.log(data)
+  //     })
+  //   }
+  // }, [])
 
   function login(e) {
     e.preventDefault();
 
-    const loginData = {
-      user: { username: username, password: password },
-    };
+    navigate("/main_menu")
 
-    fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
-      method: "POST",
-      headers: {
-        accepts: "application/json",
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("token", data.jwt)
-        navigate("/main_menu")
-      })
-    setUsername("");
-    setPassword("");
+
+    // const loginData = {
+    //   user: { username: username, password: password },
+    // };
+
+    // fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
+    //   method: "POST",
+    //   headers: {
+    //     accepts: "application/json",
+    //     "Content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(loginData),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     localStorage.setItem("token", data.jwt)
+    //     navigate("/main_menu")
+    //   })
+    // setUsername("");
+    // setPassword("");
   }
 
   function createProfile(e) {
