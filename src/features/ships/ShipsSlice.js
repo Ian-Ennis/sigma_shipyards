@@ -57,6 +57,39 @@ export const fetchShields = createAsyncThunk(
   }
 );
 
+export const newShip = createAsyncThunk(
+  "ships/saveShip",
+  async (ship) => {
+    console.log('in newShip')
+    console.log(ship)
+
+    const spaceship_name = ship
+    const response = await fetch(`http://localhost:3000/spaceships/`, {
+      method: "POST",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+      body: JSON.stringify({
+        spaceship_name,
+      }),
+    }).then(() => {
+        fetch(`http://localhost:3000/spaceships`, {
+          method: "GET",
+          headers: {
+            Accepts: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+          .then((res) => res.json())
+          .then(data => {
+            return response
+          })
+  })
+})
+
 export const saveSpaceship = createAsyncThunk(
   "ships/saveShip",
   async (selectedShip) => {
