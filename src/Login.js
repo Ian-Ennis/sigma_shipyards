@@ -38,7 +38,7 @@ function Login({ setTriSystems }) {
       user: { username: username, password: password },
     };
 
-    fetch(`http://localhost:3000/login`, {
+    fetch(`https://sigma-shipyards-backend.herokuapp.com/users`, {
       method: "POST",
       headers: {
         accepts: "application/json",
@@ -61,7 +61,7 @@ function Login({ setTriSystems }) {
     e.preventDefault();
     console.log('a')
 
-    fetch(`http://localhost:3000/users`, {
+    fetch(`https://sigma-shipyards-backend.herokuapp.com/users`, {
       method: "POST",
       headers: {
         Accepts: "application/json",
