@@ -2,37 +2,30 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login({ setTriSystems }) {
+function Login() {
   const [profileExists, setProfileExists] = useState(true);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token")
-    if(token){
-      fetch(`http://localhost:3000/auto_login`, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-      .then(resp => resp.json())
-      .then(data => {
-        // console.log(data)
-      })
-    }
-  }, [])
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token")
+  //   if(token){
+  //     fetch(`http://localhost:3000/auto_login`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`
+  //       }
+  //     })
+  //     .then(resp => resp.json())
+  //     .then(data => {
+  //       console.log(data)
+  //     })
+  //   }
+  // }, [])
 
   function login(e) {
     e.preventDefault();
-
-    function jwtReceived() {
-      if (localStorage.getItem("token")) {
-        console.log(localStorage.getItem("token"));
-        // navigate("/main_menu");
-      } else console.log("token does not exist");
-    }
 
     const loginData = {
       user: { username: username, password: password },
@@ -48,9 +41,8 @@ function Login({ setTriSystems }) {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         localStorage.setItem("token", data.jwt)
-        // console.log(data)
-        // jwtReceived();
         navigate("/main_menu")
       })
     setUsername("");
@@ -71,9 +63,8 @@ function Login({ setTriSystems }) {
     })
     .then((res) => res.json())
     .then((data) => {
-      // localStorage.setItem("token", data.include[0].jwt)
-      // console.log(data)
-      // setProfileExists(true);
+      console.log(data)
+      localStorage.setItem("token", data.include[0].jwt)
       navigate("/main_menu")
     });
     setUsername("")

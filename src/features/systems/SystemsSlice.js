@@ -24,7 +24,7 @@ const initialState = {
 }
 
 const systemsSlice = createSlice({
-  name: "systems", /* <name> is used as a prefix for generated action types */
+  name: "systems",
   initialState,
   reducers: {
     chooseSystem: (state, action) => {
