@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login({ setTriSystems }) {
+function Login() {
   const [profileExists, setProfileExists] = useState(true);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -27,28 +27,26 @@ function Login({ setTriSystems }) {
   function login(e) {
     e.preventDefault();
 
-    navigate("main_menu")
+    const loginData = {
+      user: { username: username, password: password },
+    };
 
-    // const loginData = {
-    //   user: { username: username, password: password },
-    // };
-
-    // fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
-    //   method: "POST",
-    //   headers: {
-    //     accepts: "application/json",
-    //     "Content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(loginData),
-    // })
-    // .then((res) => {
-    //   return res.text()
-    // })
-    //   .then((resText) => {
-    //     console.log("RT:", resText)
-    //     })
-    // setUsername("");
-    // setPassword("");
+    fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
+      method: "POST",
+      headers: {
+        accepts: "application/json",
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        localStorage.setItem("token", data.jwt)
+        navigate("/main_menu")
+      })
+    setUsername("");
+    setPassword("");
   }
 
   function createProfile(e) {
@@ -67,8 +65,7 @@ function Login({ setTriSystems }) {
     .then((data) => {
       console.log(data)
       localStorage.setItem("token", data.include[0].jwt)
-      // setProfileExists(true);
-      // navigate("/main_menu")
+      navigate("/main_menu")
     });
     setUsername("")
     setPassword("")

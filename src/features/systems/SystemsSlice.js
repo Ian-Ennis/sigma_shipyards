@@ -9,7 +9,7 @@ export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () =>
     headers: {
       Accepts: "application/json",
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   })
   .then((res) => res.json())
@@ -24,7 +24,7 @@ const initialState = {
 }
 
 const systemsSlice = createSlice({
-  name: "systems", /* <name> is used as a prefix for generated action types */
+  name: "systems",
   initialState,
   reducers: {
     chooseSystem: (state, action) => {

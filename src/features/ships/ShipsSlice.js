@@ -159,7 +159,7 @@ const spaceshipsSlice = createSlice({
   initialState,
   reducers: {
     chooseShip: (state, action) => {  
-      console.log(action)     /*  <-- Reducer obect with functions. createSlice() (Redux Toolkit) allows        */   
+      console.log(action)                  /*  <-- Reducer obect with functions. createSlice() (Redux Toolkit) allows        */   
       state.chosenShip = action.payload;   /*  us to write logic to change state within these functions, rather than using   */
     },                                     /*  a switch/case statement. Action creators are automatically generated and correspond to each. */
     buyNuclear: (state) => {               /* // code can be written in a way that seems to mutate state directly (Immer,    */
@@ -261,14 +261,6 @@ const spaceshipsSlice = createSlice({
       state.chosenShip.grapheneCount = 0;
       state.chosenShip.neutrinoCount = 0;
     },
-    addSpaceship(state, action) {
-    // mutated state, permitted with RTK (rather than using the spread operator)
-    const spaceship = action.payload
-    state.spaceships[spaceship.id] = spaceship
-    },
-    // deleteSpaceship(state, action) {
-    //   delete state.spaceships[action.payload]
-    // }
   },
   extraReducers: {
     [fetchSpaceships.pending](state) {
