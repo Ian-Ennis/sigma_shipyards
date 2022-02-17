@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpaceships, fetchPropulsion, fetchShields, chooseShip } from "./ShipsSlice";
+import { fetchSpaceships, fetchPropulsion, fetchShields, chooseShip, newShip } from "./ShipsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -30,36 +30,9 @@ function ShipsOverview() {
   }
 
   function createShip(e) {
-    // e.preventDefault();
-
-    // const spaceship_name = e.target.ship_name.value;
-
-    // fetch(`http://localhost:3000/spaceships`, {
-    //   method: "POST",
-    //   headers: {
-    //     Accepts: "application/json",
-    //     "Content-Type": "application/json",
-    //     Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    //   },
-    //   body: JSON.stringify({
-    //     spaceship_name,
-    //   }),
-    // }).then(() => {
-    //   fetch(`http://localhost:3000/spaceships`, {
-    //     method: "GET",
-    //     headers: {
-    //       Accepts: "application/json",
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-    //     },
-    //   })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       console.log(data);
-    //       setChosenShip(data[data.length - 1]);
-    //       setAllShips(data);
-    //     });
-    // });
+    e.preventDefault();
+    const ship = e.target.ship_name.value
+    dispatch(newShip(ship))
   }
 
   function goBack() {

@@ -1,6 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { setUseProxies } from "immer";
-import { useSelector } from "react-redux";
 
 
 export const fetchSpaceships = createAsyncThunk(
@@ -56,6 +54,39 @@ export const fetchShields = createAsyncThunk(
     return response;
   }
 );
+
+export const newShip = createAsyncThunk(
+  "ships/saveShip",
+  async (ship) => {
+    console.log('in newShip')
+    console.log(ship)
+
+    const spaceship_name = ship
+    const response = await fetch(`http://localhost:3000/spaceships/`, {
+      method: "POST",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+      body: JSON.stringify({
+        spaceship_name,
+      }),
+    }).then(() => {
+        fetch(`http://localhost:3000/spaceships`, {
+          method: "GET",
+          headers: {
+            Accepts: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+          .then((res) => res.json())
+          .then(data => {
+            return response
+          })
+  })
+})
 
 export const saveSpaceship = createAsyncThunk(
   "ships/saveShip",
@@ -168,9 +199,6 @@ const spaceshipsSlice = createSlice({
     sellNeutrino: (state) => {
       state.chosenShip.credits += 300000;
     },
-    resetCredits: (state) => {
-      state.chosenShip.credits = 1000000;
-    },
     installNuclear: (state) => {
       state.chosenShip.range += 3;
       state.chosenShip.nuclearCount += 1;
@@ -194,12 +222,6 @@ const spaceshipsSlice = createSlice({
     removeAntimatter: (state) => {
       state.chosenShip.range -= 10;
       state.chosenShip.antimatterCount -= 1;
-    },
-    resetRange: (state) => {
-      state.chosenShip.range = 0;
-      state.chosenShip.nuclearCount = 0;
-      state.chosenShip.fusionCount = 0;
-      state.chosenShip.antimatterCount = 0;
     },
     installCarbon: (state) => {
       state.chosenShip.strength += 5;
@@ -225,20 +247,6 @@ const spaceshipsSlice = createSlice({
       state.chosenShip.strength -= 50;
       state.chosenShip.neutrinoCount -= 1;
     },
-    resetStrength: (state) => {
-      state.chosenShip.strength = 0;
-      state.chosenShip.carbonCount = 0;
-      state.chosenShip.grapheneCount = 0;
-      state.chosenShip.neutrinoCount = 0;
-    },
-    addSpaceship(state, action) {
-    // mutated state, permitted with RTK (rather than using the spread operator)
-    const spaceship = action.payload
-    state.spaceships[spaceship.id] = spaceship
-    },
-    // deleteSpaceship(state, action) {
-    //   delete state.spaceships[action.payload]
-    // }
   },
   extraReducers: {
     [fetchSpaceships.pending](state) {
@@ -275,7 +283,7 @@ const spaceshipsSlice = createSlice({
 });
 
 // here we export each action creator to make it accessible to useDispatch() in ANY component
-export const { chooseShip, buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength } = spaceshipsSlice.actions;
+export const { chooseShip, buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino } = spaceshipsSlice.actions;
 
 // here we export the entire reducer function
 export default spaceshipsSlice.reducer;
