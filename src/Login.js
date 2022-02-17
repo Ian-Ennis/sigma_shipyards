@@ -39,15 +39,12 @@ function Login({ setTriSystems }) {
       },
       body: JSON.stringify(loginData),
     })
-      .then((res) => {
-        console.log(res.text())
-        res.json()
-      })
-      .then((data) => {
-        console.log(data)
-        localStorage.setItem("token", data.jwt)
-        // navigate("/main_menu")
-      })
+    .then((res) => {
+      return res.text()
+    })
+      .then((resText) => {
+        console.log("RT:", resText)
+        })
     setUsername("");
     setPassword("");
   }
