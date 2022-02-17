@@ -31,7 +31,7 @@ function Login() {
       user: { username: username, password: password },
     };
 
-    fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
+    fetch(`http://localhost:3000/login`, {
       method: "POST",
       headers: {
         accepts: "application/json",
@@ -53,7 +53,7 @@ function Login() {
     e.preventDefault();
     console.log('a')
 
-    fetch(`https://sigma-shipyards-backend.herokuapp.com/users`, {
+    fetch(`http://localhost:3000/users`, {
       method: "POST",
       headers: {
         Accepts: "application/json",
