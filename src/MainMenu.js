@@ -29,7 +29,7 @@ function MainMenu() {
         ticket to board. Few people have been given this opportunity. Will you
         be the one to help save humanity?
       </p>
-      <p className="intro_story">Do you even have a choice...?</p>{" "}
+      <p className="intro_story">You start to wonder what choice you really have..</p>{" "}
       <button onClick={goToShipsMenu}>
         <span>Board shuttle to orbital shipyard</span>
       </button>

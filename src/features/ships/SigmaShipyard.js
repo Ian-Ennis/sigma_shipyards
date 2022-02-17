@@ -161,7 +161,6 @@ function SigmaShipyard() {
     dispatch(fetchSpaceships())
     dispatch(fetchPropulsion())
     dispatch(fetchShields())
-
   }
 
   function scrapShip(e) {

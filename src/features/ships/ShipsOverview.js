@@ -94,9 +94,9 @@ function ShipsOverview() {
             <h3>View current ships..</h3>
             {eachShip.length
               ? eachShip.map((ship) => (
-                  <div key={ship.id}>
-                    <p>{ship.spaceship_name}</p>
-                    <button onClick={(e) => selectShip(e, ship)}>
+                  <div className="current_ships" key={ship.id}>
+                    <p className="current_ships_name"><b><em>{ship.spaceship_name}</em></b></p>
+                    <button className="current_ships_button" onClick={(e) => selectShip(e, ship)}>
                       <span>Select ship</span>
                     </button>
                   </div>

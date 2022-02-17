@@ -251,6 +251,21 @@ button .button_zoom {
   gap: 10px 0px;
 }
 
+.current_ships {
+  border: 2px solid #04dcff;
+  padding: 7px;
+}
+
+.current_ships_name {
+  margin: 2px auto;
+  margin-bottom: 5px;
+}
+
+.current_ships_button {
+  margin: 0 auto;
+  margin: 2px auto;
+}
+
 #add_new_ship {
   display: flex;
   flex-direction: column;
