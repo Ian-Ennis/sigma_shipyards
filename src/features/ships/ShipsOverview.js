@@ -33,6 +33,9 @@ function ShipsOverview() {
     e.preventDefault();
     const ship = e.target.ship_name.value
     dispatch(newShip(ship))
+    dispatch(fetchSpaceships())
+    dispatch(fetchPropulsion())
+    dispatch(fetchShields())
   }
 
   function goBack() {

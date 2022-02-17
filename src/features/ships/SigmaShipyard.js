@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { saveSpaceship, deleteSpaceship } from "./ShipsSlice"
+import { saveSpaceship, deleteSpaceship, fetchSpaceships, fetchPropulsion, fetchShields, } from "./ShipsSlice"
 import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} from "./ShipsSlice"
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
@@ -158,11 +158,18 @@ function SigmaShipyard() {
   function saveShip(e) {
     e.preventDefault();
     dispatch(saveSpaceship(selectedShip))
+    dispatch(fetchSpaceships())
+    dispatch(fetchPropulsion())
+    dispatch(fetchShields())
+
   }
 
   function scrapShip(e) {
     e.preventDefault();
     dispatch(deleteSpaceship(selectedShip))
+    dispatch(fetchSpaceships())
+    dispatch(fetchPropulsion())
+    dispatch(fetchShields())
   }
 
   function goBack() {
@@ -287,7 +294,7 @@ function SigmaShipyard() {
                   <p>
                     Mission complexity: {storeState.systems.chosenSystem.mission_complexity};
                   </p>
-                  <p>60% shields needed</p>
+                  <p>100% shields needed</p>
                 </div>
                 <div id="system_div">
                   <img

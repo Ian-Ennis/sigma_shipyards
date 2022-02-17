@@ -3,8 +3,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const fetchSpaceships = createAsyncThunk(
   "spaceships/fetchSpaceships",
   async () => {
-    console.log("in fetch spaceships");
-
     const response = await fetch(`http://localhost:3000/spaceships`, {
       method: "GET",
       headers: {
@@ -21,8 +19,6 @@ export const fetchSpaceships = createAsyncThunk(
 export const fetchPropulsion = createAsyncThunk(
   "propulsion/fetchPropulsion",
   async () => {
-    console.log("in fetch propulsion");
-
     const response = await fetch(`http://localhost:3000/engine_parts`, {
       method: "GET",
       headers: {
@@ -39,8 +35,6 @@ export const fetchPropulsion = createAsyncThunk(
 export const fetchShields = createAsyncThunk(
   "shields/fetchShields",
   async () => {
-    console.log("in fetch shields");
-
     const response = await fetch(`http://localhost:3000/hull_parts`, {
       method: "GET",
       headers: {
@@ -54,95 +48,96 @@ export const fetchShields = createAsyncThunk(
   }
 );
 
-export const newShip = createAsyncThunk(
-  "ships/saveShip",
-  async (ship) => {
-    console.log('in newShip')
-    console.log(ship)
+export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
 
-    const spaceship_name = ship
-    const response = await fetch(`http://localhost:3000/spaceships/`, {
-      method: "POST",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-      body: JSON.stringify({
-        spaceship_name,
-      }),
-    }).then(() => {
-        fetch(`http://localhost:3000/spaceships`, {
-          method: "GET",
-          headers: {
-            Accepts: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        })
-          .then((res) => res.json())
-          .then(data => {
-            return response
-          })
-  })
-})
-
-export const saveSpaceship = createAsyncThunk(
-  "ships/saveShip",
-  async (selectedShip) => {
-    console.log('in saveSpaceship')
-    console.log(selectedShip)
-
-    const spaceship_name = selectedShip.spaceship_name
-    const credits = selectedShip.credits
-    const range = selectedShip.range
-    const strength = selectedShip.strength
-    const nuclearCount = selectedShip.nuclearCount
-    const fusionCount = selectedShip.fusionCount
-    const antimatterCount = selectedShip.antimatterCount
-    const carbonCount = selectedShip.carbonCount
-    const grapheneCount = selectedShip.grapheneCount
-    const neutrinoCount = selectedShip.neutrinoCount
-
-    const response = await fetch(`http://localhost:3000/spaceships/${selectedShip.id}`, {
-      method: "PATCH",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-      },
-      body: JSON.stringify({
-        spaceship_name,
-        credits,
-        range,
-        strength,
-        nuclearCount,
-        fusionCount, 
-        antimatterCount,
-        carbonCount,
-        grapheneCount,
-        neutrinoCount
-      }),
-    })
-      .then((res) => res.json())
-      return response
-  }); 
-
-export const deleteSpaceship = createAsyncThunk(
-  'ships/deleteShip',
-  async (selectedShip) => {
-    console.log('in deleteSpaceship')
-    console.log(selectedShip)
-
-    const response = await fetch(`http://localhost:3000/spaceships/${selectedShip.id}`, {
-    method: "DELETE",
+  const spaceship_name = ship;
+  const response = await fetch(`http://localhost:3000/spaceships/`, {
+    method: "POST",
     headers: {
       Accepts: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
-  })
-})
+    body: JSON.stringify({
+      spaceship_name,
+    }),
+  }).then(() => {
+    fetch(`http://localhost:3000/spaceships`, {
+      method: "GET",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
+    }).then((res) => res.json());
+    return response;
+  });
+});
+
+export const saveSpaceship = createAsyncThunk(
+  "ships/saveShip",
+  async (selectedShip) => {
+
+    const spaceship_name = selectedShip.spaceship_name;
+    const credits = selectedShip.credits;
+    const range = selectedShip.range;
+    const strength = selectedShip.strength;
+    const nuclearCount = selectedShip.nuclearCount;
+    const fusionCount = selectedShip.fusionCount;
+    const antimatterCount = selectedShip.antimatterCount;
+    const carbonCount = selectedShip.carbonCount;
+    const grapheneCount = selectedShip.grapheneCount;
+    const neutrinoCount = selectedShip.neutrinoCount;
+
+    const response = await fetch(
+      `http://localhost:3000/spaceships/${selectedShip.id}`,
+      {
+        method: "PATCH",
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+        body: JSON.stringify({
+          spaceship_name,
+          credits,
+          range,
+          strength,
+          nuclearCount,
+          fusionCount,
+          antimatterCount,
+          carbonCount,
+          grapheneCount,
+          neutrinoCount,
+        }),
+      }
+    ).then((res) => res.json())
+     .then(data => {
+      window.confirm(`${spaceship_name} saved!`)
+    })
+    return response;
+  }
+);
+
+export const deleteSpaceship = createAsyncThunk(
+  "ships/deleteShip",
+  async (selectedShip) => {
+    const response = await fetch(
+      `http://localhost:3000/spaceships/${selectedShip.id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      }).then((res) => res.json())
+        .then(data => {
+        window.confirm(`${selectedShip.spaceship_name} deleted!`)
+      })
+      return response;
+  }
+);
 
 const initialState = {
   spaceships: {},
@@ -151,19 +146,23 @@ const initialState = {
   shields: {},
   fetchShipStatus: "idle",
   fetchPropulsionStatus: "idle",
-  fetchShieldsStatus: "idle"
+  fetchShieldsStatus: "idle",
 };
 
 const spaceshipsSlice = createSlice({
-  name: "spaceships", /* <name> is used as a prefix for generated action types */
+  name: "spaceships" /* <name> is used as a prefix for generated action types */,
   initialState,
   reducers: {
-    chooseShip: (state, action) => {  
-      console.log(action)                  /*  <-- Reducer obect with functions. createSlice() (Redux Toolkit) allows        */   
-      state.chosenShip = action.payload;   /*  us to write logic to change state within these functions, rather than using   */
-    },                                     /*  a switch/case statement. Action creators are automatically generated and correspond to each. */
-    buyNuclear: (state) => {               /* // code can be written in a way that seems to mutate state directly (Immer,    */
-      state.chosenShip.credits -= 150000;  /* comes with createSlice(). Spread operators no longer neccessary)                    */
+    chooseShip: (state, action) => {
+      console.log(
+        action
+      ); /*  <-- Reducer obect with functions. createSlice() (Redux Toolkit) allows        */
+      state.chosenShip =
+        action.payload; /*  us to write logic to change state within these functions, rather than using   */
+    } /*  a switch/case statement. Action creators are automatically generated and correspond to each. */,
+    buyNuclear: (state) => {
+      /* // code can be written in a way that seems to mutate state directly (Immer,    */
+      state.chosenShip.credits -= 150000; /* comes with createSlice(). Spread operators no longer neccessary)                    */
     },
     sellNuclear: (state) => {
       state.chosenShip.credits += 150000;
@@ -282,7 +281,33 @@ const spaceshipsSlice = createSlice({
 });
 
 // here we export each action creator to make it accessible to useDispatch() in ANY component
-export const { chooseShip, buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino } = spaceshipsSlice.actions;
+export const {
+  chooseShip,
+  buyNuclear,
+  sellNuclear,
+  buyFusion,
+  sellFusion,
+  buyAntimatter,
+  sellAntimatter,
+  buyCarbon,
+  sellCarbon,
+  buyGraphene,
+  sellGraphene,
+  buyNeutrino,
+  sellNeutrino,
+  installNuclear,
+  removeNuclear,
+  installFusion,
+  removeFusion,
+  installAntimatter,
+  removeAntimatter,
+  installCarbon,
+  removeCarbon,
+  installGraphene,
+  removeGraphene,
+  installNeutrino,
+  removeNeutrino,
+} = spaceshipsSlice.actions;
 
 // here we export the entire reducer function
 export default spaceshipsSlice.reducer;

@@ -113,7 +113,7 @@ function Login() {
                 id="need_account"
                 onClick={hideLogin}
               ><span>
-                Register
+                New registration
                 </span>
               </button>
               <div id="logout">
