@@ -198,9 +198,6 @@ const spaceshipsSlice = createSlice({
     sellNeutrino: (state) => {
       state.chosenShip.credits += 300000;
     },
-    resetCredits: (state) => {
-      state.chosenShip.credits = 1000000;
-    },
     installNuclear: (state) => {
       state.chosenShip.range += 3;
       state.chosenShip.nuclearCount += 1;
@@ -225,12 +222,6 @@ const spaceshipsSlice = createSlice({
       state.chosenShip.range -= 10;
       state.chosenShip.antimatterCount -= 1;
     },
-    resetRange: (state) => {
-      state.chosenShip.range = 0;
-      state.chosenShip.nuclearCount = 0;
-      state.chosenShip.fusionCount = 0;
-      state.chosenShip.antimatterCount = 0;
-    },
     installCarbon: (state) => {
       state.chosenShip.strength += 5;
       state.chosenShip.carbonCount += 1;
@@ -254,12 +245,6 @@ const spaceshipsSlice = createSlice({
     removeNeutrino: (state) => {
       state.chosenShip.strength -= 50;
       state.chosenShip.neutrinoCount -= 1;
-    },
-    resetStrength: (state) => {
-      state.chosenShip.strength = 0;
-      state.chosenShip.carbonCount = 0;
-      state.chosenShip.grapheneCount = 0;
-      state.chosenShip.neutrinoCount = 0;
     },
   },
   extraReducers: {
@@ -297,7 +282,7 @@ const spaceshipsSlice = createSlice({
 });
 
 // here we export each action creator to make it accessible to useDispatch() in ANY component
-export const { chooseShip, buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, resetCredits, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, resetRange, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino, resetStrength } = spaceshipsSlice.actions;
+export const { chooseShip, buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino } = spaceshipsSlice.actions;
 
 // here we export the entire reducer function
 export default spaceshipsSlice.reducer;
