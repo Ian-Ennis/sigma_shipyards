@@ -9,7 +9,7 @@ export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () =>
     headers: {
       Accepts: "application/json",
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
     },
   })
   .then((res) => res.json())

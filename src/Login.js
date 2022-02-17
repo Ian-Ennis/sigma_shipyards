@@ -27,28 +27,26 @@ function Login({ setTriSystems }) {
   function login(e) {
     e.preventDefault();
 
-    navigate("/main_menu")
+    const loginData = {
+      user: { username: username, password: password },
+    };
 
-
-    // const loginData = {
-    //   user: { username: username, password: password },
-    // };
-
-    // fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
-    //   method: "POST",
-    //   headers: {
-    //     accepts: "application/json",
-    //     "Content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(loginData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     localStorage.setItem("token", data.jwt)
-    //     navigate("/main_menu")
-    //   })
-    // setUsername("");
-    // setPassword("");
+    fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
+      method: "POST",
+      headers: {
+        accepts: "application/json",
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data)
+        localStorage.setItem("token", data.jwt)
+        // navigate("/main_menu")
+      })
+    setUsername("");
+    setPassword("");
   }
 
   function createProfile(e) {
@@ -65,9 +63,10 @@ function Login({ setTriSystems }) {
     })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data)
       localStorage.setItem("token", data.include[0].jwt)
       // setProfileExists(true);
-      navigate("/main_menu")
+      // navigate("/main_menu")
     });
     setUsername("")
     setPassword("")
