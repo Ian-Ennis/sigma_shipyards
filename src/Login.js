@@ -39,7 +39,10 @@ function Login({ setTriSystems }) {
       },
       body: JSON.stringify(loginData),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(res.text())
+        res.json()
+      })
       .then((data) => {
         console.log(data)
         localStorage.setItem("token", data.jwt)
