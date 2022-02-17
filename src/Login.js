@@ -27,26 +27,28 @@ function Login({ setTriSystems }) {
   function login(e) {
     e.preventDefault();
 
-    const loginData = {
-      user: { username: username, password: password },
-    };
+    navigate("main_menu")
 
-    fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
-      method: "POST",
-      headers: {
-        accepts: "application/json",
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    })
-    .then((res) => {
-      return res.text()
-    })
-      .then((resText) => {
-        console.log("RT:", resText)
-        })
-    setUsername("");
-    setPassword("");
+    // const loginData = {
+    //   user: { username: username, password: password },
+    // };
+
+    // fetch(`https://sigma-shipyards-backend.herokuapp.com/login`, {
+    //   method: "POST",
+    //   headers: {
+    //     accepts: "application/json",
+    //     "Content-type": "application/json",
+    //   },
+    //   body: JSON.stringify(loginData),
+    // })
+    // .then((res) => {
+    //   return res.text()
+    // })
+    //   .then((resText) => {
+    //     console.log("RT:", resText)
+    //     })
+    // setUsername("");
+    // setPassword("");
   }
 
   function createProfile(e) {
