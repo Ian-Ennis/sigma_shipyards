@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { isCompositeComponent } from "react-dom/test-utils";
 
 export const fetchSpaceships = createAsyncThunk(
   "spaceships/fetchSpaceships",
@@ -110,18 +111,28 @@ export const saveSpaceship = createAsyncThunk(
           grapheneCount,
           neutrinoCount,
         }),
-      }
-    ).then((res) => res.json())
-     .then(data => {
-      window.confirm(`${spaceship_name} saved!`)
-    })
-    return response;
-  }
-);
+      }).then(() => {
+      fetch(`http://localhost:3000/spaceships`, {
+        method: "GET",
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
+      })
+      .then((res) => res.json())
+      .then(data => {
+        window.confirm(`${spaceship_name} saved!`)
+      })
+      return response;
+  })
+})
 
 export const deleteSpaceship = createAsyncThunk(
   "ships/deleteShip",
   async (selectedShip) => {
+    console.log('in delete ship')
+
     const response = await fetch(
       `http://localhost:3000/spaceships/${selectedShip.id}`,
       {
@@ -131,9 +142,21 @@ export const deleteSpaceship = createAsyncThunk(
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
-      }).then((res) => res.json())
-        .then(data => {
+      }).then(() => {
+        console.log('in come back ships')
+        fetch(`http://localhost:3000/spaceships`, {
+          method: "GET",
+          headers: {
+            Accepts: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        })
+       .then((res) => res.json())
+       .then(data => {
+         console.log('deleted')
         window.confirm(`${selectedShip.spaceship_name} deleted!`)
+       })
       })
       return response;
   }
