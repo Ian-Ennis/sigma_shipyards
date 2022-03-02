@@ -1,44 +1,47 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpaceships, fetchPropulsion, fetchShields, chooseShip, newShip } from "./ShipsSlice";
+import {
+  fetchSpaceships,
+  fetchPropulsion,
+  fetchShields,
+  chooseShip,
+  newShip,
+} from "./ShipsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
-import useSound from 'use-sound';
-import button_click from "../../Sounds/button_click.mp3"
-import ship_mouse_over from "../../Sounds/ship_mouse_over.mp3"
-import to_shipyard from "../../Sounds/to_shipyard.mp3"
-import go_back from "../../Sounds/go_back.mp3"
-
+import useSound from "use-sound";
+import button_click from "../../Sounds/button_click.mp3";
+import ship_mouse_over from "../../Sounds/ship_mouse_over.mp3";
+import construct_ship from "../../Sounds/construct_ship.mp3";
+import to_shipyard from "../../Sounds/to_shipyard.mp3";
+import go_back from "../../Sounds/go_back.mp3";
 
 function ShipsOverview() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const storeState = useSelector((state) => state);
   const [buttonSound] = useSound(button_click);
-  const [shipMouseOver] = useSound(ship_mouse_over, { volume: 2.0})
-  const [toShipyardSound] = useSound(to_shipyard)
-  const [goBackSound] = useSound(go_back, { volume: .60})
+  const [shipMouseOver] = useSound(ship_mouse_over, { volume: 2.0 });
+  const [constructShipSound] = useSound(construct_ship)
+  const [toShipyardSound] = useSound(to_shipyard);
+  const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
   function getShips() {
-    dispatch(fetchSpaceships())
-    dispatch(fetchPropulsion())
-    dispatch(fetchShields())
-  }
-
-  function selectShip(e, ship) {
-    e.preventDefault();
-    dispatch(chooseShip(ship));
-    navigate("/sigma_shipyard");
+    buttonSound()
+    dispatch(fetchSpaceships());
+    dispatch(fetchPropulsion());
+    dispatch(fetchShields());
   }
 
   function createShip(e) {
     e.preventDefault();
-    dispatch(newShip(e.target.ship_name.value))
-    dispatch(fetchSpaceships())
-    dispatch(fetchPropulsion())
-    dispatch(fetchShields())
+    constructShipSound();
+    dispatch(newShip(e.target.ship_name.value));
+    dispatch(fetchSpaceships());
+    dispatch(fetchPropulsion());
+    dispatch(fetchShields());
   }
 
   const eachShip = [];
@@ -61,11 +64,11 @@ function ShipsOverview() {
     <div id="intro_to_shipyard">
       <p id="approach_terminal">
         Your shuttle has docked with the shipyard. You make your way toward the
-        viewport overlooking Sigma Shipyard's fleet, and you notice the nearby shipyard computer
-        terminal. Thoughts of self-doubt swirl in your head, accompanied by
-        intrigue over what lies ahead... Yet, you suddenly sense a fleeting glimmer
-        of confidence in your ship-making abilities, and you reach out and grasp
-        it as you step forth to the terminal...
+        viewport overlooking Sigma Shipyard's fleet, and you notice the nearby
+        shipyard computer terminal. Thoughts of self-doubt swirl in your head,
+        accompanied by intrigue over what lies ahead... Yet, you suddenly sense
+        a fleeting glimmer of confidence in your ship-making abilities, and you
+        reach out and grasp it as you step forth to the terminal...
       </p>
       <div id="ships_with_img">
         <div id="system_by_missions">
@@ -77,10 +80,12 @@ function ShipsOverview() {
           </p>
           <img id="system_misson_img" src={sysImg} alt="selected_system" />
           <p>
-            Distance: <b>{storeState.systems.chosenSystem.distance} light years</b>
+            Distance:{" "}
+            <b>{storeState.systems.chosenSystem.distance} light years</b>
           </p>
           <p>
-            Mission complexity: <b>{storeState.systems.chosenSystem.mission_complexity}</b>
+            Mission complexity:{" "}
+            <b>{storeState.systems.chosenSystem.mission_complexity}</b>
           </p>
           <p>
             Chance of finding habitable planet:{" "}
@@ -93,11 +98,20 @@ function ShipsOverview() {
             {eachShip.length
               ? eachShip.map((ship) => (
                   <div id="current_ships" key={ship.id}>
-                    <p id="current_ships_name"><b><em>{ship.spaceship_name}</em></b></p>
-                    <button id="current_ships_button" onMouseEnter={() => shipMouseOver()} onClick={(e) => {
-                      toShipyardSound();
-                      selectShip(e, ship)}
-                      }>
+                    <p id="current_ships_name">
+                      <b>
+                        <em>{ship.spaceship_name}</em>
+                      </b>
+                    </p>
+                    <button
+                      id="current_ships_button"
+                      onMouseEnter={() => shipMouseOver()}
+                      onClick={() => {
+                        toShipyardSound();
+                        dispatch(chooseShip(ship));
+                        navigate("/sigma_shipyard");
+                      }}
+                    >
                       <span>Select ship</span>
                     </button>
                   </div>
@@ -122,11 +136,15 @@ function ShipsOverview() {
           </div>
         </div>
       </div>
-      <button id="back_to_mission_select" onClick={() => {
-        goBackSound();
-        navigate("/misson_select")
-      }
-        }>Back to mission select</button>
+      <button
+        id="back_to_mission_select"
+        onClick={() => {
+          goBackSound();
+          navigate("/misson_select");
+        }}
+      >
+        Back to mission select
+      </button>
     </div>
   );
 }

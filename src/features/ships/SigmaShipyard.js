@@ -26,6 +26,7 @@ import {
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
+import button_click from "../../Sounds/button_click.mp3";
 import go_back from "../../Sounds/go_back.mp3";
 import ship_saved from "../../Sounds/ship_saved.mp3";
 import ship_scrapped from "../../Sounds/ship_scrapped.mp3";
@@ -34,6 +35,7 @@ function SigmaShipyard() {
   const navigate = useNavigate();
   const storeState = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [buttonSound] = useSound(button_click)
   const [shipSavedSound] = useSound(ship_saved);
   const [shipScappedSound] = useSound(ship_scrapped, { volume: 0.75 });
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
@@ -50,6 +52,7 @@ function SigmaShipyard() {
 
   function buyEPart1(e) {
     e.preventDefault();
+    buttonSound()
     if (shipCredits >= 150000) {
       dispatch(buyNuclear());
     } else {
@@ -59,6 +62,7 @@ function SigmaShipyard() {
 
   function sellEPart1(e) {
     e.preventDefault();
+    buttonSound()
     if (storeState.spaceships.chosenShip.nuclearCount > 0) {
       dispatch(sellNuclear());
     } else {
@@ -68,6 +72,7 @@ function SigmaShipyard() {
 
   function buyEPart2(e) {
     e.preventDefault();
+    buttonSound()
     if (shipCredits >= 250000) {
       dispatch(buyFusion());
     } else {
@@ -77,6 +82,7 @@ function SigmaShipyard() {
 
   function sellEPart2(e) {
     e.preventDefault();
+    buttonSound()
     if (storeState.spaceships.chosenShip.fusionCount > 0) {
       dispatch(sellFusion());
     } else {
@@ -86,6 +92,7 @@ function SigmaShipyard() {
 
   function buyEPart3(e) {
     e.preventDefault();
+    buttonSound()
     if (shipCredits >= 400000) {
       dispatch(buyAntimatter());
     } else {
@@ -95,6 +102,7 @@ function SigmaShipyard() {
 
   function sellEPart3(e) {
     e.preventDefault();
+    buttonSound()
     if (storeState.spaceships.chosenShip.antimatterCount > 0) {
       dispatch(sellAntimatter());
     } else {
@@ -104,6 +112,7 @@ function SigmaShipyard() {
 
   function buySPart1(e) {
     e.preventDefault();
+    buttonSound()
     if (shipCredits >= 20000) {
       dispatch(buyCarbon());
     } else {
@@ -113,6 +122,7 @@ function SigmaShipyard() {
 
   function sellSPart1(e) {
     e.preventDefault();
+    buttonSound()
     if (storeState.spaceships.chosenShip.carbonCount > 0) {
       dispatch(sellCarbon());
     } else {
@@ -122,6 +132,7 @@ function SigmaShipyard() {
 
   function buySPart2(e) {
     e.preventDefault();
+    buttonSound()
     if (shipCredits >= 90000) {
       dispatch(buyGraphene());
     } else {
@@ -131,6 +142,7 @@ function SigmaShipyard() {
 
   function sellSPart2(e) {
     e.preventDefault();
+    buttonSound()
     if (storeState.spaceships.chosenShip.grapheneCount > 0) {
       dispatch(sellGraphene());
     } else {
@@ -140,6 +152,7 @@ function SigmaShipyard() {
 
   function buySPart3(e) {
     e.preventDefault();
+    buttonSound()
     if (shipCredits >= 300000) {
       dispatch(buyNeutrino());
     } else {
@@ -149,6 +162,7 @@ function SigmaShipyard() {
 
   function sellSPart3(e) {
     e.preventDefault();
+    buttonSound()
     if (storeState.spaceships.chosenShip.neutrinoCount > 0) {
       dispatch(sellNeutrino());
     } else {
