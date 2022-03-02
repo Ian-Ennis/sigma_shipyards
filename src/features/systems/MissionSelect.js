@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux"; /*** import hooks to access state, and dispatch actions to said state ***/
+import { useSelector, useDispatch } from "react-redux";
 import { fetchSystems, chooseSystem } from "./MissionSlice"; 
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
@@ -11,14 +11,14 @@ import go_back from "../../Sounds/go_back.mp3"
 
 function MissionSelect() {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); /*** useDispatch() saved to a variable ***/
-  const storeState = useSelector((state) => state); /*** redux state is made accessible ***/
+  const dispatch = useDispatch();
+  const storeState = useSelector((state) => state);
   const [buttonSound] = useSound(button_click);
   const [goBackSound] = useSound(go_back, { volume: .60})
 
   function getSystems(e) {
     e.preventDefault();
-    dispatch(fetchSystems()); /*** 1. Here, an "action", fetchSystems(), is "dispatched" to a reducer function ***/
+    dispatch(fetchSystems()); 
   }
 
   const eachSystem = [];
@@ -34,16 +34,12 @@ function MissionSelect() {
     navigate("/ships_overview")
   }
 
-  function goBack() {
-    navigate("/main_menu");
-  }
-
   return (
     <>
       {eachSystem.length ? (
         <div className="mission_div">
           <h2 id="mission_select">
-            【﻿ｃｈｏｏｓｅ　ｙｏｕｒ　ｄｅｓｔｉｎａｔｉｏｎ】
+            【ｃｈｏｏｓｅ　ｙｏｕｒ　ｄｅｓｔｉｎａｔｉｏｎ】
           </h2>
           <div className="mission_container">
             <div id="proxima">
@@ -125,7 +121,7 @@ function MissionSelect() {
           </div>
           <button onClick={() => {
             goBackSound();
-            goBack()
+            navigate("/main_menu")
             }
           }>Go back</button>
         </div>

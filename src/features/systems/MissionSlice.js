@@ -46,6 +46,6 @@ const missionSlice = createSlice({
   },
 });
 
-export const { chooseSystem } = systemsSlice.actions
+export const { chooseSystem } = missionSlice.actions
 
 export default missionSlice.reducer;

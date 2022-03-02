@@ -15,17 +15,11 @@ import go_back from "../../Sounds/go_back.mp3"
 function ShipsOverview() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const storeState = useSelector((state) => state); /* redux state*/
+  const storeState = useSelector((state) => state);
   const [buttonSound] = useSound(button_click);
   const [shipMouseOver] = useSound(ship_mouse_over, { volume: 2.0})
-  const [toShipyard] = useSound(to_shipyard)
+  const [toShipyardSound] = useSound(to_shipyard)
   const [goBackSound] = useSound(go_back, { volume: .60})
-
-  const systemName = storeState.systems.chosenSystem.name
-  const systemDistance = storeState.systems.chosenSystem.distance
-  const system_complexity = storeState.systems.chosenSystem.mission_complexity
-  const system_habitability = storeState.systems.chosenSystem.habitibility_chance
-
 
   function getShips() {
     dispatch(fetchSpaceships())
@@ -41,19 +35,13 @@ function ShipsOverview() {
 
   function createShip(e) {
     e.preventDefault();
-    const ship = e.target.ship_name.value
-    dispatch(newShip(ship))
+    dispatch(newShip(e.target.ship_name.value))
     dispatch(fetchSpaceships())
     dispatch(fetchPropulsion())
     dispatch(fetchShields())
   }
 
-  function goBack() {
-    navigate("/misson_select");
-  }
-
   const eachShip = [];
-
   if (storeState.spaceships.spaceships.length) {
     storeState.spaceships.spaceships.forEach((ship) => {
       eachShip.push(ship);
@@ -65,9 +53,9 @@ function ShipsOverview() {
     sysImg = proxima_centauri;
   } else if (storeState.systems.chosenSystem.name === "Tau Ceti") {
     sysImg = tau_ceti;
-  } else {
+  } else if (storeState.systems.chosenSystem.name === "Upsilon Andromedae") {
     sysImg = upsilon_andromedae;
-  }
+  } else sysImg = null;
 
   return (
     <div id="intro_to_shipyard">
@@ -84,19 +72,19 @@ function ShipsOverview() {
           <p>
             System:{" "}
             <b>
-              <em>{systemName}</em>
+              <em>{storeState.systems.chosenSystem.name}</em>
             </b>
           </p>
           <img id="system_misson_img" src={sysImg} alt="selected_system" />
           <p>
-            Distance: <b>{systemDistance} light years</b>
+            Distance: <b>{storeState.systems.chosenSystem.distance} light years</b>
           </p>
           <p>
-            Mission complexity: <b>{system_complexity}</b>
+            Mission complexity: <b>{storeState.systems.chosenSystem.mission_complexity}</b>
           </p>
           <p>
             Chance of finding habitable planet:{" "}
-            <b>{system_habitability}%</b>
+            <b>{storeState.systems.chosenSystem.habitibility_chance}%</b>
           </p>
         </div>
         <div className="all_options">
@@ -107,7 +95,7 @@ function ShipsOverview() {
                   <div className="current_ships" key={ship.id}>
                     <p className="current_ships_name"><b><em>{ship.spaceship_name}</em></b></p>
                     <button className="current_ships_button" onMouseEnter={() => shipMouseOver()} onClick={(e) => {
-                      toShipyard();
+                      toShipyardSound();
                       selectShip(e, ship)}
                       }>
                       <span>Select ship</span>
@@ -136,7 +124,7 @@ function ShipsOverview() {
       </div>
       <button id="back_to_mission_select" onClick={() => {
         goBackSound();
-        goBack()
+        navigate("/misson_select")
       }
         }>Back to mission select</button>
     </div>

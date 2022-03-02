@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useSound from 'use-sound';
 import { saveSpaceship, deleteSpaceship, fetchSpaceships, fetchPropulsion, fetchShields, } from "./ShipsSlice"
-import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} from "./ShipsSlice"
+import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino} from "./ShipsSlice"
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
+import go_back from "../../Sounds/go_back.mp3"
 import ship_saved from "../../Sounds/ship_saved.mp3"
 import ship_scrapped from "../../Sounds/ship_scrapped.mp3"
-import go_back from "../../Sounds/go_back.mp3"
 
 
 function SigmaShipyard() {
@@ -19,33 +19,21 @@ function SigmaShipyard() {
   const [shipSavedSound] = useSound(ship_saved)
   const [shipScappedSound] = useSound(ship_scrapped, { volume: .75})
   const [goBackSound] = useSound(go_back, { volume: .60})
-
-  const selectedShip = storeState.spaceships.chosenShip
-  const shipName = storeState.spaceships.chosenShip.spaceship_name;
   const shipCredits = storeState.spaceships.chosenShip.credits;
-  const shipRange = storeState.spaceships.chosenShip.range;
-  const shipShields = storeState.spaceships.chosenShip.strength;
-  const nuclearCount = storeState.spaceships.chosenShip.nuclearCount;
-  const fusionCount = storeState.spaceships.chosenShip.fusionCount;
-  const antimatterCount = storeState.spaceships.chosenShip.antimatterCount;
-  const carbonCount = storeState.spaceships.chosenShip.carbonCount;
-  const grapheneCount = storeState.spaceships.chosenShip.grapheneCount;
-  const neutrinoCount = storeState.spaceships.chosenShip.neutrinoCount;
 
   let sysImg = "";
   if (storeState.systems.chosenSystem.name === "Proxima Centauri") {
     sysImg = proxima_centauri;
   } else if (storeState.systems.chosenSystem.name === "Tau Ceti") {
     sysImg = tau_ceti;
-  } else {
+  } else if (storeState.systems.chosenSystem.name === "Upsilon Andromedae") {
     sysImg = upsilon_andromedae;
-  }
+  } else sysImg = null;
 
   function buyEPart1(e) {
     e.preventDefault();
     if (shipCredits >= 150000) {
       dispatch(buyNuclear());
-      dispatch(installNuclear());
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -53,9 +41,8 @@ function SigmaShipyard() {
 
   function sellEPart1(e) {
     e.preventDefault();
-    if (nuclearCount > 0) {
+    if (storeState.spaceships.chosenShip.nuclearCount > 0) {
       dispatch(sellNuclear());
-      dispatch(removeNuclear());
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -65,7 +52,6 @@ function SigmaShipyard() {
     e.preventDefault();
     if (shipCredits >= 250000) {
       dispatch(buyFusion());
-      dispatch(installFusion());
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -73,9 +59,8 @@ function SigmaShipyard() {
 
   function sellEPart2(e) {
     e.preventDefault();
-    if (fusionCount > 0) {
+    if (storeState.spaceships.chosenShip.fusionCount > 0) {
       dispatch(sellFusion());
-      dispatch(removeFusion());
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -85,7 +70,6 @@ function SigmaShipyard() {
     e.preventDefault();
     if (shipCredits >= 400000) {
       dispatch(buyAntimatter());
-      dispatch(installAntimatter());
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -93,9 +77,8 @@ function SigmaShipyard() {
 
   function sellEPart3(e) {
     e.preventDefault();
-    if (antimatterCount > 0) {
+    if (storeState.spaceships.chosenShip.antimatterCount > 0) {
       dispatch(sellAntimatter());
-      dispatch(removeAntimatter());
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -105,7 +88,6 @@ function SigmaShipyard() {
     e.preventDefault();
     if (shipCredits >= 20000) {
       dispatch(buyCarbon());
-      dispatch(installCarbon());
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -113,9 +95,8 @@ function SigmaShipyard() {
 
   function sellSPart1(e) {
     e.preventDefault();
-    if (carbonCount > 0) {
+    if (storeState.spaceships.chosenShip.carbonCount > 0) {
       dispatch(sellCarbon());
-      dispatch(removeCarbon());
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -125,7 +106,6 @@ function SigmaShipyard() {
     e.preventDefault();
     if (shipCredits >= 90000) {
       dispatch(buyGraphene());
-      dispatch(installGraphene());
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -133,9 +113,8 @@ function SigmaShipyard() {
 
   function sellSPart2(e) {
     e.preventDefault();
-    if (grapheneCount > 0) {
+    if (storeState.spaceships.chosenShip.grapheneCount > 0) {
       dispatch(sellGraphene());
-      dispatch(removeGraphene());
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -145,7 +124,6 @@ function SigmaShipyard() {
     e.preventDefault();
     if (shipCredits >= 300000) {
       dispatch(buyNeutrino());
-      dispatch(installNeutrino());
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -153,9 +131,8 @@ function SigmaShipyard() {
 
   function sellSPart3(e) {
     e.preventDefault();
-    if (neutrinoCount > 0) {
+    if (storeState.spaceships.chosenShip.neutrinoCount > 0) {
       dispatch(sellNeutrino());
-      dispatch(removeNeutrino());
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -163,7 +140,7 @@ function SigmaShipyard() {
 
   function saveShip(e) {
     e.preventDefault();
-    dispatch(saveSpaceship(selectedShip))
+    dispatch(saveSpaceship(storeState.spaceships.chosenShip))
     dispatch(fetchSpaceships())
     dispatch(fetchPropulsion())
     dispatch(fetchShields())
@@ -171,17 +148,10 @@ function SigmaShipyard() {
 
   function scrapShip(e) {
     e.preventDefault();
-    dispatch(deleteSpaceship(selectedShip))
+    dispatch(deleteSpaceship(storeState.spaceships.chosenShip))
     dispatch(fetchSpaceships())
     dispatch(fetchPropulsion())
     dispatch(fetchShields())
-  }
-
-  function goBack() {
-    // dispatch(resetCredits());
-    // dispatch(resetRange());
-    // dispatch(resetStrength());
-    navigate("/ships_overview");
   }
 
   return (
@@ -189,10 +159,10 @@ function SigmaShipyard() {
         <div className="whole_shipyard">
           <div className="shipyard">
             <div className="stats_parts_container">
-              <h2>【﻿Ｓｈｉｐｙａｒｄ　Ｐａｒｔｓ　Ｉｎｖｅｎｔｏｒｙ】</h2>
+              <h2>【Ｓｈｉｐｙａｒｄ　Ｐａｒｔｓ　Ｉｎｖｅｎｔｏｒｙ】</h2>
               <div className="parts">
                 <div id="shield_parts_container">
-                  <h3>【﻿ｓｈｉｅｌｄｓ】</h3>
+                  <h3>【ｓｈｉｅｌｄｓ】</h3>
                   <div className="shield_parts">
                     <div id="spart1">
                       <div id="carbon_div"></div>
@@ -284,10 +254,10 @@ function SigmaShipyard() {
             <div className="statistics">
               <div id="ship_info">
                 <h3>
-                  <em>{shipName}</em>
+                  <em>{storeState.spaceships.chosenShip.spaceship_name}</em>
                 </h3>
-                <p>Range: {shipRange} light years</p>
-                <p>Shields: {shipShields}%</p>
+                <p>Range: {storeState.spaceships.chosenShip.range} light years</p>
+                <p>Shields: {storeState.spaceships.chosenShip.strength}%</p>
                 <p>Credits: {shipCredits}</p>
                 <div id="luminous_ship"></div>
               </div>
@@ -314,7 +284,7 @@ function SigmaShipyard() {
           <div id="shipyard_buttons">
             <button className="button_zoom" onClick={() => {
               goBackSound();
-              goBack()
+              navigate("/ships_overview")
             }
               }>
               Go back

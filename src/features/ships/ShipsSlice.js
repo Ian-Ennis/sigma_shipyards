@@ -171,98 +171,69 @@ const initialState = {
 };
 
 const spaceshipsSlice = createSlice({
-  name: "spaceships" /* <name> is used as a prefix for generated action types */,
+  name: "spaceships",
   initialState,
   reducers: {
     chooseShip: (state, action) => {
-      console.log(
-        action
-      ); /*  <-- Reducer obect with functions. createSlice() (Redux Toolkit) allows        */
-      state.chosenShip =
-        action.payload; /*  us to write logic to change state within these functions, rather than using   */
-    } /*  a switch/case statement. Action creators are automatically generated and correspond to each. */,
+      state.chosenShip = action.payload; 
+    },
     buyNuclear: (state) => {
-      /* // code can be written in a way that seems to mutate state directly (Immer,    */
-      state.chosenShip.credits -= 150000; /* comes with createSlice(). Spread operators no longer neccessary)                    */
-    },
-    sellNuclear: (state) => {
-      state.chosenShip.credits += 150000;
-    },
-    buyFusion: (state) => {
-      state.chosenShip.credits -= 250000;
-    },
-    sellFusion: (state) => {
-      state.chosenShip.credits += 250000;
-    },
-    buyAntimatter: (state) => {
-      state.chosenShip.credits -= 400000;
-    },
-    sellAntimatter: (state) => {
-      state.chosenShip.credits += 400000;
-    },
-    buyCarbon: (state) => {
-      state.chosenShip.credits -= 20000;
-    },
-    sellCarbon: (state) => {
-      state.chosenShip.credits += 20000;
-    },
-    buyGraphene: (state) => {
-      state.chosenShip.credits -= 90000;
-    },
-    sellGraphene: (state) => {
-      state.chosenShip.credits += 90000;
-    },
-    buyNeutrino: (state) => {
-      state.chosenShip.credits -= 300000;
-    },
-    sellNeutrino: (state) => {
-      state.chosenShip.credits += 300000;
-    },
-    installNuclear: (state) => {
+      state.chosenShip.credits -= 150000;
       state.chosenShip.range += 3;
       state.chosenShip.nuclearCount += 1;
     },
-    removeNuclear: (state) => {
+    sellNuclear: (state) => {
+      state.chosenShip.credits += 150000;
       state.chosenShip.range -= 3;
       state.chosenShip.nuclearCount -= 1;
     },
-    installFusion: (state) => {
+    buyFusion: (state) => {
+      state.chosenShip.credits -= 250000;
       state.chosenShip.range += 7;
       state.chosenShip.fusionCount += 1;
     },
-    removeFusion: (state) => {
+    sellFusion: (state) => {
+      state.chosenShip.credits += 250000;
       state.chosenShip.range -= 7;
       state.chosenShip.fusionCount -= 1;
     },
-    installAntimatter: (state) => {
+    buyAntimatter: (state) => {
+      state.chosenShip.credits -= 400000;
       state.chosenShip.range += 10;
       state.chosenShip.antimatterCount += 1;
     },
-    removeAntimatter: (state) => {
+    sellAntimatter: (state) => {
+      state.chosenShip.credits += 400000;
       state.chosenShip.range -= 10;
       state.chosenShip.antimatterCount -= 1;
     },
-    installCarbon: (state) => {
+    buyCarbon: (state) => {
+      state.chosenShip.credits -= 20000;
       state.chosenShip.strength += 5;
       state.chosenShip.carbonCount += 1;
     },
-    removeCarbon: (state) => {
+    sellCarbon: (state) => {
+      state.chosenShip.credits += 20000;
       state.chosenShip.strength -= 5;
       state.chosenShip.carbonCount -= 1;
     },
-    installGraphene: (state) => {
+    buyGraphene: (state) => {
+      state.chosenShip.credits -= 90000;
       state.chosenShip.strength += 15;
       state.chosenShip.grapheneCount += 1;
     },
-    removeGraphene: (state) => {
+    sellGraphene: (state) => {
+      state.chosenShip.credits += 90000;
       state.chosenShip.strength -= 15;
       state.chosenShip.grapheneCount -= 1;
     },
-    installNeutrino: (state) => {
+    buyNeutrino: (state) => {
+      state.chosenShip.credits -= 300000;
       state.chosenShip.strength += 50;
       state.chosenShip.neutrinoCount += 1;
     },
-    removeNeutrino: (state) => {
+    sellNeutrino: (state) => {
+      state.chosenShip.credits += 300000;
       state.chosenShip.strength -= 50;
       state.chosenShip.neutrinoCount -= 1;
     },
@@ -301,7 +272,6 @@ const spaceshipsSlice = createSlice({
   },
 });
 
-// here we export each action creator to make it accessible to useDispatch() in ANY component
 export const {
   chooseShip,
   buyNuclear,
@@ -316,22 +286,7 @@ export const {
   sellGraphene,
   buyNeutrino,
   sellNeutrino,
-  installNuclear,
-  removeNuclear,
-  installFusion,
-  removeFusion,
-  installAntimatter,
-  removeAntimatter,
-  installCarbon,
-  removeCarbon,
-  installGraphene,
-  removeGraphene,
-  installNeutrino,
-  removeNeutrino,
 } = spaceshipsSlice.actions;
 
-// here we export the entire reducer function
 export default spaceshipsSlice.reducer;
 
-// differences between regular redux, and RTK:
-// Instead of writing case/switch statements, createSlice() handles that for us. When we invoke useDispatch(), the reducer function checks to see if any of it's action creators correspond to the name being called. The action.type from regular redux corresponds to the name of the action creator itself. Example: useDispatch(spaceshipAdded()).
