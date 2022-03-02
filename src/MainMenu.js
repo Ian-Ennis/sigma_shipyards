@@ -1,10 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import useSound from 'use-sound';
+import button_click from "./Sounds/button_click.mp3"
 
 function MainMenu() {
   const navigate = useNavigate();
+  const [buttonSound] = useSound(button_click);
 
   function goToShipsMenu() {
+    console.log('in go to ships menu')
     navigate("/misson_select");
   }
 
@@ -30,7 +34,11 @@ function MainMenu() {
         be the one to help save humanity?
       </p>
       <p className="intro_story">You start to wonder what choice you really have..</p>{" "}
-      <button onClick={goToShipsMenu}>
+      <button onClick={() => {
+        buttonSound();
+        goToShipsMenu()
+       }
+      }>
         <span>Board shuttle to orbital shipyard</span>
       </button>
       <button

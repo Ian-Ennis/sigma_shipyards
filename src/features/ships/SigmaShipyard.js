@@ -1,16 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import useSound from 'use-sound';
 import { saveSpaceship, deleteSpaceship, fetchSpaceships, fetchPropulsion, fetchShields, } from "./ShipsSlice"
 import { buyNuclear, sellNuclear, buyFusion, sellFusion, buyAntimatter, sellAntimatter, buyCarbon, sellCarbon, buyGraphene, sellGraphene, buyNeutrino, sellNeutrino, installNuclear, removeNuclear, installFusion, removeFusion, installAntimatter, removeAntimatter, installCarbon, removeCarbon, installGraphene, removeGraphene, installNeutrino, removeNeutrino} from "./ShipsSlice"
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
+import ship_saved from "../../Sounds/ship_saved.mp3"
+import go_back from "../../Sounds/go_back.mp3"
+
 
 function SigmaShipyard() {
   const navigate = useNavigate();
   const storeState = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [shipSaved] = useSound(ship_saved, { volume: .75})
+  const [goBackSound] = useSound(go_back, { volume: .60})
 
   console.log(storeState)
 
@@ -306,10 +312,18 @@ function SigmaShipyard() {
             </div>
           </div>
           <div id="shipyard_buttons">
-            <button className="button_zoom" onClick={goBack}>
+            <button className="button_zoom" onClick={() => {
+              goBackSound();
+              goBack()
+            }
+              }>
               Go back
             </button>
-            <button className="button_zoom" onClick={saveShip}>
+            <button className="button_zoom" onClick={(e) => {
+              shipSaved()
+              saveShip(e)
+            }
+            }>
               Save ship
             </button>
             <button className="button_zoom" onClick={scrapShip}>

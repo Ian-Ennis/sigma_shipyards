@@ -5,11 +5,16 @@ import { fetchSystems, chooseSystem } from "./SystemsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
+import useSound from 'use-sound';
+import button_click from "../../Sounds/button_click.mp3"
+import go_back from "../../Sounds/go_back.mp3"
 
 function MissionSelect() {
   const navigate = useNavigate();
   const dispatch = useDispatch(); /*** useDispatch() saved to a variable ***/
   const storeState = useSelector((state) => state); /*** redux state is made accessible ***/
+  const [buttonSound] = useSound(button_click);
+  const [goBackSound] = useSound(go_back, { volume: .60})
 
   function getSystems(e) {
     e.preventDefault();
@@ -66,7 +71,10 @@ function MissionSelect() {
                 Chance of finding habitable planet:{" "}
                 <b>{eachSystem[0].habitibility_chance}%</b>
               </p>
-              <button onClick={(e) => selectSystem(e, eachSystem[0])}>
+              <button onClick={(e) => {
+                buttonSound();
+                selectSystem(e, eachSystem[0])}
+              }>
                 <span>Choose system</span>
               </button>
             </div>
@@ -85,8 +93,10 @@ function MissionSelect() {
                 Chance of finding habitable planet:{" "}
                 <b>{eachSystem[1].habitibility_chance}%</b>
               </p>
-              <button onClick={(e) => selectSystem(e, eachSystem[1])}>
-                <span>Choose system</span>
+              <button onClick={(e) => {
+                buttonSound();
+                selectSystem(e, eachSystem[1])}
+              }>                <span>Choose system</span>
               </button>
             </div>
             <div id="upsilon">
@@ -108,12 +118,19 @@ function MissionSelect() {
                 Chance of finding habitable planet:{" "}
                 <b>{eachSystem[2].habitibility_chance}%</b>
               </p>
-              <button onClick={(e) => selectSystem(e, eachSystem[2])}>
+              <button onClick={(e) => {
+                buttonSound();
+                selectSystem(e, eachSystem[2])}
+              }>
                 <span>Choose system</span>
               </button>
             </div>
           </div>
-          <button onClick={goBack}>Go back</button>
+          <button onClick={() => {
+            goBackSound();
+            goBack()
+            }
+          }>Go back</button>
         </div>
       ) : (
         <div className="mission_div">

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { isCompositeComponent } from "react-dom/test-utils";
 
 export const fetchSpaceships = createAsyncThunk(
   "spaceships/fetchSpaceships",
@@ -122,10 +121,11 @@ export const saveSpaceship = createAsyncThunk(
       })
       .then((res) => res.json())
       .then(data => {
+        console.log('saved')
         window.confirm(`${spaceship_name} saved!`)
       })
-      return response;
-  })
+    })
+    return response;
 })
 
 export const deleteSpaceship = createAsyncThunk(
@@ -159,8 +159,7 @@ export const deleteSpaceship = createAsyncThunk(
        })
       })
       return response;
-  }
-);
+  });
 
 const initialState = {
   spaceships: {},

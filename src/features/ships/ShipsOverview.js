@@ -5,11 +5,21 @@ import { fetchSpaceships, fetchPropulsion, fetchShields, chooseShip, newShip } f
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
+import useSound from 'use-sound';
+import button_click from "../../Sounds/button_click.mp3"
+import ship_mouse_over from "../../Sounds/ship_mouse_over.mp3"
+import to_shipyard from "../../Sounds/to_shipyard.mp3"
+import go_back from "../../Sounds/go_back.mp3"
+
 
 function ShipsOverview() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const storeState = useSelector((state) => state); /* redux state*/
+  const [buttonSound] = useSound(button_click);
+  const [shipMouseOver] = useSound(ship_mouse_over, { volume: 2.0})
+  const [toShipyard] = useSound(to_shipyard)
+  const [goBackSound] = useSound(go_back, { volume: .60})
 
   const systemName = storeState.systems.chosenSystem.name
   const systemDistance = storeState.systems.chosenSystem.distance
@@ -96,7 +106,10 @@ function ShipsOverview() {
               ? eachShip.map((ship) => (
                   <div className="current_ships" key={ship.id}>
                     <p className="current_ships_name"><b><em>{ship.spaceship_name}</em></b></p>
-                    <button className="current_ships_button" onClick={(e) => selectShip(e, ship)}>
+                    <button className="current_ships_button" onMouseEnter={() => shipMouseOver()} onClick={(e) => {
+                      toShipyard();
+                      selectShip(e, ship)}
+                      }>
                       <span>Select ship</span>
                     </button>
                   </div>
@@ -121,7 +134,11 @@ function ShipsOverview() {
           </div>
         </div>
       </div>
-      <button id="back_to_mission_select" onClick={goBack}>Back to mission select</button>
+      <button id="back_to_mission_select" onClick={() => {
+        goBackSound();
+        goBack()
+      }
+        }>Back to mission select</button>
     </div>
   );
 }
