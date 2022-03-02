@@ -8,6 +8,7 @@ import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
 import ship_saved from "../../Sounds/ship_saved.mp3"
+import ship_scrapped from "../../Sounds/ship_scrapped.mp3"
 import go_back from "../../Sounds/go_back.mp3"
 
 
@@ -15,10 +16,9 @@ function SigmaShipyard() {
   const navigate = useNavigate();
   const storeState = useSelector((state) => state);
   const dispatch = useDispatch();
-  const [shipSaved] = useSound(ship_saved, { volume: .75})
+  const [shipSavedSound] = useSound(ship_saved)
+  const [shipScappedSound] = useSound(ship_scrapped, { volume: .75})
   const [goBackSound] = useSound(go_back, { volume: .60})
-
-  console.log(storeState)
 
   const selectedShip = storeState.spaceships.chosenShip
   const shipName = storeState.spaceships.chosenShip.spaceship_name;
@@ -320,13 +320,17 @@ function SigmaShipyard() {
               Go back
             </button>
             <button className="button_zoom" onClick={(e) => {
-              shipSaved()
+              shipSavedSound()
               saveShip(e)
             }
             }>
               Save ship
             </button>
-            <button className="button_zoom" onClick={scrapShip}>
+            <button className="button_zoom" onClick={(e) => {
+              shipScappedSound();
+              scrapShip(e)
+            }
+             }>
               Scrap ship
             </button>
           </div>

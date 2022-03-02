@@ -1,16 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useSound from 'use-sound';
-import button_click from "./Sounds/button_click.mp3"
+import board_shuttle from "./Sounds/board_shuttle.mp3"
+import logout from "./Sounds/logout.mp3"
 
 function MainMenu() {
   const navigate = useNavigate();
-  const [buttonSound] = useSound(button_click);
-
-  function goToShipsMenu() {
-    console.log('in go to ships menu')
-    navigate("/misson_select");
-  }
+  const [boardShuttleSound] = useSound(board_shuttle);
+  const [logoutSound] = useSound(logout)
 
   return (
     <div className="intro_div">
@@ -35,8 +32,8 @@ function MainMenu() {
       </p>
       <p className="intro_story">You start to wonder what choice you really have..</p>{" "}
       <button onClick={() => {
-        buttonSound();
-        goToShipsMenu()
+        boardShuttleSound();
+        navigate("/misson_select")
        }
       }>
         <span>Board shuttle to orbital shipyard</span>
@@ -44,6 +41,7 @@ function MainMenu() {
       <button
         id="main_menu_logout"
         onClick={() => {
+          logoutSound()
           localStorage.setItem("jwt", "");
           navigate("/");
         }}

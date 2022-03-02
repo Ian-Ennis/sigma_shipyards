@@ -120,12 +120,12 @@ export const saveSpaceship = createAsyncThunk(
         },
       })
       .then((res) => res.json())
-      .then(data => {
+      .then(() => {
         console.log('saved')
         window.confirm(`${spaceship_name} saved!`)
+        return response;
       })
     })
-    return response;
 })
 
 export const deleteSpaceship = createAsyncThunk(
@@ -143,7 +143,6 @@ export const deleteSpaceship = createAsyncThunk(
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
       }).then(() => {
-        console.log('in come back ships')
         fetch(`http://localhost:3000/spaceships`, {
           method: "GET",
           headers: {
@@ -153,12 +152,12 @@ export const deleteSpaceship = createAsyncThunk(
           },
         })
        .then((res) => res.json())
-       .then(data => {
+       .then(() => {
          console.log('deleted')
         window.confirm(`${selectedShip.spaceship_name} deleted!`)
+        return response;
        })
       })
-      return response;
   });
 
 const initialState = {

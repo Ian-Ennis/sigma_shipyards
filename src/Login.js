@@ -1,6 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useSound from 'use-sound';
+import main_menu from "./Sounds/main_menu.mp3"
+
 
 function Login() {
   const [profileExists, setProfileExists] = useState(true);
@@ -8,6 +11,7 @@ function Login() {
   const [password, setPassword] = useState("")
 
   const navigate = useNavigate();
+  const [triggerMenuSound] = useSound(main_menu)
 
   // useEffect(() => {
   //   const token = localStorage.getItem("token")
@@ -51,7 +55,6 @@ function Login() {
 
   function createProfile(e) {
     e.preventDefault();
-    console.log('a')
 
     fetch(`http://localhost:3000/users`, {
       method: "POST",
@@ -85,7 +88,11 @@ function Login() {
     <div className="login_background">
       {profileExists ? (
         <div className="all_login_containers">
-          <form className="login" onSubmit={login}>
+          <form className="login" onSubmit={(e) => {
+            triggerMenuSound()
+            login(e)
+          }
+            }>
             <div className="username_password">
               Username:{" "}
               <input
@@ -116,23 +123,16 @@ function Login() {
                 New registration
                 </span>
               </button>
-              <div id="logout">
-                <button
-                  className="logout"
-                  onClick={() => {
-                    localStorage.setItem("token", "");
-                    // navigate("/");
-                  }}
-                >
-                  Logout
-                </button>
-              </div>
             </div>
           </form>
         </div>
       ) : (
         <div className="all_login_containers">
-          <form className="login" onSubmit={createProfile}>
+          <form className="login" onSubmit={(e) => {
+            triggerMenuSound()
+            createProfile(e)
+          }
+            }>
             <div className="username_password">
               Username:{" "}
               <input
@@ -156,17 +156,6 @@ function Login() {
                 <span>Register</span>
               </button>
               <button onClick={showLogin}><span>Already registered?</span></button>
-              <div id="logout">
-                <button
-                  className="logout"
-                  onClick={() => {
-                    localStorage.setItem("token", "");
-                    // navigate("/");
-                  }}
-                >
-                  Logout
-                </button>
-              </div>
             </div>
           </form>
         </div>
