@@ -87,14 +87,14 @@ function ShipsOverview() {
             <b>{storeState.systems.chosenSystem.habitibility_chance}%</b>
           </p>
         </div>
-        <div className="all_options">
-          <div className="ships_in_db">
+        <div id="all_options">
+          <div id="ships_in_db">
             <h3>View current ships..</h3>
             {eachShip.length
               ? eachShip.map((ship) => (
-                  <div className="current_ships" key={ship.id}>
-                    <p className="current_ships_name"><b><em>{ship.spaceship_name}</em></b></p>
-                    <button className="current_ships_button" onMouseEnter={() => shipMouseOver()} onClick={(e) => {
+                  <div id="current_ships" key={ship.id}>
+                    <p id="current_ships_name"><b><em>{ship.spaceship_name}</em></b></p>
+                    <button id="current_ships_button" onMouseEnter={() => shipMouseOver()} onClick={(e) => {
                       toShipyardSound();
                       selectShip(e, ship)}
                       }>
@@ -107,7 +107,7 @@ function ShipsOverview() {
           </div>
           <div id="add_new_ship">
             <h3>Or,&#10;create a new ship</h3>
-            <form className="createShip" onSubmit={createShip}>
+            <form id="createShip" onSubmit={createShip}>
               <label for="ship_name">Name your ship:</label>
               <input
                 id="new_ship_input"

@@ -1,16 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import useSound from 'use-sound';
-import board_shuttle from "./Sounds/board_shuttle.mp3"
-import logout from "./Sounds/logout.mp3"
+import useSound from "use-sound";
+import board_shuttle from "./Sounds/board_shuttle.mp3";
+import logout from "./Sounds/logout.mp3";
 
 function MainMenu() {
   const navigate = useNavigate();
   const [boardShuttleSound] = useSound(board_shuttle);
-  const [logoutSound] = useSound(logout)
+  const [logoutSound] = useSound(logout);
 
   return (
-    <div className="intro_div">
+    <div id="intro_div">
       <p className="intro_story">
         It's the year 2089. Scientists have discovered the sun is readying to
         release an insurvivable solar flare. Humanity's last hope to continue
@@ -30,18 +30,21 @@ function MainMenu() {
         ticket to board. Few people have been given this opportunity. Will you
         be the one to help save humanity?
       </p>
-      <p className="intro_story">You start to wonder what choice you really have..</p>{" "}
-      <button onClick={() => {
-        boardShuttleSound();
-        navigate("/misson_select")
-       }
-      }>
+      <p className="intro_story">
+        You start to wonder what choice you really have..
+      </p>{" "}
+      <button
+        onClick={() => {
+          boardShuttleSound();
+          navigate("/misson_select");
+        }}
+      >
         <span>Board shuttle to orbital shipyard</span>
       </button>
       <button
         id="main_menu_logout"
         onClick={() => {
-          logoutSound()
+          logoutSound();
           localStorage.setItem("jwt", "");
           navigate("/");
         }}

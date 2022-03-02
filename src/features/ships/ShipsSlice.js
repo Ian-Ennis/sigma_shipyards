@@ -49,7 +49,6 @@ export const fetchShields = createAsyncThunk(
 );
 
 export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
-
   const spaceship_name = ship;
   const response = await fetch(`http://localhost:3000/spaceships/`, {
     method: "POST",
@@ -77,7 +76,6 @@ export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
 export const saveSpaceship = createAsyncThunk(
   "ships/saveShip",
   async (selectedShip) => {
-
     const spaceship_name = selectedShip.spaceship_name;
     const credits = selectedShip.credits;
     const range = selectedShip.range;
@@ -110,7 +108,8 @@ export const saveSpaceship = createAsyncThunk(
           grapheneCount,
           neutrinoCount,
         }),
-      }).then(() => {
+      }
+    ).then(() => {
       fetch(`http://localhost:3000/spaceships`, {
         method: "GET",
         headers: {
@@ -119,19 +118,20 @@ export const saveSpaceship = createAsyncThunk(
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
       })
-      .then((res) => res.json())
-      .then(() => {
-        console.log('saved')
-        window.confirm(`${spaceship_name} saved!`)
-        return response;
-      })
-    })
-})
+        .then((res) => res.json())
+        .then(() => {
+          console.log("saved");
+          window.confirm(`${spaceship_name} saved!`);
+          return response;
+        });
+    });
+  }
+);
 
 export const deleteSpaceship = createAsyncThunk(
   "ships/deleteShip",
   async (selectedShip) => {
-    console.log('in delete ship')
+    console.log("in delete ship");
 
     const response = await fetch(
       `http://localhost:3000/spaceships/${selectedShip.id}`,
@@ -142,23 +142,25 @@ export const deleteSpaceship = createAsyncThunk(
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("jwt")}`,
         },
-      }).then(() => {
-        fetch(`http://localhost:3000/spaceships`, {
-          method: "GET",
-          headers: {
-            Accepts: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        })
-       .then((res) => res.json())
-       .then(() => {
-         console.log('deleted')
-        window.confirm(`${selectedShip.spaceship_name} deleted!`)
-        return response;
-       })
+      }
+    ).then(() => {
+      fetch(`http://localhost:3000/spaceships`, {
+        method: "GET",
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        },
       })
-  });
+        .then((res) => res.json())
+        .then(() => {
+          console.log("deleted");
+          window.confirm(`${selectedShip.spaceship_name} deleted!`);
+          return response;
+        });
+    });
+  }
+);
 
 const initialState = {
   spaceships: {},
@@ -175,7 +177,7 @@ const spaceshipsSlice = createSlice({
   initialState,
   reducers: {
     chooseShip: (state, action) => {
-      state.chosenShip = action.payload; 
+      state.chosenShip = action.payload;
     },
     buyNuclear: (state) => {
       state.chosenShip.credits -= 150000;
@@ -289,4 +291,3 @@ export const {
 } = spaceshipsSlice.actions;
 
 export default spaceshipsSlice.reducer;
-

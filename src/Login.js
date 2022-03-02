@@ -85,10 +85,10 @@ function Login() {
   }
 
   return (
-    <div className="login_background">
+    <div id="login_background">
       {profileExists ? (
         <div className="all_login_containers">
-          <form className="login" onSubmit={(e) => {
+          <form id="login" onSubmit={(e) => {
             triggerMenuSound()
             login(e)
           }
@@ -111,12 +111,11 @@ function Login() {
                 placeholder="Password"
               />
             </div>
-            <div className="login_create_have_logout">
+            <div className="login_create">
               <button className="login_submit" type="submit">
                 <span>Login</span>
               </button>
               <button
-                className="need_account"
                 id="need_account"
                 onClick={hideLogin}
               ><span>
@@ -151,7 +150,7 @@ function Login() {
                 placeholder="Create Password"
               />
             </div>
-            <div className="login_create_have_logout">
+            <div className="login_create">
               <button className="login_submit" type="submit">
                 <span>Register</span>
               </button>

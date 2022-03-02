@@ -41,7 +41,7 @@ function MissionSelect() {
           <h2 id="mission_select">
             【ｃｈｏｏｓｅ　ｙｏｕｒ　ｄｅｓｔｉｎａｔｉｏｎ】
           </h2>
-          <div className="mission_container">
+          <div id="mission_container">
             <div id="proxima">
               <p>
                 System:{" "}
@@ -50,7 +50,7 @@ function MissionSelect() {
                 </b>
               </p>
               <img
-                className="img_proxima"
+                id="img_proxima"
                 src={proxima_centauri}
                 alt="proxima_centauri"
               />
@@ -75,7 +75,7 @@ function MissionSelect() {
               <p>
                 System: <b><em>{eachSystem[1].name}</em></b>
               </p>
-              <img className="img_tau_ceti" src={tau_ceti} alt="tau_ceti" />
+              <img id="img_tau_ceti" src={tau_ceti} alt="tau_ceti" />
               <p>
                 Distance: <b>{eachSystem[1].distance} light years</b>
               </p>
@@ -97,7 +97,7 @@ function MissionSelect() {
                 System: <b><em>{eachSystem[2].name}</em></b>
               </p>
               <img
-                className="img_upsilon"
+                id="img_upsilon"
                 src={upsilon_andromedae}
                 alt="upsilon_andromedae"
               />
