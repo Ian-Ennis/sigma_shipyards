@@ -23,7 +23,7 @@ const initialState = {
   status: 'idle'
 }
 
-const systemsSlice = createSlice({
+const missionSlice = createSlice({
   name: "systems",
   initialState,
   reducers: {
@@ -48,4 +48,4 @@ const systemsSlice = createSlice({
 
 export const { chooseSystem } = systemsSlice.actions
 
-export default systemsSlice.reducer;
+export default missionSlice.reducer;

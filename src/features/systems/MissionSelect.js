@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"; /*** import hooks to access state, and dispatch actions to said state ***/
-import { fetchSystems, chooseSystem } from "./SystemsSlice"; 
+import { fetchSystems, chooseSystem } from "./MissionSlice"; 
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -21,10 +21,7 @@ function MissionSelect() {
     dispatch(fetchSystems()); /*** 1. Here, an "action", fetchSystems(), is "dispatched" to a reducer function ***/
   }
 
-  console.log(storeState)
-
   const eachSystem = [];
-
   if (storeState.systems.entities.length) {
     storeState.systems.entities.forEach(system => {
       eachSystem.push(system)
