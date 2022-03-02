@@ -2,8 +2,8 @@ import React from "react";
 
 function Header() {
   return (
-    <div className="title">
-      <h1>【﻿ＳＩＧＭＡ　ＳＨＩＰＹＡＲＤＳ】</h1>
+    <div id="title">
+      <h1>【ＳＩＧＭＡ　ＳＨＩＰＹＡＲＤＳ】</h1>
     </div>
   );
 }

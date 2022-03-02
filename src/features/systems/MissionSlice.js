@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-// use of async function to allow rest of app to continue
-export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () => { /*async functions usually return promises*/
-  console.log('in systems fetch')
+export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () => {
   
   const response = await fetch(`http://localhost:3000/star_systems`, {
     method: "GET",
@@ -13,7 +11,6 @@ export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () =>
     },
   })
   .then((res) => res.json())
-
   return response
 })
 
@@ -23,12 +20,11 @@ const initialState = {
   status: 'idle'
 }
 
-const systemsSlice = createSlice({
+const missionSlice = createSlice({
   name: "systems",
   initialState,
   reducers: {
     chooseSystem: (state, action) => {
-        console.log(action)
         state.chosenSystem = action.payload
     }
   },
@@ -46,6 +42,6 @@ const systemsSlice = createSlice({
   },
 });
 
-export const { chooseSystem } = systemsSlice.actions
+export const { chooseSystem } = missionSlice.actions
 
-export default systemsSlice.reducer;
+export default missionSlice.reducer;

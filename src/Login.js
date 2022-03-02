@@ -1,6 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useSound from 'use-sound';
+import main_menu from "./Sounds/main_menu.mp3"
+
 
 function Login() {
   const [profileExists, setProfileExists] = useState(true);
@@ -8,11 +11,12 @@ function Login() {
   const [password, setPassword] = useState("")
 
   const navigate = useNavigate();
+  const [triggerMenuSound] = useSound(main_menu)
 
   // useEffect(() => {
   //   const token = localStorage.getItem("token")
   //   if(token){
-  //     fetch(`http://localhost:3000/auto_login`, {
+  //     fetch(`https://sigma-shipyards-backend.herokuapp.com/auto_login`, {
   //       headers: {
   //         Authorization: `Bearer ${token}`
   //       }
@@ -51,7 +55,6 @@ function Login() {
 
   function createProfile(e) {
     e.preventDefault();
-    console.log('a')
 
     fetch(`http://localhost:3000/users`, {
       method: "POST",
@@ -82,10 +85,14 @@ function Login() {
   }
 
   return (
-    <div className="login_background">
+    <div id="login_background">
       {profileExists ? (
         <div className="all_login_containers">
-          <form className="login" onSubmit={login}>
+          <form id="login" onSubmit={(e) => {
+            triggerMenuSound()
+            login(e)
+          }
+            }>
             <div className="username_password">
               Username:{" "}
               <input
@@ -104,35 +111,27 @@ function Login() {
                 placeholder="Password"
               />
             </div>
-            <div className="login_create_have_logout">
+            <div className="login_create">
               <button className="login_submit" type="submit">
                 <span>Login</span>
               </button>
               <button
-                className="need_account"
                 id="need_account"
                 onClick={hideLogin}
               ><span>
-                Register
+                New registration
                 </span>
               </button>
-              <div id="logout">
-                <button
-                  className="logout"
-                  onClick={() => {
-                    localStorage.setItem("token", "");
-                    // navigate("/");
-                  }}
-                >
-                  Logout
-                </button>
-              </div>
             </div>
           </form>
         </div>
       ) : (
         <div className="all_login_containers">
-          <form className="login" onSubmit={createProfile}>
+          <form className="login" onSubmit={(e) => {
+            triggerMenuSound()
+            createProfile(e)
+          }
+            }>
             <div className="username_password">
               Username:{" "}
               <input
@@ -151,22 +150,11 @@ function Login() {
                 placeholder="Create Password"
               />
             </div>
-            <div className="login_create_have_logout">
+            <div className="login_create">
               <button className="login_submit" type="submit">
                 <span>Register</span>
               </button>
               <button onClick={showLogin}><span>Already registered?</span></button>
-              <div id="logout">
-                <button
-                  className="logout"
-                  onClick={() => {
-                    localStorage.setItem("token", "");
-                    // navigate("/");
-                  }}
-                >
-                  Logout
-                </button>
-              </div>
             </div>
           </form>
         </div>
