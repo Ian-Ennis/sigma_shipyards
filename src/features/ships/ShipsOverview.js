@@ -17,6 +17,7 @@ import ship_mouse_over from "../../Sounds/ship_mouse_over.mp3";
 import construct_ship from "../../Sounds/construct_ship.mp3";
 import to_shipyard from "../../Sounds/to_shipyard.mp3";
 import go_back from "../../Sounds/go_back.mp3";
+import Modal from "../../Modal.js"
 
 function ShipsOverview() {
   const navigate = useNavigate();
@@ -24,26 +25,38 @@ function ShipsOverview() {
   const storeState = useSelector((state) => state);
   const [buttonSound] = useSound(button_click);
   const [shipMouseOver] = useSound(ship_mouse_over, { volume: 2.0 });
-  const [constructShipSound] = useSound(construct_ship)
+  const [constructShipSound] = useSound(construct_ship);
   const [toShipyardSound] = useSound(to_shipyard);
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
   function getShips() {
-    buttonSound()
-    dispatch(fetchSpaceships());
-    dispatch(fetchPropulsion());
-    dispatch(fetchShields());
+    console.log(storeState);
+    if (storeState.spaceships.spaceships.length === 0) {
+      window.confirm(
+        `No spaceships have been constructed. Please create a new ship.`
+      );
+    } else {
+      buttonSound();
+      dispatch(fetchSpaceships());
+      dispatch(fetchPropulsion());
+      dispatch(fetchShields());
+    }
   }
 
   function createShip(e) {
     e.preventDefault();
-    constructShipSound();
-    dispatch(newShip(e.target.ship_name.value));
-    dispatch(fetchSpaceships());
-    dispatch(fetchPropulsion());
-    dispatch(fetchShields());
+    console.log(storeState);
+    if (storeState.spaceships.spaceships.length < 3) {
+      constructShipSound();
+      dispatch(newShip(e.target.ship_name.value));
+      dispatch(fetchSpaceships());
+      dispatch(fetchPropulsion());
+      dispatch(fetchShields());
+    } else {
+      return <Modal />;
+    }
+    // window.confirm(`You have reached your maximum number of ships!`);
   }
-
   const eachShip = [];
   if (storeState.spaceships.spaceships.length) {
     storeState.spaceships.spaceships.forEach((ship) => {
@@ -64,11 +77,11 @@ function ShipsOverview() {
     <div id="intro_to_shipyard">
       <p id="approach_terminal">
         Your shuttle has docked with the shipyard. You make your way toward the
-        viewport overlooking Sigma Shipyard's fleet, and you notice the nearby
-        shipyard computer terminal. Thoughts of self-doubt swirl in your head,
-        accompanied by intrigue over what lies ahead... Yet, you suddenly sense
-        a fleeting glimmer of confidence in your ship-making abilities, and you
-        reach out and grasp it as you step forth to the terminal...
+        viewport overlooking the Sigma Shipyards fleet, when you notice the
+        nearby shipyard computer terminal. Thoughts of self-doubt swirl in your
+        head, accompanied by intrigue for what comes next. You suddenly feel a
+        fleeting glimmer of confidence in your ship-making abilities, and you
+        step toward the terminal...
       </p>
       <div id="ships_with_img">
         <div id="system_by_missions">

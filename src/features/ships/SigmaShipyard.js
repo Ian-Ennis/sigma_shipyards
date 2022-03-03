@@ -37,7 +37,7 @@ function SigmaShipyard() {
   const dispatch = useDispatch();
   const [buttonSound] = useSound(button_click)
   const [shipSavedSound] = useSound(ship_saved);
-  const [shipScappedSound] = useSound(ship_scrapped, { volume: 0.75 });
+  const [shipScrappedSound] = useSound(ship_scrapped, { volume: 0.65 });
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
   const shipCredits = storeState.spaceships.chosenShip.credits;
 
@@ -180,10 +180,15 @@ function SigmaShipyard() {
 
   function scrapShip(e) {
     e.preventDefault();
-    dispatch(deleteSpaceship(storeState.spaceships.chosenShip));
-    dispatch(fetchSpaceships());
-    dispatch(fetchPropulsion());
-    dispatch(fetchShields());
+    window.confirm(`Would you like to destroy the spaceship ${storeState.spaceships.chosenShip.spaceship_name}?`)
+    if (window.confirm) {
+      shipScrappedSound();
+      dispatch(deleteSpaceship(storeState.spaceships.chosenShip));
+      dispatch(fetchSpaceships());
+      dispatch(fetchPropulsion());
+      dispatch(fetchShields());
+      navigate("/ships_overview");
+    }
   }
 
   return (
@@ -313,15 +318,6 @@ function SigmaShipyard() {
             </div>
           </div>
           <div id="statistics">
-            <div id="ship_info">
-              <h3>
-                <em>{storeState.spaceships.chosenShip.spaceship_name}</em>
-              </h3>
-              <p>Range: {storeState.spaceships.chosenShip.range} light years</p>
-              <p>Shields: {storeState.spaceships.chosenShip.strength}%</p>
-              <p>Credits: {shipCredits}</p>
-              <div id="luminous_ship"></div>
-            </div>
             <div id="destination">
               <div id="destination_info">
                 <h3>Destination</h3>
@@ -343,6 +339,15 @@ function SigmaShipyard() {
                   alt="selected_system"
                 />
               </div>
+            </div>
+            <div id="ship_info">
+              <h3>
+                <em>{storeState.spaceships.chosenShip.spaceship_name}</em>
+              </h3>
+              <p>Range: {storeState.spaceships.chosenShip.range} light years</p>
+              <p>Shields: {storeState.spaceships.chosenShip.strength}%</p>
+              <p>Credits: {shipCredits}</p>
+              <div id="luminous_ship"></div>
             </div>
           </div>
         </div>
@@ -368,7 +373,6 @@ function SigmaShipyard() {
           <button
             className="button_zoom"
             onClick={(e) => {
-              shipScappedSound();
               scrapShip(e);
             }}
           >

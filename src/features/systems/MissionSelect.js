@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSystems, chooseSystem } from "./MissionSlice";
+import { fetchSystems, chooseSystem, resetSystems } from "./MissionSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -18,7 +18,7 @@ function MissionSelect() {
   const [missionSound] = useSound(mission_selection)
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
-  const eachSystem = [];
+  let eachSystem = [];
   if (storeState.systems.entities.length) {
     storeState.systems.entities.forEach((system) => {
       eachSystem.push(system);
@@ -129,6 +129,7 @@ function MissionSelect() {
           </div>
           <button
             onClick={() => {
+              dispatch(resetSystems())
               goBackSound();
               navigate("/main_menu");
             }}
@@ -143,10 +144,11 @@ function MissionSelect() {
             star systems presents itself..
           </p>
           <button onClick={() => {
+            buttonSound()
             missionSound()
             dispatch(fetchSystems())
           }
-            }>View star systems</button>
+            }><span>View star systems</span></button>
         </div>
       )}
     </>

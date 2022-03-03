@@ -6,33 +6,32 @@ import logout from "./Sounds/logout.mp3";
 
 function MainMenu() {
   const navigate = useNavigate();
-  const [boardShuttleSound] = useSound(board_shuttle);
+  const [boardShuttleSound] = useSound(board_shuttle, { volume: 0.75 });
   const [logoutSound] = useSound(logout);
 
   return (
     <div id="intro_div">
-      <p className="intro_story">
-        It's the year 2089. Scientists have discovered the sun is readying to
-        release an insurvivable solar flare. Humanity's last hope to continue
-        onwards is by reaching distant star systems with potentially-habitable
-        planets.
-      </p>{" "}
-      <p className="intro_story">
-        Private companies are creating their own orbital shipyards left and
-        right. One in particular, Sigma Shipyards, has recognized your abilities
-        and asked{" "}
-        <em>
-          <b>you</b>
-        </em>{" "}
-        to lead construction of their fleet. They have three star systems
-        selected already. All you have to do is choose one of the systems, and
-        build a suitable ship to reach it. In exchange, you will be given a
-        ticket to board. Few people have been given this opportunity. Will you
-        be the one to help save humanity?
-      </p>
-      <p className="intro_story">
-        You start to wonder what choice you really have..
-      </p>{" "}
+      <div id="stories">
+        <p className="intro_story">
+          It's the year 2089. Scientists have discovered the sun is readying to
+          release an insurvivable solar flare. Humanity's last hope to continue
+          onwards is by reaching distant star systems with potentially-habitable
+          planets.
+        </p>{" "}
+        <p className="intro_story">
+          Private companies are creating their own orbital shipyards left and
+          right. One in particular, Sigma Shipyards, has recognized your
+          abilities and asked{" "}
+          <em>
+            <b>you</b>
+          </em>{" "}
+          to lead construction of their fleet. They have three star systems
+          selected already. All you have to do is choose one of the systems, and
+          build a suitable ship to reach it. In exchange, you will be given a
+          ticket to board. Few people have been given this opportunity. Will you
+          be the one to help save humanity?
+        </p>
+      </div>
       <button
         onClick={() => {
           boardShuttleSound();

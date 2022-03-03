@@ -26,6 +26,9 @@ const missionSlice = createSlice({
   reducers: {
     chooseSystem: (state, action) => {
         state.chosenSystem = action.payload
+    },
+    resetSystems: (state, action) => {
+      state.entities = {}
     }
   },
   extraReducers: {
@@ -42,6 +45,6 @@ const missionSlice = createSlice({
   },
 });
 
-export const { chooseSystem } = missionSlice.actions
+export const { chooseSystem, resetSystems } = missionSlice.actions
 
 export default missionSlice.reducer;
