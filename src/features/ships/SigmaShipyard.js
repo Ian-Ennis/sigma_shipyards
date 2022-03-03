@@ -188,7 +188,7 @@ function SigmaShipyard() {
       dispatch(fetchPropulsion());
       dispatch(fetchShields());
       navigate("/ships_overview");
-    }
+    } 
   }
 
   return (
@@ -326,11 +326,7 @@ function SigmaShipyard() {
                   Distance: {storeState.systems.chosenSystem.distance} light
                   years
                 </p>
-                <p>
-                  Mission complexity:{" "}
-                  {storeState.systems.chosenSystem.mission_complexity};
-                </p>
-                <p>100% shields needed</p>
+                <p>{storeState.systems.chosenSystem.shields_required}% shields needed</p>
               </div>
               <div id="system_div">
                 <img

@@ -52,7 +52,7 @@ function MissionSelect() {
                 Mission complexity: <b>{eachSystem[0].mission_complexity}</b>
               </p>
               <p>
-                Chance of finding habitable planet:{" "}
+                Odds of finding habitable planet:{" "}
                 <b>{eachSystem[0].habitibility_chance}%</b>
               </p>
               <button
@@ -80,7 +80,7 @@ function MissionSelect() {
                 Mission complexity: <b>{eachSystem[1].mission_complexity}</b>
               </p>
               <p>
-                Chance of finding habitable planet:{" "}
+                Odds of finding habitable planet:{" "}
                 <b>{eachSystem[1].habitibility_chance}%</b>
               </p>
               <button
@@ -113,7 +113,7 @@ function MissionSelect() {
                 Mission complexity: <b>{eachSystem[2].mission_complexity}</b>
               </p>
               <p>
-                Chance of finding habitable planet:{" "}
+                Odds of finding habitable planet:{" "}
                 <b>{eachSystem[2].habitibility_chance}%</b>
               </p>
               <button

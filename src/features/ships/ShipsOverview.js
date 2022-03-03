@@ -76,10 +76,10 @@ function ShipsOverview() {
   return (
     <div id="intro_to_shipyard">
       <p id="approach_terminal">
-        Your shuttle has docked with the shipyard. You make your way toward the
-        viewport overlooking the Sigma Shipyards fleet, when you notice the
+        Your shuttle docks with the shipyard. You make your way toward the
+        viewport overlooking the Sigma Shipyards fleet, when you are directed toward the
         nearby shipyard computer terminal. Thoughts of self-doubt swirl in your
-        head, accompanied by intrigue for what comes next. You suddenly feel a
+        head, accompanied by intrigue for the adventure on which you are about to embark. You suddenly feel a
         fleeting glimmer of confidence in your ship-making abilities, and you
         step toward the terminal...
       </p>
@@ -97,11 +97,15 @@ function ShipsOverview() {
             <b>{storeState.systems.chosenSystem.distance} light years</b>
           </p>
           <p>
+            Required Shields:{" "}
+            <b>{storeState.systems.chosenSystem.shields_required}%</b>
+          </p>
+          <p>
             Mission complexity:{" "}
             <b>{storeState.systems.chosenSystem.mission_complexity}</b>
           </p>
           <p>
-            Chance of finding habitable planet:{" "}
+            Odds of finding habitable planet:{" "}
             <b>{storeState.systems.chosenSystem.habitibility_chance}%</b>
           </p>
         </div>
