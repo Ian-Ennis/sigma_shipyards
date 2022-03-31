@@ -67,7 +67,7 @@ function Login() {
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
-      localStorage.setItem("token", data.include[0].jwt)
+      localStorage.setItem("token", data.jwt)
       navigate("/main_menu")
     });
     setUsername("")

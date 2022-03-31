@@ -159,7 +159,7 @@ const spaceshipsSlice = createSlice({
     } /*  a switch/case statement. Action creators are automatically generated and correspond to each. */,
     buyNuclear: (state) => {
       /* // code can be written in a way that seems to mutate state directly (Immer,    */
-      state.chosenShip.credits -= 150000; /* comes with createSlice(). Spread operators no longer neccessary)                    */
+      state.chosenShip.credits -= 150000;/* comes with createSlice(). Spread operators no longer neccessary)                    */
     },
     sellNuclear: (state) => {
       state.chosenShip.credits += 150000;

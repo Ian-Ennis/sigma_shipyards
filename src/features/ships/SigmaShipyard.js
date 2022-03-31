@@ -374,7 +374,6 @@ function SigmaShipyard() {
           >
             Scrap ship
           </button>
-          <button id="begin_game" onClick={() => navigate("/game")}>Begin game</button>
         </div>
     </>
   );
