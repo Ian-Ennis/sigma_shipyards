@@ -5,7 +5,7 @@ import useSound from 'use-sound';
 import main_menu from "./Sounds/main_menu.mp3"
 
 
-function Login() {
+function Login({ setCurrentUser }) {
   const [profileExists, setProfileExists] = useState(true);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -13,66 +13,66 @@ function Login() {
   const navigate = useNavigate();
   const [triggerMenuSound] = useSound(main_menu)
 
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token")
-  //   if(token){
-  //     fetch(`https://sigma-shipyards-backend.herokuapp.com/auto_login`, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //     })
-  //     .then(resp => resp.json())
-  //     .then(data => {
-  //       console.log(data)
-  //     })
-  //   }
-  // }, [])
-
   function login(e) {
     e.preventDefault();
 
-    const loginData = {
-      user: { username: username, password: password },
-    };
-
-    fetch(`http://localhost:3000/login`, {
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
-        accepts: "application/json",
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(loginData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        localStorage.setItem("token", data.jwt)
-        navigate("/main_menu")
-      })
-    setUsername("");
-    setPassword("");
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((data) => {
+          localStorage.setItem("token", data.token);
+          setCurrentUser(data)
+          setUsername("");
+          setPassword("");
+          navigate("/main_menu");
+        });
+      } else {
+        r.json().then((err) => {
+          console.log(err);
+        });
+      }
+    });
   }
 
   function createProfile(e) {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/users`, {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         Accepts: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({username: username, password: password}),
+      body: JSON.stringify({
+        username: username,
+        password: password
+      }),
     })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data)
-      localStorage.setItem("token", data.jwt)
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((data) => {
+          console.log(data)
+          localStorage.setItem("token", data.include[0].jwt);
+          setCurrentUser(data)
+          setUsername("");
+          setPassword("");
       navigate("/main_menu")
     });
-    setUsername("")
-    setPassword("")
+  } else {
+    r.json().then((err) => {
+      console.log(err);
+    });
   }
+});
+}
   
   function hideLogin(e) {
     e.preventDefault();

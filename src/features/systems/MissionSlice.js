@@ -4,13 +4,16 @@ export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () =>
   
   const response = await fetch(`http://localhost:3000/star_systems`, {
     method: "GET",
-    headers: {
-      Accepts: "application/json",
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   })
-  .then((res) => res.json())
+  .then((res) => {
+    console.log(res)
+    res.json()
+  })
   return response
 })
 

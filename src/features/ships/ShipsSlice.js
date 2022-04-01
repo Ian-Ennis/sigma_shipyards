@@ -8,7 +8,7 @@ export const fetchSpaceships = createAsyncThunk(
       headers: {
         Accepts: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => res.json());
 
@@ -24,7 +24,7 @@ export const fetchPropulsion = createAsyncThunk(
       headers: {
         Accepts: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => res.json());
 
@@ -40,7 +40,7 @@ export const fetchShields = createAsyncThunk(
       headers: {
         Accepts: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => res.json());
 
@@ -56,7 +56,7 @@ export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
     headers: {
       Accepts: "application/json",
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
       spaceship_name,
@@ -67,7 +67,7 @@ export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
       headers: {
         Accepts: "application/json",
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => res.json());
     return response;
@@ -96,7 +96,7 @@ export const saveSpaceship = createAsyncThunk(
         headers: {
           Accepts: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         body: JSON.stringify({
           spaceship_name,
@@ -129,7 +129,7 @@ export const deleteSpaceship = createAsyncThunk(
         headers: {
           Accepts: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }).then((res) => res.json())
       return response;
