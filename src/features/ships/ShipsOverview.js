@@ -47,6 +47,7 @@ function ShipsOverview() {
 
     if (storeState.spaceships.spaceships.length < 3) {
       constructShipSound();
+      console.log(e.target.ship_name.value)
       dispatch(newShip(e.target.ship_name.value));
       dispatch(fetchSpaceships());
       dispatch(fetchPropulsion());
@@ -121,7 +122,7 @@ function ShipsOverview() {
                       id="current_ships_button"
                       onMouseEnter={() => shipMouseOver()}
                       onClick={() => {
-                        console.log(ship)
+                        console.log(storeState)
                         toShipyardSound();
                         dispatch(chooseShip(ship));
                         console.log(storeState)

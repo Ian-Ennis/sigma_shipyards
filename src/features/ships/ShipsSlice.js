@@ -5,11 +5,11 @@ export const fetchSpaceships = createAsyncThunk(
   async () => {
     const response = await fetch(`http://localhost:3000/spaceships`, {
       method: "GET",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
     }).then((res) => res.json());
 
     return response;
@@ -21,11 +21,11 @@ export const fetchPropulsion = createAsyncThunk(
   async () => {
     const response = await fetch(`http://localhost:3000/engine_parts`, {
       method: "GET",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
     }).then((res) => res.json());
 
     return response;
@@ -37,11 +37,11 @@ export const fetchShields = createAsyncThunk(
   async () => {
     const response = await fetch(`http://localhost:3000/hull_parts`, {
       method: "GET",
-      headers: {
-        Accepts: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+        headers: {
+          Accepts: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
     }).then((res) => res.json());
 
     return response;

@@ -114,7 +114,9 @@ function SigmaShipyard() {
     e.preventDefault();
     buttonSound()
     if (shipCredits >= 20000) {
+      console.log(storeState)
       dispatch(buyCarbon());
+      console.log(storeState)
     } else {
       window.confirm("You have run out of credits.");
     }
