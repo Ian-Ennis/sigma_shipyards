@@ -121,8 +121,10 @@ function ShipsOverview() {
                       id="current_ships_button"
                       onMouseEnter={() => shipMouseOver()}
                       onClick={() => {
+                        console.log(ship)
                         toShipyardSound();
                         dispatch(chooseShip(ship));
+                        console.log(storeState)
                         navigate("/sigma_shipyard");
                       }}
                     >
