@@ -153,8 +153,10 @@ function SigmaShipyard() {
   function buySPart3(e) {
     e.preventDefault();
     buttonSound()
+    console.log(storeState)
     if (shipCredits >= 300000) {
       dispatch(buyNeutrino());
+      console.log(storeState)
     } else {
       window.confirm("You have run out of credits.");
     }

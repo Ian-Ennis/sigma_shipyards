@@ -17,7 +17,6 @@ import ship_mouse_over from "../../Sounds/ship_mouse_over.mp3";
 import construct_ship from "../../Sounds/construct_ship.mp3";
 import to_shipyard from "../../Sounds/to_shipyard.mp3";
 import go_back from "../../Sounds/go_back.mp3";
-import Modal from "../../Modal.js"
 
 function ShipsOverview() {
   const navigate = useNavigate();
@@ -30,7 +29,7 @@ function ShipsOverview() {
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
   function getShips() {
-    console.log(storeState);
+
     if (storeState.spaceships.spaceships.length === 0) {
       window.confirm(
         `No spaceships have been constructed. Please create a new ship.`
@@ -45,18 +44,16 @@ function ShipsOverview() {
 
   function createShip(e) {
     e.preventDefault();
-    console.log(storeState);
+
     if (storeState.spaceships.spaceships.length < 3) {
       constructShipSound();
       dispatch(newShip(e.target.ship_name.value));
       dispatch(fetchSpaceships());
       dispatch(fetchPropulsion());
       dispatch(fetchShields());
-    } else {
-      return <Modal />;
-    }
-    // window.confirm(`You have reached your maximum number of ships!`);
+    } else window.confirm(`You have reached your maximum number of ships!`);
   }
+
   const eachShip = [];
   if (storeState.spaceships.spaceships.length) {
     storeState.spaceships.spaceships.forEach((ship) => {

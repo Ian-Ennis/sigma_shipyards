@@ -10,10 +10,8 @@ export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () =>
           Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   })
-  .then((res) => {
-    console.log(res)
-    res.json()
-  })
+  .then((res) => res.json())
+  
   return response
 })
 
