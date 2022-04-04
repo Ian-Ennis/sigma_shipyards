@@ -51,7 +51,7 @@ export const fetchShields = createAsyncThunk(
 export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
 
   const spaceship_name = ship;
-  const response = await fetch(`http://localhost:3000/spaceships/`, {
+  const response = await fetch(`http://localhost:3000/spaceships`, {
     method: "POST",
     headers: {
       Accepts: "application/json",
@@ -69,7 +69,7 @@ export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    }).then((res) => res.json());
+    }).then((res) => res.json()).then(data => console.log(data))
     return response;
   });
 });
@@ -159,86 +159,62 @@ const spaceshipsSlice = createSlice({
     } /*  a switch/case statement. Action creators are automatically generated and correspond to each. */,
     buyNuclear: (state) => {
       /* // code can be written in a way that seems to mutate state directly (Immer,    */
-      state.chosenShip.credits -= 150000;/* comes with createSlice(). Spread operators no longer neccessary)                    */
-    },
-    sellNuclear: (state) => {
-      state.chosenShip.credits += 150000;
-    },
-    buyFusion: (state) => {
-      state.chosenShip.credits -= 250000;
-    },
-    sellFusion: (state) => {
-      state.chosenShip.credits += 250000;
-    },
-    buyAntimatter: (state) => {
-      state.chosenShip.credits -= 400000;
-    },
-    sellAntimatter: (state) => {
-      state.chosenShip.credits += 400000;
-    },
-    buyCarbon: (state) => {
-      state.chosenShip.credits -= 20000;
-    },
-    sellCarbon: (state) => {
-      state.chosenShip.credits += 20000;
-    },
-    buyGraphene: (state) => {
-      state.chosenShip.credits -= 90000;
-    },
-    sellGraphene: (state) => {
-      state.chosenShip.credits += 90000;
-    },
-    buyNeutrino: (state) => {
-      state.chosenShip.credits -= 300000;
-    },
-    sellNeutrino: (state) => {
-      state.chosenShip.credits += 300000;
-    },
-    installNuclear: (state) => {
+      state.chosenShip.credits -= 150000;/* comes with createSlice(). Spread operators no longer neccessary)  */
       state.chosenShip.range += 3;
       state.chosenShip.nuclearCount += 1;
     },
-    removeNuclear: (state) => {
+    sellNuclear: (state) => {
+      state.chosenShip.credits += 150000;
       state.chosenShip.range -= 3;
       state.chosenShip.nuclearCount -= 1;
     },
-    installFusion: (state) => {
+    buyFusion: (state) => {
+      state.chosenShip.credits -= 250000;
       state.chosenShip.range += 7;
       state.chosenShip.fusionCount += 1;
     },
-    removeFusion: (state) => {
+    sellFusion: (state) => {
+      state.chosenShip.credits += 250000;
       state.chosenShip.range -= 7;
       state.chosenShip.fusionCount -= 1;
     },
-    installAntimatter: (state) => {
+    buyAntimatter: (state) => {
+      state.chosenShip.credits -= 400000;
       state.chosenShip.range += 10;
       state.chosenShip.antimatterCount += 1;
     },
-    removeAntimatter: (state) => {
+    sellAntimatter: (state) => {
+      state.chosenShip.credits += 400000;
       state.chosenShip.range -= 10;
       state.chosenShip.antimatterCount -= 1;
     },
-    installCarbon: (state) => {
+    buyCarbon: (state) => {
+      state.chosenShip.credits -= 20000;
       state.chosenShip.strength += 5;
       state.chosenShip.carbonCount += 1;
     },
-    removeCarbon: (state) => {
+    sellCarbon: (state) => {
+      state.chosenShip.credits += 20000;
       state.chosenShip.strength -= 5;
       state.chosenShip.carbonCount -= 1;
     },
-    installGraphene: (state) => {
+    buyGraphene: (state) => {
+      state.chosenShip.credits -= 90000;
       state.chosenShip.strength += 15;
       state.chosenShip.grapheneCount += 1;
     },
-    removeGraphene: (state) => {
+    sellGraphene: (state) => {
+      state.chosenShip.credits += 90000;
       state.chosenShip.strength -= 15;
       state.chosenShip.grapheneCount -= 1;
     },
-    installNeutrino: (state) => {
+    buyNeutrino: (state) => {
+      state.chosenShip.credits -= 300000;
       state.chosenShip.strength += 50;
       state.chosenShip.neutrinoCount += 1;
     },
-    removeNeutrino: (state) => {
+    sellNeutrino: (state) => {
+      state.chosenShip.credits += 300000;
       state.chosenShip.strength -= 50;
       state.chosenShip.neutrinoCount -= 1;
     },
@@ -292,18 +268,6 @@ export const {
   sellGraphene,
   buyNeutrino,
   sellNeutrino,
-  installNuclear,
-  removeNuclear,
-  installFusion,
-  removeFusion,
-  installAntimatter,
-  removeAntimatter,
-  installCarbon,
-  removeCarbon,
-  installGraphene,
-  removeGraphene,
-  installNeutrino,
-  removeNeutrino,
 } = spaceshipsSlice.actions;
 
 // here we export the entire reducer function

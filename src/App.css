@@ -391,6 +391,7 @@ button .button_zoom {
   border: 2px solid #6500a2;
   padding: 10px;
   max-width: 33.33%;
+  min-height: 153px;
   background-color: black;
 }
 
@@ -411,6 +412,7 @@ button .button_zoom {
   border: 2px solid #6500a2;
   padding: 10px;
   max-width: 33.33%;
+  min-height: 153px;
   background-color: black;
 }
 
@@ -431,6 +433,7 @@ button .button_zoom {
   border: 2px solid #6500a2;
   padding: 10px;
   max-width: 33.33%;
+  min-height: 153px;
   background-color: black;
 }
 
@@ -451,6 +454,7 @@ button .button_zoom {
   border: 2px solid #6500a2;
   padding: 10px;
   max-width: 33.33%;
+  min-height: 153px;
   background-color: black;
 }
 
@@ -471,6 +475,7 @@ button .button_zoom {
   border: 2px solid #6500a2;
   padding: 10px;
   max-width: 33.33%;
+  min-height: 153px;
   background-color: black;
 }
 
@@ -491,6 +496,7 @@ button .button_zoom {
   border: 2px solid #6500a2;
   padding: 10px;
   max-width: 33.33%;
+  min-height: 153px;
   background-color: black;
 }
 
@@ -515,3 +521,4 @@ button .button_zoom {
   margin-top: 5%;
   margin-bottom: 5%;
 }
+

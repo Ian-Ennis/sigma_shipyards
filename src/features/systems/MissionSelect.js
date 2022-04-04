@@ -147,6 +147,7 @@ function MissionSelect() {
             buttonSound()
             missionSound()
             dispatch(fetchSystems())
+            console.log(storeState)
           }
             }><span>View star systems</span></button>
         </div>
