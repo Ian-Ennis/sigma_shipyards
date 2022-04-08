@@ -18,6 +18,8 @@ function MissionSelect() {
   const [missionSound] = useSound(mission_selection)
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
+  console.log(storeState)
+
   let eachSystem = [];
   if (storeState.systems.entities.length) {
     storeState.systems.entities.forEach((system) => {
@@ -147,7 +149,6 @@ function MissionSelect() {
             buttonSound()
             missionSound()
             dispatch(fetchSystems())
-            console.log(storeState)
           }
             }><span>View star systems</span></button>
         </div>

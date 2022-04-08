@@ -20,8 +20,8 @@ import {
   sellCarbon,
   buyGraphene,
   sellGraphene,
-  buyNeutrino,
-  sellNeutrino,
+  buyNeutron,
+  sellNeutron,
 } from "./ShipsSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
@@ -157,7 +157,7 @@ function SigmaShipyard() {
     buttonSound()
     console.log(storeState)
     if (shipCredits >= 300000) {
-      dispatch(buyNeutrino());
+      dispatch(buyNeutron());
       console.log(storeState)
     } else {
       window.confirm("You have run out of credits.");
@@ -167,8 +167,8 @@ function SigmaShipyard() {
   function sellSPart3(e) {
     e.preventDefault();
     buttonSound()
-    if (storeState.spaceships.chosenShip.neutrinoCount > 0) {
-      dispatch(sellNeutrino());
+    if (storeState.spaceships.chosenShip.neutronCount > 0) {
+      dispatch(sellNeutron());
     } else {
       window.confirm("You have no more to sell.");
     }
@@ -221,6 +221,7 @@ function SigmaShipyard() {
                     <button className="part_button" onClick={sellSPart1}>
                       Sell
                     </button>
+                    {storeState.spaceships.chosenShip.carbonCount > 0 ? <div className="parts_count"><em>{storeState.spaceships.chosenShip.carbonCount} installed</em></div> : null}
                   </div>
                   <div id="spart2">
                     <div id="graphene_div"></div>
@@ -239,9 +240,10 @@ function SigmaShipyard() {
                     <button className="part_button" onClick={sellSPart2}>
                       Sell
                     </button>
+                    {storeState.spaceships.chosenShip.grapheneCount > 0 ? <div className="parts_count"><em>{storeState.spaceships.chosenShip.grapheneCount} installed</em></div> : null}
                   </div>
                   <div id="spart3">
-                    <div id="neutrino_div"></div>
+                    <div id="neutron_div"></div>
                     <p className="inside_part">
                       {storeState.spaceships.shields[2].part_name}
                     </p>
@@ -257,6 +259,7 @@ function SigmaShipyard() {
                     <button className="part_button" onClick={sellSPart3}>
                       Sell
                     </button>
+                    {storeState.spaceships.chosenShip.neutronCount > 0 ? <div className="parts_count"><em>{storeState.spaceships.chosenShip.neutronCount} installed</em></div> : null}
                   </div>
                 </div>
               </div>
@@ -280,6 +283,7 @@ function SigmaShipyard() {
                     <button className="part_button" onClick={sellEPart1}>
                       Sell
                     </button>
+                    {storeState.spaceships.chosenShip.nuclearCount > 0 ? <div className="parts_count"><em>{storeState.spaceships.chosenShip.nuclearCount} installed</em></div> : null}
                   </div>
                   <div id="epart2">
                     <div id="fusion_div"></div>
@@ -298,6 +302,7 @@ function SigmaShipyard() {
                     <button className="part_button" onClick={sellEPart2}>
                       Sell
                     </button>
+                    {storeState.spaceships.chosenShip.fusionCount > 0 ? <div className="parts_count"><em>{storeState.spaceships.chosenShip.fusionCount} installed</em></div> : null}
                   </div>
                   <div id="epart3">
                     <div id="antimatter_div"></div>
@@ -316,6 +321,7 @@ function SigmaShipyard() {
                     <button className="part_button" onClick={sellEPart3}>
                       Sell
                     </button>
+                    {storeState.spaceships.chosenShip.antimatterCount > 0 ? <div className="parts_count"><em>{storeState.spaceships.chosenShip.antimatterCount} installed</em></div> : null}
                   </div>
                 </div>
               </div>
@@ -356,6 +362,7 @@ function SigmaShipyard() {
             className="button_zoom"
             onClick={() => {
               goBackSound();
+              dispatch(fetchSpaceships())
               navigate("/ships_overview");
             }}
           >

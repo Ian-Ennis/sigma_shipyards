@@ -87,7 +87,7 @@ export const saveSpaceship = createAsyncThunk(
     const antimatterCount = selectedShip.antimatterCount;
     const carbonCount = selectedShip.carbonCount;
     const grapheneCount = selectedShip.grapheneCount;
-    const neutrinoCount = selectedShip.neutrinoCount;
+    const neutronCount = selectedShip.neutronCount;
 
     const response = await fetch(
       `http://localhost:3000/spaceships/${selectedShip.id}`,
@@ -108,7 +108,7 @@ export const saveSpaceship = createAsyncThunk(
           antimatterCount,
           carbonCount,
           grapheneCount,
-          neutrinoCount,
+          neutronCount,
         }),
       }
     ).then((res) => res.json())
@@ -208,15 +208,15 @@ const spaceshipsSlice = createSlice({
       state.chosenShip.strength -= 15;
       state.chosenShip.grapheneCount -= 1;
     },
-    buyNeutrino: (state) => {
+    buyNeutron: (state) => {
       state.chosenShip.credits -= 300000;
       state.chosenShip.strength += 50;
-      state.chosenShip.neutrinoCount += 1;
+      state.chosenShip.neutronCount += 1;
     },
-    sellNeutrino: (state) => {
+    sellNeutron: (state) => {
       state.chosenShip.credits += 300000;
       state.chosenShip.strength -= 50;
-      state.chosenShip.neutrinoCount -= 1;
+      state.chosenShip.neutronCount -= 1;
     },
   },
   extraReducers: {
@@ -266,8 +266,8 @@ export const {
   sellCarbon,
   buyGraphene,
   sellGraphene,
-  buyNeutrino,
-  sellNeutrino,
+  buyNeutron,
+  sellNeutron,
 } = spaceshipsSlice.actions;
 
 // here we export the entire reducer function

@@ -6,7 +6,6 @@ import MainMenu from "./MainMenu";
 import MissionSelect from "./features/systems/MissionSelect";
 import ShipsOverview from "./features/ships/ShipsOverview";
 import SigmaShipyard from "./features/ships/SigmaShipyard"
-import ChromeDinoGame from 'react-chrome-dino';
 import "./App.css";
 
 
@@ -22,7 +21,6 @@ function App() {
         <Route path="/misson_select" element={<MissionSelect />} />
         <Route path="/ships_overview" element={<ShipsOverview />} />
         <Route path="/sigma_shipyard" element={<SigmaShipyard />} />
-        <Route path="/game" element={<ChromeDinoGame />} />        
       </Routes>
     </div>
   );

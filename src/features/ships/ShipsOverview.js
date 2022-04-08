@@ -28,6 +28,8 @@ function ShipsOverview() {
   const [toShipyardSound] = useSound(to_shipyard);
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
+  console.log(storeState)
+
   function getShips() {
 
     if (storeState.spaceships.spaceships.length === 0) {
@@ -45,7 +47,7 @@ function ShipsOverview() {
   function createShip(e) {
     e.preventDefault();
 
-    if (storeState.spaceships.spaceships.length < 3) {
+    if (storeState.spaceships.spaceships.length < 4) {
       constructShipSound();
       console.log(e.target.ship_name.value)
       dispatch(newShip(e.target.ship_name.value));

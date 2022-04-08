@@ -13,10 +13,9 @@ function MainMenu() {
     <div id="intro_div">
       <div id="stories">
         <p className="intro_story">
-          It's the year 2089. Scientists have discovered the sun is readying to
-          release an insurvivable solar flare. Humanity's last hope to continue
-          onwards is by reaching distant star systems with potentially-habitable
-          planets.
+          It's the year 2089. The earth is no longer habitable as the atmosphere
+          simply become too toxic. The last hope for humanity to survive is by
+          reaching distant star systems with potentially-habitable planets!
         </p>{" "}
         <p className="intro_story">
           Private companies are creating their own orbital shipyards left and
