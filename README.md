@@ -21,9 +21,6 @@ As a user, I can login to the site, and create an account if I haven't done so y
   npm install npm@latest -g
   npm start
   ```
-  
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 ## Screenshots
@@ -32,3 +29,6 @@ As a user, I can login to the site, and create an account if I haven't done so y
 ![Mission_Select](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/mission_select.png)
 
 ![Shipyard](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/shipyard.png)
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
