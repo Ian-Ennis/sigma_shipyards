@@ -1,9 +1,4 @@
-# About Sigma Shipyards
-
-
-### Built With
-
-* [React-redux.js](https://react-redux.js.org/)
+# Sigma Shipyards
 
 
 ## Project concept: 
@@ -29,7 +24,9 @@ As a user, I can login to the site, and create an account if I haven't done so y
   ```
 
 
+## Built With
 
+* [React-redux.js](https://react-redux.js.org/)
 
 
 ## Screenshots
