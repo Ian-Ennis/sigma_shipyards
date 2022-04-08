@@ -28,7 +28,7 @@ const missionSlice = createSlice({
     chooseSystem: (state, action) => {
         state.chosenSystem = action.payload
     },
-    resetSystems: (state, action) => {
+    resetSystems: (state) => {
       state.entities = {}
     }
   },

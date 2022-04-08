@@ -28,8 +28,6 @@ function ShipsOverview() {
   const [toShipyardSound] = useSound(to_shipyard);
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
-  console.log(storeState)
-
   function getShips() {
 
     if (storeState.spaceships.spaceships.length === 0) {
@@ -49,7 +47,6 @@ function ShipsOverview() {
 
     if (storeState.spaceships.spaceships.length < 4) {
       constructShipSound();
-      console.log(e.target.ship_name.value)
       dispatch(newShip(e.target.ship_name.value));
       dispatch(fetchSpaceships());
       dispatch(fetchPropulsion());
@@ -124,10 +121,8 @@ function ShipsOverview() {
                       id="current_ships_button"
                       onMouseEnter={() => shipMouseOver()}
                       onClick={() => {
-                        console.log(storeState)
                         toShipyardSound();
                         dispatch(chooseShip(ship));
-                        console.log(storeState)
                         navigate("/sigma_shipyard");
                       }}
                     >
@@ -141,7 +136,7 @@ function ShipsOverview() {
           <div id="add_new_ship">
             <h3>Or,&#10;create a new ship</h3>
             <form id="createShip" onSubmit={createShip}>
-              <label for="ship_name">Name your ship:</label>
+              <label htmlFor="ship_name">Name your ship:</label>
               <input
                 id="new_ship_input"
                 type="text"

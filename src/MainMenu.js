@@ -13,7 +13,7 @@ function MainMenu() {
     <div id="intro_div">
       <div id="stories">
         <p className="intro_story">
-          It's the year 2089. The earth is no longer habitable as the atmosphere
+          It&lsquo;s the year 2089. The earth is no longer habitable as the atmosphere
           simply become too toxic. The last hope for humanity to survive is by
           reaching distant star systems with potentially-habitable planets!
         </p>{" "}

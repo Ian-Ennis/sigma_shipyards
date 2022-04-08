@@ -18,8 +18,6 @@ function MissionSelect() {
   const [missionSound] = useSound(mission_selection)
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
-  console.log(storeState)
-
   let eachSystem = [];
   if (storeState.systems.entities.length) {
     storeState.systems.entities.forEach((system) => {
@@ -32,7 +30,7 @@ function MissionSelect() {
       {eachSystem.length ? (
         <div className="mission_div">
           <h2 id="mission_select">
-            【ｃｈｏｏｓｅ　ｙｏｕｒ　ｄｅｓｔｉｎａｔｉｏｎ】
+            【ｃｈｏｏｓｅ ｙｏｕｒ ｄｅｓｔｉｎａｔｉｏｎ】
           </h2>
           <div id="mission_container">
             <div id="proxima">

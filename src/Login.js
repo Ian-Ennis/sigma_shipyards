@@ -5,7 +5,7 @@ import useSound from 'use-sound';
 import main_menu from "./Sounds/main_menu.mp3"
 
 
-function Login({ setCurrentUser }) {
+function Login() {
   const [profileExists, setProfileExists] = useState(true);
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
@@ -29,7 +29,6 @@ function Login({ setCurrentUser }) {
       if (r.ok) {
         r.json().then((data) => {
           localStorage.setItem("token", data.token);
-          setCurrentUser(data)
           setUsername("");
           setPassword("");
           navigate("/main_menu");
@@ -59,9 +58,7 @@ function Login({ setCurrentUser }) {
     .then((r) => {
       if (r.ok) {
         r.json().then((data) => {
-          console.log(data)
           localStorage.setItem("token", data.include[0].jwt);
-          setCurrentUser(data)
           setUsername("");
           setPassword("");
       navigate("/main_menu")

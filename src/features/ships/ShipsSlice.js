@@ -69,7 +69,7 @@ export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    }).then((res) => res.json()).then(data => console.log(data))
+    }).then((res) => res.json())
     return response;
   });
 });
@@ -112,9 +112,7 @@ export const saveSpaceship = createAsyncThunk(
         }),
       }
     ).then((res) => res.json())
-     .then(data => {
-      window.confirm(`${spaceship_name} saved!`)
-    })
+     .then(window.confirm(`${spaceship_name} saved!`))
     return response;
   }
 );
@@ -147,19 +145,14 @@ const initialState = {
 };
 
 const spaceshipsSlice = createSlice({
-  name: "spaceships" /* <name> is used as a prefix for generated action types */,
+  name: "spaceships",
   initialState,
   reducers: {
     chooseShip: (state, action) => {
-      console.log(
-        action
-      ); /*  <-- Reducer obect with functions. createSlice() (Redux Toolkit) allows        */
       state.chosenShip =
-        action.payload; /*  us to write logic to change state within these functions, rather than using   */
-    } /*  a switch/case statement. Action creators are automatically generated and correspond to each. */,
+        action.payload},
     buyNuclear: (state) => {
-      /* // code can be written in a way that seems to mutate state directly (Immer,    */
-      state.chosenShip.credits -= 150000;/* comes with createSlice(). Spread operators no longer neccessary)  */
+      state.chosenShip.credits -= 150000;
       state.chosenShip.range += 3;
       state.chosenShip.nuclearCount += 1;
     },

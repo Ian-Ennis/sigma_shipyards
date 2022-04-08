@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Login from "./Login";
@@ -10,13 +10,12 @@ import "./App.css";
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
 
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<Login setCurrentUser={setCurrentUser} />} />
+        <Route path="/" element={<Login />} />
         <Route path="/main_menu" element={<MainMenu />} />
         <Route path="/misson_select" element={<MissionSelect />} />
         <Route path="/ships_overview" element={<ShipsOverview />} />

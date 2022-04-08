@@ -114,9 +114,7 @@ function SigmaShipyard() {
     e.preventDefault();
     buttonSound()
     if (shipCredits >= 20000) {
-      console.log(storeState)
       dispatch(buyCarbon());
-      console.log(storeState)
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -155,10 +153,8 @@ function SigmaShipyard() {
   function buySPart3(e) {
     e.preventDefault();
     buttonSound()
-    console.log(storeState)
     if (shipCredits >= 300000) {
       dispatch(buyNeutron());
-      console.log(storeState)
     } else {
       window.confirm("You have run out of credits.");
     }
@@ -199,7 +195,7 @@ function SigmaShipyard() {
     <>
         <div id="shipyard">
           <div>
-            <h2>【Ｓｈｉｐｙａｒｄ　Ｐａｒｔｓ　Ｉｎｖｅｎｔｏｒｙ】</h2>
+            <h2>【Ｓｈｉｐｙａｒｄ Ｐａｒｔｓ Ｉｎｖｅｎｔｏｒｙ】</h2>
             <div id="parts">
               <div>
                 <h3>【ｓｈｉｅｌｄｓ】</h3>
