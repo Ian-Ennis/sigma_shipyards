@@ -14,18 +14,14 @@ Looking for the back-end repo? Try [here](https://github.com/Ian-Ennis/sigma_shi
 As a user, I can login to the site, and create an account if I haven't done so yet. Once logged in, I can read about how I've been selected for a special mission. I can select a star system to travel to. I can then select a pre-built ship or create a new ship and add it to my inventory. Using credits in my account, I can purchase parts based on their cost and attributes. Doing so will alter my ship statistics and lower my available balance. I can save my ship, or scrap it and start over.
 
 
-### Installation
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-   
+### To run the application:
+* fork and clone 
+* npm
+  ```sh
+  npm install npm@latest -g
+  npm start
+  ```
+  
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
