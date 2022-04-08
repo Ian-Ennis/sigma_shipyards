@@ -1,19 +1,27 @@
 # Sigma Shipyards
 
-Project concept: It's the year 2089, and things really aren't looking good. It's the year 2089. The earth is no longer habitable as the atmosphere simply become too toxic. The last hope for humanity to survive is by reaching distant star systems with potentially-habitable planets! Private companies are creating their own orbital shipyards left and right, and one in particular has asked me to lead construction of their fleet. They have three star systems selected already. All I have to do is build a suitable ship and try to reach one of the systems. 
+Project concept: It's the year 2089. The earth is no longer habitable as the atmosphere simply become too toxic. The last hope for humanity to survive is by reaching distant star systems with potentially-habitable planets! Private companies are creating their own orbital shipyards left and right, and one in particular has asked me to lead construction of their fleet. They have three star systems selected already. All I have to do is build a suitable ship and try to reach one of the systems. 
 
 Looking for the back-end repo? Try [here](https://github.com/Ian-Ennis/sigma_shipyards_rails_api)
 
 
 # User Stories
 
-Minimum viable product: As a user, I can login to the site, and create an account if I haven't done so yet. Once logged in, I can opt to create a new ship using credits in my account to purchase parts based on their cost and attributes, have them added to my ship frame. Doing so will alter my ship statistics and lower my available balance. The ship will be visible with the clicked parts being rendered/attached. If I've already created a ship, I can either modify or delete it, or create a new ship entirely and add it to my collection. 
-
-Stretch goal: I have been tasked with piloting the ship to the other star systems. As a user, I can select one of three star systems to fly to, based on distance and inherent dangers along the flight path. Once I click "embark", I can navigate my ship up or down the screen as interstellar dangers head my way. It's my job to surive the journey with the ship I have made. Collisions with objects will lower my shields, and my fuel reserves are limited. I will either live or die.. These results can be viewed on the mission accomplishments and failures page. Can I survive the journey?.. Will I be the one to save humanity?..
+As a user, I can login to the site, and create an account if I haven't done so yet. Once logged in, I can read about how I've been selected for a special mission. I can select a star system to travel to. I can then select a pre-built ship or create a new ship and add it to my inventory. Using credits in my account, I can purchase parts based on their cost and attributes. Doing so will alter my ship statistics and lower my available balance. I can save my ship, or scrap it and start over.
 
 
 # Entity-Relationship Diagram
-![ERD](https://github.com/duneSpice97/the_shipyard/blob/main/client/public/deliverables/ERD%20-%20The%20Shipyard.png)
+![ERD](https://github.com/Ian-Ennis/the_shipyard/blob/main/client/public/deliverables/ERD%20-%20The%20Shipyard.png)
+
+
+# Screenshots
+![Login](/Users/ian/Development/cloned_repos/capstone/sigma_shipyards/public/deliverables/login.png)
+
+![Main_Menu](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/login.png)
+
+![Mission_Select](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/login.png)
+
+![Shipyard](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/login.png)
 
 
 # Mock-up
@@ -22,10 +30,6 @@ Stretch goal: I have been tasked with piloting the ship to the other star system
 ![Main Menu](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/main_menu.png)
 
 ![Shipyard](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/shipyard.png)
-
-![Interstellar_Voyage](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/voyage.png)
-
-![User_Outcomes](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/score.png)
 
 
 # Developer notes (for later)...
