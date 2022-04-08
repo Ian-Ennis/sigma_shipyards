@@ -1,6 +1,11 @@
 # About Sigma Shipyards
 
 
+### Built With
+
+* [React-redux.js](https://react-redux.js.org/)
+
+
 ## Project concept: 
 
 It's the year 2089. The earth is no longer habitable as the atmosphere simply become too toxic. The last hope for humanity to survive is by reaching distant star systems with potentially-habitable planets! Private companies are creating their own orbital shipyards left and right, and one in particular has asked me to lead construction of their fleet. They have three star systems selected already. All I have to do is build a suitable ship and try to reach one of the systems.
@@ -22,6 +27,9 @@ As a user, I can login to the site, and create an account if I haven't done so y
   npm install npm@latest -g
   npm start
   ```
+
+
+
 
 
 ## Screenshots
