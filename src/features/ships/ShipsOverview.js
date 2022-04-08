@@ -29,7 +29,6 @@ function ShipsOverview() {
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
   function getShips() {
-
     if (storeState.spaceships.spaceships.length === 0) {
       window.confirm(
         `No spaceships have been constructed. Please create a new ship.`

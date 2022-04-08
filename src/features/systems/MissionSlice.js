@@ -11,7 +11,6 @@ export const fetchSystems = createAsyncThunk("systems/fetchSystems", async () =>
     },
   })
   .then((res) => res.json())
-  
   return response
 })
 

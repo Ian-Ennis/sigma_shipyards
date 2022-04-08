@@ -1,17 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useSound from 'use-sound';
-import main_menu from "./Sounds/main_menu.mp3"
-
+import useSound from "use-sound";
+import main_menu from "./Sounds/main_menu.mp3";
 
 function Login() {
   const [profileExists, setProfileExists] = useState(true);
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
-  const [triggerMenuSound] = useSound(main_menu)
+  const [triggerMenuSound] = useSound(main_menu);
 
   function login(e) {
     e.preventDefault();
@@ -52,25 +51,24 @@ function Login() {
       },
       body: JSON.stringify({
         username: username,
-        password: password
+        password: password,
       }),
-    })
-    .then((r) => {
+    }).then((r) => {
       if (r.ok) {
         r.json().then((data) => {
           localStorage.setItem("token", data.include[0].jwt);
           setUsername("");
           setPassword("");
-      navigate("/main_menu")
-    });
-  } else {
-    r.json().then((err) => {
-      console.log(err);
+          navigate("/main_menu");
+        });
+      } else {
+        r.json().then((err) => {
+          console.log(err);
+        });
+      }
     });
   }
-});
-}
-  
+
   function hideLogin(e) {
     e.preventDefault();
     setProfileExists(false);
@@ -85,11 +83,13 @@ function Login() {
     <div id="login_background">
       {profileExists ? (
         <div className="all_login_containers">
-          <form id="login" onSubmit={(e) => {
-            triggerMenuSound()
-            login(e)
-          }
-            }>
+          <form
+            id="login"
+            onSubmit={(e) => {
+              triggerMenuSound();
+              login(e);
+            }}
+          >
             <div className="username_password">
               Username:{" "}
               <input
@@ -112,23 +112,21 @@ function Login() {
               <button className="login_submit" type="submit">
                 <span>Login</span>
               </button>
-              <button
-                id="need_account"
-                onClick={hideLogin}
-              ><span>
-                New registration
-                </span>
+              <button id="need_account" onClick={hideLogin}>
+                <span>New registration</span>
               </button>
             </div>
           </form>
         </div>
       ) : (
         <div className="all_login_containers">
-          <form className="login" onSubmit={(e) => {
-            triggerMenuSound()
-            createProfile(e)
-          }
-            }>
+          <form
+            className="login"
+            onSubmit={(e) => {
+              triggerMenuSound();
+              createProfile(e);
+            }}
+          >
             <div className="username_password">
               Username:{" "}
               <input
@@ -151,7 +149,9 @@ function Login() {
               <button className="login_submit" type="submit">
                 <span>Register</span>
               </button>
-              <button onClick={showLogin}><span>Already registered?</span></button>
+              <button onClick={showLogin}>
+                <span>Already registered?</span>
+              </button>
             </div>
           </form>
         </div>

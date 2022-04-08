@@ -246,7 +246,6 @@ const spaceshipsSlice = createSlice({
   },
 });
 
-// here we export each action creator to make it accessible to useDispatch() in ANY component
 export const {
   chooseShip,
   buyNuclear,
@@ -263,8 +262,4 @@ export const {
   sellNeutron,
 } = spaceshipsSlice.actions;
 
-// here we export the entire reducer function
 export default spaceshipsSlice.reducer;
-
-// differences between regular redux, and RTK:
-// Instead of writing case/switch statements, createSlice() handles that for us. When we invoke useDispatch(), the reducer function checks to see if any of it's action creators correspond to the name being called. The action.type from regular redux corresponds to the name of the action creator itself. Example: useDispatch(spaceshipAdded()).
