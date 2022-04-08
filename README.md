@@ -1,6 +1,6 @@
 # Sigma Shipyards
 
-Project concept: It's the year 2089, and things really aren't looking good. Scientists have discovered the sun is readying to release an insurvivable solar flare! Humanity's last hope to continue onwards is by reaching other star systems with habitable planets. Private companies are creating their own orbital shipyards left and right, and one in particular has asked me to lead construction of their fleet. They have three star systems selected already. All I have to do is build a suitable ship and try to reach one of the systems. 
+Project concept: It's the year 2089, and things really aren't looking good. It's the year 2089. The earth is no longer habitable as the atmosphere simply become too toxic. The last hope for humanity to survive is by reaching distant star systems with potentially-habitable planets! Private companies are creating their own orbital shipyards left and right, and one in particular has asked me to lead construction of their fleet. They have three star systems selected already. All I have to do is build a suitable ship and try to reach one of the systems. 
 
 Looking for the back-end repo? Try [here](https://github.com/Ian-Ennis/sigma_shipyards_rails_api)
 
