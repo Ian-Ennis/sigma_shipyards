@@ -1,4 +1,5 @@
-# About the project
+# About Sigma Shipyards
+
 
 ## Project concept: 
 
@@ -9,12 +10,12 @@ Sigma Shipyards is a wink and a nod to a 90's game called Escape Velocity by Amb
 Looking for the back-end repo? Try [here](https://github.com/Ian-Ennis/sigma_shipyards_rails_api)
 
 
-### User Stories
+## User Stories
 
 As a user, I can login to the site, and create an account if I haven't done so yet. Once logged in, I can read about how I've been selected for a special mission. I can select a star system to travel to. I can then select a pre-built ship or create a new ship and add it to my inventory. Using credits in my account, I can purchase parts based on their cost and attributes. Doing so will alter my ship statistics and lower my available balance. I can save my ship, or scrap it and start over.
 
 
-### To run the application:
+## To run the application:
 * fork and clone 
 * npm
   ```sh
