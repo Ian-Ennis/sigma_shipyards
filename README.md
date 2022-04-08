@@ -10,21 +10,21 @@ Looking for the back-end repo? Try [here](https://github.com/Ian-Ennis/sigma_shi
 As a user, I can login to the site, and create an account if I haven't done so yet. Once logged in, I can read about how I've been selected for a special mission. I can select a star system to travel to. I can then select a pre-built ship or create a new ship and add it to my inventory. Using credits in my account, I can purchase parts based on their cost and attributes. Doing so will alter my ship statistics and lower my available balance. I can save my ship, or scrap it and start over.
 
 # Screenshots
-![Login](public/deliverables/login.png)
+![Login](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/login.png)
 
-![Main_Menu](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/login.png)
+![Main_Menu](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/main_menu.png)
 
-![Mission_Select](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/login.png)
+![Mission_Select](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/mission_select.png)
 
-![Shipyard](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/login.png)
+![Shipyard](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/shipyard.png)
 
 
 # Mock-up
-![Login](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/login.png)
+![Login](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/login.png)
 
-![Main Menu](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/main_menu.png)
+![Main Menu](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/main_menu.png)
 
-![Shipyard](https://github.com/duneSpice97/sigma_shipyards/blob/main/public/deliverables/shipyard.png)
+![Shipyard](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/shipyard.png)
 
 
 # Developer notes (for later)...
