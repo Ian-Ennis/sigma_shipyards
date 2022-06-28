@@ -195,7 +195,7 @@ function SigmaShipyard() {
     <>
         <div id="shipyard">
           <div>
-            <h2>【Ｓｈｉｐｙａｒｄ Ｐａｒｔｓ Ｉｎｖｅｎｔｏｒｙ】</h2>
+            <h2>【Ｓｈｉｐｙａｒｄ &nbsp; Ｐａｒｔｓ &nbsp; Ｉｎｖｅｎｔｏｒｙ】</h2>
             <div id="parts">
               <div>
                 <h3>【ｓｈｉｅｌｄｓ】</h3>
