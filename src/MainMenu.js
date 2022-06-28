@@ -13,21 +13,16 @@ function MainMenu() {
     <div id="intro_div">
       <div id="stories">
         <p className="intro_story">
-          It&lsquo;s the year 2089. The earth is no longer habitable as the atmosphere
-          simply become too toxic. The last hope for humanity to survive is by
-          reaching distant star systems with potentially-habitable planets!
+          It&lsquo;s the year 2089. The earth is no longer habitable, as the atmosphere
+          has become too toxic to support life. The last hope for humanity to survive is by
+          reaching distant star systems with potentially-habitable planets.
         </p>{" "}
         <p className="intro_story">
           Private companies are creating their own orbital shipyards left and
           right. One in particular, Sigma Shipyards, has recognized your
-          abilities and asked{" "}
-          <em>
-            <b>you</b>
-          </em>{" "}
-          to lead construction of their fleet. They have three star systems
+          abilities, and asked you to lead construction of their fleet. They have three star systems
           selected already. All you have to do is choose one of the systems, and
-          build a suitable ship to reach it. In exchange, you will be given a
-          ticket to board. Few people have been given this opportunity. Will you
+          build a suitable ship. Few people have been given this opportunity. Will you
           be the one to help save humanity?
         </p>
       </div>

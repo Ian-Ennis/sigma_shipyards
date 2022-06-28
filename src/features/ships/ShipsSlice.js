@@ -152,62 +152,62 @@ const spaceshipsSlice = createSlice({
       state.chosenShip =
         action.payload},
     buyNuclear: (state) => {
-      state.chosenShip.credits -= 150000;
+      state.chosenShip.credits -= 40000;
       state.chosenShip.range += 3;
       state.chosenShip.nuclearCount += 1;
     },
     sellNuclear: (state) => {
-      state.chosenShip.credits += 150000;
+      state.chosenShip.credits += 40000;
       state.chosenShip.range -= 3;
       state.chosenShip.nuclearCount -= 1;
     },
     buyFusion: (state) => {
-      state.chosenShip.credits -= 250000;
+      state.chosenShip.credits -= 120000;
       state.chosenShip.range += 7;
       state.chosenShip.fusionCount += 1;
     },
     sellFusion: (state) => {
-      state.chosenShip.credits += 250000;
+      state.chosenShip.credits += 120000;
       state.chosenShip.range -= 7;
       state.chosenShip.fusionCount -= 1;
     },
     buyAntimatter: (state) => {
-      state.chosenShip.credits -= 400000;
+      state.chosenShip.credits -= 200000;
       state.chosenShip.range += 10;
       state.chosenShip.antimatterCount += 1;
     },
     sellAntimatter: (state) => {
-      state.chosenShip.credits += 400000;
+      state.chosenShip.credits += 200000;
       state.chosenShip.range -= 10;
       state.chosenShip.antimatterCount -= 1;
     },
     buyCarbon: (state) => {
-      state.chosenShip.credits -= 20000;
+      state.chosenShip.credits -= 10000;
       state.chosenShip.strength += 5;
       state.chosenShip.carbonCount += 1;
     },
     sellCarbon: (state) => {
-      state.chosenShip.credits += 20000;
+      state.chosenShip.credits += 10000;
       state.chosenShip.strength -= 5;
       state.chosenShip.carbonCount -= 1;
     },
     buyGraphene: (state) => {
-      state.chosenShip.credits -= 90000;
+      state.chosenShip.credits -= 30000;
       state.chosenShip.strength += 15;
       state.chosenShip.grapheneCount += 1;
     },
     sellGraphene: (state) => {
-      state.chosenShip.credits += 90000;
+      state.chosenShip.credits += 30000;
       state.chosenShip.strength -= 15;
       state.chosenShip.grapheneCount -= 1;
     },
     buyNeutron: (state) => {
-      state.chosenShip.credits -= 300000;
+      state.chosenShip.credits -= 75000;
       state.chosenShip.strength += 50;
       state.chosenShip.neutronCount += 1;
     },
     sellNeutron: (state) => {
-      state.chosenShip.credits += 300000;
+      state.chosenShip.credits += 75000;
       state.chosenShip.strength -= 50;
       state.chosenShip.neutronCount -= 1;
     },
