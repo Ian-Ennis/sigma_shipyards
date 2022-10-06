@@ -34,6 +34,8 @@ As a user, I can login to the site, and create an account if I haven't done so y
 
 ![Mission_Select](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/mission_select.png)
 
+![Ship_Select](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/ship_select.png)
+
 ![Shipyard](https://github.com/Ian-Ennis/sigma_shipyards/blob/main/public/deliverables/shipyard.png)
 
 
