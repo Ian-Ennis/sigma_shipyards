@@ -4,14 +4,17 @@ import useSound from "use-sound";
 import board_shuttle from "./Sounds/board_shuttle.mp3";
 import logout from "./Sounds/logout.mp3";
 
-function MainMenu() {
+function MainMenu({ currentUser }) {
   const navigate = useNavigate();
   const [boardShuttleSound] = useSound(board_shuttle, { volume: 0.75 });
   const [logoutSound] = useSound(logout);
 
+  console.log("current user in main menu:", currentUser.username)
+
   return (
     <div id="intro_div">
       <div id="stories">
+        <p className="intro_story">Welcome, {localStorage.getItem("current user")}..</p>
         <p className="intro_story">
           It&lsquo;s the year 2089. The earth is no longer habitable, as the atmosphere
           has become too toxic to support life. The last hope for humanity to survive is by

@@ -40,7 +40,7 @@ function Login() {
     });
   }
 
-  function createProfile(e) {
+  function signUp(e) {
     e.preventDefault();
 
     fetch("http://localhost:3000/users", {
@@ -124,7 +124,7 @@ function Login() {
             className="login"
             onSubmit={(e) => {
               triggerMenuSound();
-              createProfile(e);
+              signUp(e);
             }}
           >
             <div className="username_password">
