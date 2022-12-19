@@ -26,7 +26,6 @@ function SignupForm() {
     }).then((response) => {
       if (response.ok) {
         response.json().then((data) => {
-          console.log("signup data:", data)
           localStorage.setItem("token", data.jwt);
           setFormData({
             username: "",

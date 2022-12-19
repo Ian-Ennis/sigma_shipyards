@@ -7,7 +7,7 @@ import MainMenu from "./MainMenu";
 import MissionSelect from "./features/systems/MissionSelect";
 import ShipsOverview from "./features/ships/ShipsOverview";
 import SigmaShipyard from "./features/ships/SigmaShipyard"
-import "./App.css";
+import "./index.css";
 
 
 function App() {
@@ -20,8 +20,8 @@ function App() {
         <Route path="/" element={<LoginForm setCurrentUser={setCurrentUser} />} />
         <Route path="/signup" element={<SignupForm/>} />
         <Route path="/main_menu" element={<MainMenu currentUser={currentUser} />} />
-        <Route path="/misson_select" element={<MissionSelect />} />
-        <Route path="/ships_overview" element={<ShipsOverview />} />
+        <Route path="/misson_select" element={<MissionSelect currentUser={currentUser}/>} />
+        <Route path="/ships_overview" element={<ShipsOverview currentUser={currentUser} />} />
         <Route path="/sigma_shipyard" element={<SigmaShipyard />} />
       </Routes>
     </div>

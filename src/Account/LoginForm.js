@@ -36,6 +36,7 @@ function LoginForm({ setCurrentUser, profileExists, setProfileExists  }) {
           console.log("data:", data)
           localStorage.setItem("token", data.jwt);
           localStorage.setItem("current user", data.user.username)
+          localStorage.setItem("current user id", data.user.id)
           setCurrentUser(data.user)
           setFormData({
             username: "",
@@ -58,8 +59,8 @@ function LoginForm({ setCurrentUser, profileExists, setProfileExists  }) {
         <form
           id="login"
           onSubmit={(e) => {
-            triggerMenuSound();
             login(e);
+            triggerMenuSound();
           }}
         >
           <div className="username_password">

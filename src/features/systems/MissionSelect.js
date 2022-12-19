@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSystems, chooseSystem, resetSystems } from "./MissionSlice";
+import { fetchSystems, chooseSystem } from "./MissionSlice";
 import proxima_centauri from "../../Images/proxima_centauri.jpeg";
 import tau_ceti from "../../Images/tau_ceti.jpeg";
 import upsilon_andromedae from "../../Images/upsilon_andromedae.jpeg";
@@ -12,13 +12,20 @@ import go_back from "../../Sounds/go_back.mp3";
 
 function MissionSelect() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const storeState = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [buttonSound] = useSound(button_click);
   const [missionSound] = useSound(mission_selection)
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
+  function getSystems(e) {
+    e.preventDefault();
+
+    dispatch(fetchSystems())
+  }
+
   let eachSystem = [];
+
   if (storeState.systems.entities.length) {
     storeState.systems.entities.forEach((system) => {
       eachSystem.push(system);
@@ -57,8 +64,8 @@ function MissionSelect() {
               </p>
               <button
                 onClick={() => {
-                  buttonSound();
                   dispatch(chooseSystem(eachSystem[0]));
+                  buttonSound();
                   navigate("/ships_overview");
                 }}
               >
@@ -85,8 +92,8 @@ function MissionSelect() {
               </p>
               <button
                 onClick={() => {
-                  buttonSound();
                   dispatch(chooseSystem(eachSystem[1]));
+                  buttonSound();
                   navigate("/ships_overview");
                 }}
               >
@@ -118,8 +125,8 @@ function MissionSelect() {
               </p>
               <button
                 onClick={() => {
-                  buttonSound();
                   dispatch(chooseSystem(eachSystem[2]));
+                  buttonSound();
                   navigate("/ships_overview");
                 }}
               >
@@ -129,7 +136,6 @@ function MissionSelect() {
           </div>
           <button
             onClick={() => {
-              dispatch(resetSystems())
               goBackSound();
               navigate("/main_menu");
             }}
@@ -146,9 +152,10 @@ function MissionSelect() {
           <button onClick={() => {
             buttonSound()
             missionSound()
-            dispatch(fetchSystems())
+            getSystems()
           }
-            }><span>View star systems</span></button>
+          }
+          ><span>View star systems</span></button>
         </div>
       )}
     </>
