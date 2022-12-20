@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { resetShips } from "./features/ships/ShipsSlice";
 import useSound from "use-sound";
 import board_shuttle from "./Sounds/board_shuttle.mp3";
 import logout from "./Sounds/logout.mp3";
 
 function MainMenu() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [boardShuttleSound] = useSound(board_shuttle, { volume: 0.75 });
   const [logoutSound] = useSound(logout);
 
@@ -39,6 +42,7 @@ function MainMenu() {
         id="main_menu_logout"
         onClick={() => {
           logoutSound();
+          dispatch(resetShips())
           localStorage.clear()
           navigate("/");
         }}

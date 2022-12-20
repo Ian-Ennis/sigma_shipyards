@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchSpaceships = createAsyncThunk(
-  "spaceships/fetchSpaceships",
-  async () => {
-    const response = await fetch(`http://localhost:3000/spaceships`, {
-      method: "GET",
-        headers: {
-          Accepts: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+const user_id = localStorage.getItem("current user id")
+
+export const fetchSpaceships = createAsyncThunk("spaceships/fetchSpaceships",async () => {
+
+  const response = await fetch(`http://localhost:3000/spaceships`, {
+    method: "GET",
+      headers: {
+        Accepts: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     }).then((res) => res.json());
-
-    return response;
+    return response
   }
 );
 
@@ -27,7 +27,6 @@ export const fetchPropulsion = createAsyncThunk(
           Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     }).then((res) => res.json());
-
     return response;
   }
 );
@@ -43,7 +42,6 @@ export const fetchShields = createAsyncThunk(
           Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     }).then((res) => res.json());
-
     return response;
   }
 );
@@ -51,6 +49,7 @@ export const fetchShields = createAsyncThunk(
 export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
 
   const spaceship_name = ship;
+
   const response = await fetch(`http://localhost:3000/spaceships`, {
     method: "POST",
     headers: {
@@ -59,6 +58,7 @@ export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
     body: JSON.stringify({
+      user_id,
       spaceship_name,
     }),
   }).then(() => {
@@ -69,7 +69,7 @@ export const newShip = createAsyncThunk("ships/saveShip", async (ship) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    }).then((res) => res.json())
+    }).then((res) => res.json());
     return response;
   });
 });
@@ -135,7 +135,7 @@ export const deleteSpaceship = createAsyncThunk(
 );
 
 const initialState = {
-  spaceships: {},
+  entities: {},
   chosenShip: {},
   propulsion: {},
   shields: {},
@@ -151,6 +151,9 @@ const spaceshipsSlice = createSlice({
     chooseShip: (state, action) => {
       state.chosenShip =
         action.payload},
+    resetShips: (state) => {
+      state.entities = {};
+    },
     buyNuclear: (state) => {
       state.chosenShip.credits -= 40000;
       state.chosenShip.range += 3;
@@ -217,7 +220,7 @@ const spaceshipsSlice = createSlice({
       state.fetchShipStatus = "loading";
     },
     [fetchSpaceships.fulfilled](state, action) {
-      state.spaceships = action.payload;
+      state.entities = action.payload;
       state.fetchShipStatus = "idle";
     },
     [fetchSpaceships.rejected](state) {
@@ -248,6 +251,7 @@ const spaceshipsSlice = createSlice({
 
 export const {
   chooseShip,
+  resetShips,
   buyNuclear,
   sellNuclear,
   buyFusion,

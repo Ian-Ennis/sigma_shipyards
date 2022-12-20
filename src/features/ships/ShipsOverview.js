@@ -28,34 +28,32 @@ function ShipsOverview() {
   const [toShipyardSound] = useSound(to_shipyard);
   const [goBackSound] = useSound(go_back, { volume: 0.6 });
 
-  function getShips() {
-    if (storeState.spaceships.spaceships.length === 0) {
-      window.confirm(
-        `No spaceships have been constructed. Please create a new ship.`
-      );
-    } else {
-      buttonSound();
-      dispatch(fetchSpaceships());
-      dispatch(fetchPropulsion());
-      dispatch(fetchShields());
-    }
+  
+  function getShips(e) {
+    e.preventDefault();
+
+    dispatch(fetchSpaceships());
+    dispatch(fetchPropulsion())
+    dispatch(fetchShields())
+    buttonSound()
   }
 
   function createShip(e) {
     e.preventDefault();
 
-    if (storeState.spaceships.spaceships.length < 4) {
-      constructShipSound();
+    if (storeState.spaceships.entities.length < 4) {
       dispatch(newShip(e.target.ship_name.value));
       dispatch(fetchSpaceships());
       dispatch(fetchPropulsion());
       dispatch(fetchShields());
-    } else window.confirm(`You have reached your maximum number of ships!`);
+      constructShipSound();
+    } else window.alert(`You have reached your maximum number of ships!`);
   }
 
   const eachShip = [];
-  if (storeState.spaceships.spaceships.length) {
-    storeState.spaceships.spaceships.forEach((ship) => {
+
+  if (storeState.spaceships.entities.length) {
+    storeState.spaceships.entities.forEach((ship) => {
       eachShip.push(ship);
     });
   }
@@ -72,7 +70,7 @@ function ShipsOverview() {
   return (
     <div id="intro_to_shipyard">
       <p id="approach_terminal">
-        Your shuttle docks with the shipyard. You make your way toward the
+        **{localStorage.getItem("current user")}**, your shuttle docks with the shipyard. You make your way toward the
         viewport overlooking the Sigma Shipyards fleet, when you are directed toward the
         nearby shipyard computer terminal. Thoughts of self-doubt swirl in your
         head, accompanied by intrigue for the adventure on which you are about to embark. You suddenly feel a
@@ -120,8 +118,8 @@ function ShipsOverview() {
                       id="current_ships_button"
                       onMouseEnter={() => shipMouseOver()}
                       onClick={() => {
-                        toShipyardSound();
                         dispatch(chooseShip(ship));
+                        toShipyardSound();
                         navigate("/sigma_shipyard");
                       }}
                     >
@@ -142,7 +140,7 @@ function ShipsOverview() {
                 name="ship_name"
                 placeholder=""
               />
-              <button type="submit">
+              <button type="submit" onClick={buttonSound()}>
                 <span>Create ship</span>
               </button>
             </form>
